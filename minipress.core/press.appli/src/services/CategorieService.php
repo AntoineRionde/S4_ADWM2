@@ -2,6 +2,7 @@
 
 namespace press\app\services;
 
+use PHPUnit\Exception;
 use press\app\models\Categorie;
 use Slim\Exception\HttpBadRequestException;
 
@@ -16,8 +17,8 @@ class CategorieService{
     function getCategorieById(int $id){
         try {
             return Categorie::findOrFail($id)->toArray();
-        }catch(ModelNotFoundException $e) {
-            throw new HttpBadRequestException($request, "L'id de la catégorie n'est pas renseigné");
+        }catch(Exception $e) {
+            throw new HttpBadRequestException( "L'id de la catégorie n'est pas renseigné");
         }
     }
 
@@ -34,8 +35,8 @@ class CategorieService{
             $categorie = Categorie::findOrFail($idCat);
             $categorie->delete();
             return $categorie->toArray();
-        }catch(ModelNotFoundException $e) {
-            throw new HttpBadRequestException($request, "L'id de la catégorie n'est pas renseigné");
+        }catch(Exception $e) {
+            throw new HttpBadRequestException("L'id de la catégorie n'est pas renseigné");
         }
     }
 }

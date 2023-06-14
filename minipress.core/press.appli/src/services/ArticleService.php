@@ -8,6 +8,10 @@ use Exception;
 
 class ArticleService{
 
+    /**
+     *
+     * @return array $articles
+     */
     function getArticles(){
         $articles = Categorie::all();
         return $articles;
@@ -21,6 +25,10 @@ class ArticleService{
         }
     }
 
+    /**
+     * @param array $data
+     * @return array $article
+     */
     function createArticle(array $data){
         $article = new Article();
         $article->titre = $data['titre'];
@@ -30,6 +38,10 @@ class ArticleService{
         return $article->toArray();
     }
 
+    /**
+     * @param int $idArt
+     * @return array $article
+     */
     function deleteArticle($idArt){
         try {
             $article = Article::findOrFail($idArt);
@@ -39,7 +51,11 @@ class ArticleService{
             throw new \Exception( "L'id de l'article n'est pas renseigné");
         }
     }
-
+    /**
+     * @param int $idArt
+     * @param array $data
+     * @return array $article
+     */
     function updateArticle($idArt, array $data){
         try {
             $article = Article::findOrFail($idArt);
