@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `prenom` varchar(30) NOT NULL,
   `email` varchar(256) NOT NULL,
   `password` varchar(256) NOT NULL,
+  'role' bool NOT NULL,
   `active` tinyint(1) NOT NULL DEFAULT '0',
   `activation_token` varchar(128) NOT NULL,
   `activation_expires` timestamp(2) NULL DEFAULT NULL,
