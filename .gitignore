@@ -1,3 +1,5 @@
-.idea
+
 /conf/.conf
-/vendor
+*/vendor
+/conf/.conf
+
