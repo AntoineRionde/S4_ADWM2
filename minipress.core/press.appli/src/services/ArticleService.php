@@ -9,15 +9,22 @@ use Exception;
 class ArticleService{
 
     /**
-     *
+     * Méthode permettant de récupérer tous les articles
      * @return array $articles
      */
-    function getArticles(){
+    function getArticles(): array
+    {
         $articles = Categorie::all();
-        return $articles;
+        return $articles->toArray();
     }
 
-    function getArticleById(int $id){
+    /**
+     * Méthode permettant de récupérer un article par son id
+     * @param int $id
+     * @return array $article
+     * @throws Exception $e
+     */
+    function getArticleById(int $id) : array {
         try {
             return Article::findOrFail($id)->toArray();
         }catch(\Exception $e) {
@@ -26,10 +33,12 @@ class ArticleService{
     }
 
     /**
+     * Méthode permettant de créer un article
      * @param array $data
      * @return array $article
      */
-    function createArticle(array $data){
+    function createArticle(array $data): array
+    {
         $article = new Article();
         $article->titre = $data['titre'];
         $article->contenu = $data['contenu'];
@@ -39,10 +48,12 @@ class ArticleService{
     }
 
     /**
+     * Méthode permettant de supprimer un article
      * @param int $idArt
      * @return array $article
      */
-    function deleteArticle($idArt){
+    function deleteArticle(int $idArt): array
+    {
         try {
             $article = Article::findOrFail($idArt);
             $article->delete();
@@ -52,11 +63,12 @@ class ArticleService{
         }
     }
     /**
+     * Méthode permettant de mettre à jour un article
      * @param int $idArt
      * @param array $data
      * @return array $article
      */
-    function updateArticle($idArt, array $data){
+    function updateArticle(int $idArt, array $data) : array {
         try {
             $article = Article::findOrFail($idArt);
             $article->titre = $data['titre'];
@@ -69,7 +81,13 @@ class ArticleService{
         }
     }
 
-    function getArticlesByCategorie($idCat){
+    /**
+     * méthode permettant de récupérer les articles d'une catégorie
+     * @param int $idCat id de la catégorie
+     * @return array $articles
+     * @throws Exception $e
+     */
+    function getArticlesByCategorie(int $idCat) : array {
         try {
             $articles = Article::where('idCateg', $idCat)->get();
             return $articles->toArray();
