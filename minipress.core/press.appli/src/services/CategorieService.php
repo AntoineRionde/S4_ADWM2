@@ -8,13 +8,21 @@ use Slim\Exception\HttpBadRequestException;
 
 class CategorieService{
 
-
-    function getCategories(){
+    /**
+     * Méthode permettant de récupérer toutes les catégories
+     * @return array
+     */
+    function getCategories() : array {
         $categories = Categorie::all();
-        return $categories;
+        return $categories->toArray();
     }
 
-    function getCategorieById(int $id){
+    /**
+     * Méthode permettant de récupérer une catégorie par son id
+     * @param int $id
+     * @return array $categorie
+     */
+    function getCategorieById(int $id) : array {
         try {
             return Categorie::findOrFail($id)->toArray();
         }catch(Exception $e) {
@@ -22,7 +30,12 @@ class CategorieService{
         }
     }
 
-    function createCategorie(array $data){
+    /**
+     * Méthode permettant de créer une catégorie
+     * @param array $data
+     * @return array $categorie
+     */
+    function createCategorie(array $data) : array {
         $categorie = new Categorie();
         $categorie->libelle = $data['titre'];
         $categorie->description = $data['description'];
@@ -30,7 +43,12 @@ class CategorieService{
         return $categorie->toArray();
     }
 
-    function deleteCategorie($idCat){
+    /**
+     * Méthode permettant de supprimer une catégorie
+     * @param $idCat id de la categorie a supprimer
+     * @return array $categorie
+     */
+    function deleteCategorie($idCat) : array{
         try {
             $categorie = Categorie::findOrFail($idCat);
             $categorie->delete();
