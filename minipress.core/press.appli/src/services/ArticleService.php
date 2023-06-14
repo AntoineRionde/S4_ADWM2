@@ -3,6 +3,16 @@
 namespace press\app\services;
 
 use press\app\models\Article;
+<<<<<<< HEAD
+use Slim\Exception\HttpBadRequestException;
+
+class ArticleService{
+
+    function getArticles(){
+        $articles = Categorie::all();
+        return $articles;
+    }
+=======
 use press\app\models\Categorie;
 use Exception;
 
@@ -99,4 +109,5 @@ class ArticleService{
 
 
 
+>>>>>>> 112952990148bee9538291d24689b86696de069d
 }
