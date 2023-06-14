@@ -1,0 +1,42 @@
+version: "1"
+networks:
+  press.net:
+    driver: bridge
+
+services:
+  php:
+    image: canals/php:latest
+    environment:
+      - http_proxy=http://www-cache.iutnc.univ-lorraine.fr:3128
+      - https_proxy=http://www-cache.iutnc.univ-lorraine.fr:3128
+    ports:
+      - "45001:80"
+    volumes:
+      - ./press.appli/public:/var/www/html
+      - ./shared/img:/var/www/html/
+      - ./press.appli/src:/var/www/src
+    networks:
+      - press.net
+#    depends_on:
+#      - sql
+
+  sql:
+    image: mariadb:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
+    ports:
+      - "45003:3306"
+    networks:
+      press.net:
+        aliases:
+          - sql.db
+
+  adminer:
+    image: adminer
+    ports:
+      - "45002:8080"
+    networks:
+      - press.net
