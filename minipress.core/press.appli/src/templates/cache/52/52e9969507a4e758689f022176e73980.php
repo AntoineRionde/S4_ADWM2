@@ -40,6 +40,7 @@ class __TwigTemplate_cf82db73b2a6158f0b285f112250a5f7 extends Template
             <li><a href=\"/\">Home</a></li>
             <li><a href=\"/categories\">Categories</a></li>
             <li><a href=\"/articles\">Articles</a></li>
+            <li><a href=\"/createCategorie\">Créer une catégorie</a></li>
         </ul>
     </div>
 </header>";
