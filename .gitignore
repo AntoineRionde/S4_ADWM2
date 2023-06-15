@@ -1,4 +1,4 @@
 .idea
-/conf/.conf
+/conf/db.conf
 /minipress.core/press.appli/src/vendor/composer/installed.php
 /minipress.core/press.appli/src/vendor/*
