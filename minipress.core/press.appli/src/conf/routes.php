@@ -7,6 +7,7 @@ use press\app\actions\CreateArticleProcessAction;
 use press\app\actions\GetArticleAction;
 use press\app\actions\GetCategoriesAction;
 use press\app\actions\GetHomeAction;
+use press\app\actions\loginAction;
 use Slim\App;
 
 return function (App $app): void {
@@ -14,6 +15,8 @@ return function (App $app): void {
     $app->get('/', GetHomeAction::class)->setName('home');
     $app->get('/articles[/]', GetArticleAction::class)->setName("articles");
     $app->get('/categories[/]', GetCategoriesAction::class)->setName("categories");
+    $app->get('/login[/]', LoginAction::class)->setName("login");
+    $app->post('/LoginAction[/]', \press\app\actions\ProcessLoginAction::class)->setName("loginAction");
 
     //Routes to API
     $app->get('/api/articles[/]', GetApiArticleAction::class)->setName("articlesApi");
