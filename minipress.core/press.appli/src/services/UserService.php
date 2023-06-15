@@ -75,6 +75,30 @@ class UserService{
      */
     public static function register(string $email, string $name, string $firstname, string $pass): void {
         //TODO à compléter
+
     }
 
+    //Activation
+
+    /**
+     * @param string $email
+     * @return string
+     * @throws Exception
+     * génère une token d'activation
+     */
+    private static function generateActivitionToken(string $email): string {
+        $token = bin2hex(random_bytes(64));
+        return 'https://'.$_SERVER['HTTP_HOST'].'activate.php'."?token=$token";
+    }
+
+    /**
+     * @param string $token
+     * @return bool
+     * active un compte utilisateur
+     */
+    public static function activate(string $token): bool {
+        $isActivate = false;
+
+        return $isActivate;
+    }
 }
