@@ -2,7 +2,9 @@
 
 namespace press\app\services;
 
+use Exception;
 use press\app\models\Article;
+use press\app\models\Categorie;
 use Slim\Exception\HttpBadRequestException;
 
 class ArticleService{
