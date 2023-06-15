@@ -12,9 +12,9 @@ services:
     ports:
       - "45001:80"
     volumes:
-      - ./press.appli/public:/var/www/html
-      - ./shared/img:/var/www/html/
-      - ./press.appli/src:/var/www/src
+      - ./minipress.core/press.appli/public:/var/www/html
+      - ./minipress.core/shared/img:/var/www/html/
+      - ./minipress.core/press.appli/src:/var/www/src
     networks:
       - press.net
 #    depends_on:
