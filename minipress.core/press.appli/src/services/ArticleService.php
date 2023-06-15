@@ -15,7 +15,7 @@ class ArticleService{
      */
     function getArticles(): array
     {
-        $articles = Categorie::all();
+        $articles = Article::all();
         return $articles->toArray();
     }
 
