@@ -4,8 +4,6 @@ namespace press\app\actions;
 
 use Slim\Psr7\Response as Response;
 use Slim\Psr7\Request as Request;
-use press\app\models\Article;
-use press\app\actions\AbstractAction;
 use press\app\services\ArticleService;
 use Slim\Views\twig;
 
