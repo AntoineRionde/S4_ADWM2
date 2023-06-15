@@ -9,6 +9,20 @@ use Slim\Exception\HttpBadRequestException;
 class CategorieService{
 
     /**
+     * Méthode permettant de créer une nouvelle categorie via un tableau de données donné
+     * @param array $donnee
+     * @return Categorie categorie
+     */
+    function create(array $donnee){
+        $categorie = new Categorie;
+        $categorie->id = $donnee['id'];
+        $categorie->titre = $donnee['titre'];
+        $categorie->description = $donnee['description'];
+        $categorie->save();
+        return $categorie;
+    }
+
+    /**
      * Méthode permettant de récupérer toutes les catégories
      * @return array
      */

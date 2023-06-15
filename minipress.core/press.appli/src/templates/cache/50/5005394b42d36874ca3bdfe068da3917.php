@@ -61,21 +61,17 @@ class __TwigTemplate_8b3f0c7ff0042c29db9d4035ea95de6b extends Template
         // line 8
         if ((twig_length_filter($this->env, ($context["articles"] ?? null)) > 1)) {
             // line 9
-            echo "        <p>";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["articles"] ?? null), "id", [], "any", false, false, false, 9), "html", null, true);
-            echo "</p>
-            ";
-            // line 10
+            echo "            ";
             $context['_parent'] = $context;
             $context['_seq'] = twig_ensure_traversable(($context["articles"] ?? null));
             foreach ($context['_seq'] as $context["_key"] => $context["art"]) {
-                // line 11
+                // line 10
                 echo "                <li>
                     <h2>";
-                // line 12
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["art"], "titre", [], "any", false, false, false, 12), "html", null, true);
+                // line 11
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["art"], "titre", [], "any", false, false, false, 11), "html", null, true);
                 echo "</h2><p>paru le : ";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["arti"] ?? null), "date_publication", [], "any", false, false, false, 12), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["arti"] ?? null), "date_publication", [], "any", false, false, false, 11), "html", null, true);
                 echo "</p>
                 </li>
             ";
@@ -83,10 +79,10 @@ class __TwigTemplate_8b3f0c7ff0042c29db9d4035ea95de6b extends Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['art'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 15
+            // line 14
             echo "        ";
         }
-        // line 16
+        // line 15
         echo "    </ul>
 ";
     }
@@ -103,7 +99,7 @@ class __TwigTemplate_8b3f0c7ff0042c29db9d4035ea95de6b extends Template
 
     public function getDebugInfo()
     {
-        return array (  90 => 16,  87 => 15,  76 => 12,  73 => 11,  69 => 10,  64 => 9,  62 => 8,  58 => 6,  54 => 5,  47 => 3,  36 => 1,);
+        return array (  86 => 15,  83 => 14,  72 => 11,  69 => 10,  64 => 9,  62 => 8,  58 => 6,  54 => 5,  47 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
