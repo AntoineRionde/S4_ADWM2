@@ -3,27 +3,28 @@
 {% block title %}Création d'un article{% endblock %}
 
 {% block content %}
-    <label for="titre">Titre</label>
-    <input type="text" id="titre" value="{{ article.titre }}">
+    <form action="{{ url_for('createArticlePost') }}" method="post">
 
-    <label for="auteur">Auteur</label>
-    <input type="auteur" id="auteur" value="{{ article.auteur }}" >
+        <label for="titre">Titre</label>
+        <input type="text" id="titre" value="{{ article.titre }}">
 
-    <label for="resume" id="resume">Résumé</label>
-    <textarea id="resume" name="resume" rows="5" cols="33">{{ article.resume }}</textarea>
+        <label for="auteur">Auteur</label>
+        <input type="text" id="auteur" value="{{ article.auteur }}" >
 
-    <label for="contenu" id="contenu">Contenu</label>
-    <textarea id="contenu" name="contenu" rows="5" cols="33">{{ article.contenu }}</textarea>
+        <label for="resume" id="resume">Résumé</label>
+        <textarea id="resume" name="resume" rows="5" cols="33">{{ article.resume }}</textarea>
 
-    <label for="date_publi" id="date_publi">Date de publication</label>
-    <input type="date" id="date_publi" name="date_publi" value="{{ article.date_publi }}">
+        <label for="contenu" id="contenu">Contenu</label>
+        <textarea id="contenu" name="contenu" rows="5" cols="33">{{ article.contenu }}</textarea>
 
-    <label for="url_image">Image</label>
-    <input type="file" id="url_image" name="url_image" value="{{ article.image }}">
+        <label for="url_image">Image</label>
+        <input type="file" id="url_image" name="url_image" value="{{ article.image }}">
 
-    <label for="idCateg">Id de la catégorie</label>
-    <input type="number" id="idCateg" name="idCateg" value="{{ article.idCateg }}">
+        <label for="idCateg">Id de la catégorie</label>
+        <input type="number" id="idCateg" name="idCateg" value="{{ article.idCateg }}">
 
-    <input type="submit" value="Envoyer">
+        <input type="submit" value="Envoyer">
+
+    </form>
 
 {% endblock %}

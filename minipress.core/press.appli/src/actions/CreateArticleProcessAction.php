@@ -14,6 +14,7 @@ class CreateArticleProcessAction extends AbstractAction
     {
         $data = $request->getParsedBody();
         $data['titre'] = filter_var($data['titre'], FILTER_SANITIZE_SPECIAL_CHARS);
+        echo $data['titre'];
         $data['auteur'] = filter_var($data['auteur'], FILTER_SANITIZE_SPECIAL_CHARS);
         $data['resume'] = filter_var($data['resume'], FILTER_SANITIZE_SPECIAL_CHARS);
         $data['contenu'] = filter_var($data['contenu'], FILTER_SANITIZE_SPECIAL_CHARS);
