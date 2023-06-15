@@ -22,7 +22,7 @@
 
         <label for="cat-select">Choississez une catégorie : </label>
         <select name="cats" id="cat-select">
-            <option value="">Choissir une catégorie</option>
+            <option value="">Choisir une catégorie</option>
             {% for cat in categories %}
                 <option value="{{ cat.id }}">{{ cat.titre }}</option>
             {% endfor %}

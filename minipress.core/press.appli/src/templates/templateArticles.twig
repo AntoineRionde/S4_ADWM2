@@ -9,6 +9,9 @@
             {% for art in articles %}
                 <li>
                     <h2>    {{art.titre}}</h2><p>paru le : {{art.date_creation}}</p>
+                    <p>    Résumé  :   {{art.resume }} </p>
+                    <p>    Contenu :   {{art.contenu}}</p>
+                    <p>    Auteur  :   {{art.auteur}}</p>
                 </li>
             {% endfor %}
         {% endif %}
