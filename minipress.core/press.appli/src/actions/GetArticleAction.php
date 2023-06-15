@@ -3,7 +3,7 @@
 namespace press\app\actions;
 
 use Slim\Psr7\Response as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
+use Slim\Psr7\Request as Request;
 use press\app\models\Article;
 use press\app\actions\AbstractAction;
 use press\app\services\ArticleService;
