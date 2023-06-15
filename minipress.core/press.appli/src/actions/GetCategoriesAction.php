@@ -1,7 +1,7 @@
 <?php
 namespace press\app\actions;
 
-use Psr\Http\Message\ResponseInterface as Response;
+use Slim\Psr7\Response as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use press\app\models\Categorie;
 use Slim\Exception\HttpBadRequestException;
