@@ -53,7 +53,7 @@ class ArticleService{
         }
         $article->image = $data['image'];
 
-        $article->idCateg = $data['idCateg'];
+        $article->idCateg = $data['cats'];
         $article->save();
         return $article->toArray();
     }
