@@ -12,8 +12,8 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* squelette.twig */
-class __TwigTemplate_6162f85492f03c7624d2c42141e0b940 extends Template
+/* home.twig */
+class __TwigTemplate_9d37bfaed7d58d9994c95b1bd857bcfe extends Template
 {
     private $source;
     private $macros = [];
@@ -24,52 +24,38 @@ class __TwigTemplate_6162f85492f03c7624d2c42141e0b940 extends Template
 
         $this->source = $this->getSourceContext();
 
-        $this->parent = false;
-
         $this->blocks = [
             'content' => [$this, 'block_content'],
         ];
     }
 
+    protected function doGetParent(array $context)
+    {
+        // line 1
+        return "squelette.twig";
+    }
+
     protected function doDisplay(array $context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 1
-        echo "<!DOCTYPE html>
-<html lang=\"fr\">
-<head>
-    <title>Minipress</title>
-    <meta charset=\"UTF-8\">
-</head>
-<body>
-";
-        // line 8
-        $this->loadTemplate("header.twig", "squelette.twig", 8)->display($context);
-        // line 9
-        echo "<div class=\"content\">
-    ";
-        // line 10
-        $this->displayBlock('content', $context, $blocks);
-        // line 11
-        echo "</div>
-";
-        // line 12
-        $this->loadTemplate("footer.twig", "squelette.twig", 12)->display($context);
-        // line 13
-        echo "</body>
-</html>";
+        $this->parent = $this->loadTemplate("squelette.twig", "home.twig", 1);
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 10
+    // line 3
     public function block_content($context, array $blocks = [])
     {
         $macros = $this->macros;
-        echo " ";
+        // line 4
+        echo "    <div class=\"home\">
+        <h1>Welcome to Minipress</h1>
+    </div>
+";
     }
 
     public function getTemplateName()
     {
-        return "squelette.twig";
+        return "home.twig";
     }
 
     public function isTraitable()
@@ -79,11 +65,11 @@ class __TwigTemplate_6162f85492f03c7624d2c42141e0b940 extends Template
 
     public function getDebugInfo()
     {
-        return array (  64 => 10,  59 => 13,  57 => 12,  54 => 11,  52 => 10,  49 => 9,  47 => 8,  38 => 1,);
+        return array (  50 => 4,  46 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Source("", "squelette.twig", "C:\\wamp64\\www\\SAE4_ADWM2\\minipress.core\\press.appli\\src\\templates\\squelette.twig");
+        return new Source("", "home.twig", "C:\\wamp64\\www\\SAE4_ADWM2\\minipress.core\\press.appli\\src\\templates\\home.twig");
     }
 }

@@ -71,7 +71,7 @@ class __TwigTemplate_aed184cf1509f4028975d68cb4221868 extends Template
                 // line 11
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["art"], "titre", [], "any", false, false, false, 11), "html", null, true);
                 echo "</h2><p>paru le : ";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["arti"] ?? null), "date_publication", [], "any", false, false, false, 11), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["art"], "date_creation", [], "any", false, false, false, 11), "html", null, true);
                 echo "</p>
                 </li>
             ";
