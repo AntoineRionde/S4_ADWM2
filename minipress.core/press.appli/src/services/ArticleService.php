@@ -38,7 +38,7 @@ class ArticleService{
      * @param array $data
      * @return array $article
      */
-    function createArticle(array $data): array
+    function createArticle(array &$data): array
     {
         $article = new Article();
         $article->titre = $data['titre'];
@@ -47,7 +47,12 @@ class ArticleService{
         $article->resume = $data['resume'];
         $article->contenu = $data['contenu'];
         $article->date_publication = date_create()->format('Y-m-d H:i:s');
+
+        if ($data['image'] === '') {
+            $data['image'] = null;
+        }
         $article->image = $data['image'];
+
         $article->idCateg = $data['idCateg'];
         $article->save();
         return $article->toArray();
