@@ -15,12 +15,15 @@ class ProcessLoginAction extends AbstractAction
         $routeContext = RouteContext::fromRequest($request);
         $url = $routeContext->getRouteParser()->urlFor('home');
 
-        // TODO: Implement __invoke() method
         if($request->getMethod() === 'POST'){
             $username = $request->getParsedBody()['username'];
             $password = $request->getParsedBody()['password'];
-
         }
+
+        //vérifier si username est dans la bd
+
+        //vérifier si le mot de passe est correct
+
         return $response->withHeader('Location', $url)->withStatus(302);
     }
 }
