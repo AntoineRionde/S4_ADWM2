@@ -1,5 +1,4 @@
+.idea
 /conf/.conf
 /minipress.core/press.appli/src/vendor/*
-/minipress.core/press.appli/src/composer.lock/*
-
-
+minipress.core/press.appli/src/composer.lock
