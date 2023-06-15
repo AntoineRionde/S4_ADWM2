@@ -9,4 +9,6 @@ class Categorie extends Model{
     protected $primaryKey = 'id';
     public $incrementing = false;
     public $keyType = 'string';
+    public $timestamps = false;
+    public $fillable = ['id', 'titre', 'description'];
 }

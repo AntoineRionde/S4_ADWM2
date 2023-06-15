@@ -42,7 +42,12 @@ class ArticleService{
     {
         $article = new Article();
         $article->titre = $data['titre'];
+        $article->date_creation = date_create()->format('Y-m-d H:i:s');
+        $article->auteur = $data['auteur'];
+        $article->resume = $data['resume'];
         $article->contenu = $data['contenu'];
+        $article->date_publication = date_create()->format('Y-m-d H:i:s');
+        $article->image = $data['image'];
         $article->idCateg = $data['idCateg'];
         $article->save();
         return $article->toArray();

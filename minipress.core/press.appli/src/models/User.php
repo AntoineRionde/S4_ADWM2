@@ -9,4 +9,6 @@ class User extends Model{
     protected $primaryKey = 'id';
     public $incrementing = false;
     public $keyType = 'string';
+    public $timestamps = false;
+    public $fillable = ['id', 'nom', 'prenom', 'email', 'password', 'role', 'active', 'activation_token', 'activation_expires', 'renew_token', 'renew_expires'];
 }
