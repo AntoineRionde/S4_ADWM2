@@ -2,4 +2,4 @@
 /minipress.core/press.appli/src/conf/db.conf
 /minipress.core/press.appli/src/vendor/composer/installed.php
 /minipress.core/press.appli/src/vendor/*
-/minipress.core/press.api/src/templates/cache/*
+/minipress.core/press.appli/src/templates/cache/*
