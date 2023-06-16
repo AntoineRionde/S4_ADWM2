@@ -40,27 +40,32 @@ class __TwigTemplate_900da9347588e65e93926ef91030a463 extends Template
 <head>
     <title>Minipress</title>
     <meta charset=\"UTF-8\">
+    <link rel=\"stylesheet\" href=\"/css/menu.css\";
 </head>
 <body>
 ";
-        // line 8
-        $this->loadTemplate("header.twig", "squelette.twig", 8)->display($context);
         // line 9
+        $this->loadTemplate("header.twig", "squelette.twig", 9)->display($context);
+        // line 10
         echo "<div class=\"content\">
     ";
-        // line 10
-        $this->displayBlock('content', $context, $blocks);
         // line 11
-        echo "</div>
-";
+        $this->displayBlock('content', $context, $blocks);
         // line 12
-        $this->loadTemplate("footer.twig", "squelette.twig", 12)->display($context);
-        // line 13
+        echo "</div>
+<br />
+<br />
+<br />
+<br />
+";
+        // line 17
+        $this->loadTemplate("footer.twig", "squelette.twig", 17)->display($context);
+        // line 18
         echo "</body>
 </html>";
     }
 
-    // line 10
+    // line 11
     public function block_content($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -79,7 +84,7 @@ class __TwigTemplate_900da9347588e65e93926ef91030a463 extends Template
 
     public function getDebugInfo()
     {
-        return array (  64 => 10,  59 => 13,  57 => 12,  54 => 11,  52 => 10,  49 => 9,  47 => 8,  38 => 1,);
+        return array (  69 => 11,  64 => 18,  62 => 17,  55 => 12,  53 => 11,  50 => 10,  48 => 9,  38 => 1,);
     }
 
     public function getSourceContext()

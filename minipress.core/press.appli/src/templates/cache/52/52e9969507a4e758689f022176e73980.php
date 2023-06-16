@@ -35,12 +35,31 @@ class __TwigTemplate_cf82db73b2a6158f0b285f112250a5f7 extends Template
         $macros = $this->macros;
         // line 1
         echo "<header>
+    <div class=\"nom\">
+        <h1>MiniPress</h1>
+    </div>
     <div class=\"nav\">
         <ul>
-            <li><a href=\"/\">Home</a></li>
-            <li><a href=\"/categories\">Categories</a></li>
-            <li><a href=\"/articles\">Articles</a></li>
-            <li><a href=\"/createCategorie\">Créer une catégorie</a></li>
+            <li><a href=\"";
+        // line 7
+        echo twig_escape_filter($this->env, $this->env->getRuntime('Slim\Views\TwigRuntimeExtension')->urlFor("home"), "html", null, true);
+        echo "\">Home</a></li>
+            <li><a href=\"";
+        // line 8
+        echo twig_escape_filter($this->env, $this->env->getRuntime('Slim\Views\TwigRuntimeExtension')->urlFor("categories"), "html", null, true);
+        echo "\">Categories</a></li>
+            <li><a href=\"";
+        // line 9
+        echo twig_escape_filter($this->env, $this->env->getRuntime('Slim\Views\TwigRuntimeExtension')->urlFor("articles"), "html", null, true);
+        echo "\">Articles</a></li>
+             <li><a href=\"";
+        // line 10
+        echo twig_escape_filter($this->env, $this->env->getRuntime('Slim\Views\TwigRuntimeExtension')->urlFor("createCategorie"), "html", null, true);
+        echo "\">Créer une catégorie</a></li>
+            <li><a href=\"";
+        // line 11
+        echo twig_escape_filter($this->env, $this->env->getRuntime('Slim\Views\TwigRuntimeExtension')->urlFor("createArticle"), "html", null, true);
+        echo "\">Créer un article</a></li>
         </ul>
     </div>
 </header>";
@@ -51,9 +70,14 @@ class __TwigTemplate_cf82db73b2a6158f0b285f112250a5f7 extends Template
         return "header.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  37 => 1,);
+        return array (  61 => 11,  57 => 10,  53 => 9,  49 => 8,  45 => 7,  37 => 1,);
     }
 
     public function getSourceContext()
