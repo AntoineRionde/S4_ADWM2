@@ -10,10 +10,13 @@
             {% for art in sortedArticles %}
                 <li>
                     <h2>    {{art.titre}}</h2><p>paru le : {{art.date_creation}}</p>
-                    <p>    Résumé  :   {{art.resume }} </p>
-                    <p>    Contenu :   {{art.contenu}}</p>
+{#                    <p>    Résumé  :   {{art.resume }} </p>#}
+{#                    <p>    Contenu :   {{art.contenu}}</p>#}
+                    {{ art.resume|raw }}
+                    {{ art.contenu|raw }}
                     <p>    Auteur  :   {{art.auteur}}</p>
                 </li>
+
             {% endfor %}
         {% else %}
             <li>Aucun article trouvé.</li>
