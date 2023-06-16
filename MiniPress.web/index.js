@@ -1,5 +1,3 @@
-import { getDataArticles } from './modules/articles.js';
+import articles from './modules/articles.js';
 
-
-
-console.log(getDataArticles());
+console.log(articles.getDataArticles());
