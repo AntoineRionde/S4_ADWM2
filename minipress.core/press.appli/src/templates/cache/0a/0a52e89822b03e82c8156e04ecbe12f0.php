@@ -59,48 +59,66 @@ class __TwigTemplate_a05b710a5c009f2550fe85b59a7cb86d extends Template
         echo twig_escape_filter($this->env, $this->env->getRuntime('Slim\Views\TwigRuntimeExtension')->urlFor("createArticlePost"), "html", null, true);
         echo "\" method=\"post\">
 
-        <label for=\"titre\">Titre</label>
+        <label for=\"titre\">Titre : </label>
         <input type=\"text\" id=\"titre\" name=\"titre\">
 
-        <label for=\"auteur\">Auteur</label>
+        <br />
+        <br />
+
+        <label for=\"auteur\">Auteur : </label>
         <input type=\"text\" id=\"auteur\" name=\"auteur\">
 
-        <label for=\"resume\" id=\"resume\">Résumé</label>
+        <br />
+        <br />
+
+        <label for=\"resume\" id=\"resume\">Résumé : </label>
         <textarea id=\"resume\" name=\"resume\" rows=\"5\" cols=\"33\">";
-        // line 15
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "resume", [], "any", false, false, false, 15), "html", null, true);
+        // line 21
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "resume", [], "any", false, false, false, 21), "html", null, true);
         echo "</textarea>
 
-        <label for=\"contenu\" id=\"contenu\">Contenu</label>
+        <br />
+        <br />
+
+        <label for=\"contenu\" id=\"contenu\">Contenu : </label>
         <textarea id=\"contenu\" name=\"contenu\" rows=\"5\" cols=\"33\">";
-        // line 18
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "contenu", [], "any", false, false, false, 18), "html", null, true);
+        // line 27
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "contenu", [], "any", false, false, false, 27), "html", null, true);
         echo "</textarea>
 
-        <label for=\"image\">Image</label>
+        <br />
+        <br />
+
+        <label for=\"image\">Image : </label>
         <input type=\"file\" id=\"image\" name=\"image\" accept=\"image/png, image/jpeg\">
+
+        <br />
+        <br />
 
         <label for=\"cat-select\">Choississez une catégorie : </label>
         <select name=\"cats\" id=\"cat-select\">
             <option value=\"\">Choisir une catégorie</option>
             ";
-        // line 26
+        // line 41
         $context['_parent'] = $context;
         $context['_seq'] = twig_ensure_traversable(($context["categories"] ?? null));
         foreach ($context['_seq'] as $context["_key"] => $context["cat"]) {
-            // line 27
+            // line 42
             echo "                <option value=\"";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["cat"], "id", [], "any", false, false, false, 27), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["cat"], "id", [], "any", false, false, false, 42), "html", null, true);
             echo "\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["cat"], "titre", [], "any", false, false, false, 27), "html", null, true);
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["cat"], "titre", [], "any", false, false, false, 42), "html", null, true);
             echo "</option>
             ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cat'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 29
+        // line 44
         echo "        </select>
+
+        <br />
+        <br />
 
         <input type=\"submit\" value=\"Envoyer\">
 
@@ -121,7 +139,7 @@ class __TwigTemplate_a05b710a5c009f2550fe85b59a7cb86d extends Template
 
     public function getDebugInfo()
     {
-        return array (  103 => 29,  92 => 27,  88 => 26,  77 => 18,  71 => 15,  58 => 6,  54 => 5,  47 => 3,  36 => 1,);
+        return array (  118 => 44,  107 => 42,  103 => 41,  86 => 27,  77 => 21,  58 => 6,  54 => 5,  47 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
