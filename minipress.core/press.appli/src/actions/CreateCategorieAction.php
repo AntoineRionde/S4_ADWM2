@@ -5,6 +5,7 @@ namespace press\app\actions;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use press\app\services\CategorieService;
+use Slim\Views\twig;
 
 class createCategorieAction extends AbstractAction
 {
@@ -24,7 +25,7 @@ class createCategorieAction extends AbstractAction
             'description' =>$desc
         ];
 
-        $service->create($data);
+        $categorie = $service->create($data);
         $view = Twig::fromRequest($request);
         return $view->render($response, 'createCategorieDone.twig', $data);
     }

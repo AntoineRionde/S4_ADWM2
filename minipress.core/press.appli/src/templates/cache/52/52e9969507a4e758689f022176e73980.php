@@ -35,12 +35,16 @@ class __TwigTemplate_cf82db73b2a6158f0b285f112250a5f7 extends Template
         $macros = $this->macros;
         // line 1
         echo "<header>
+    <div class=\"nom\">
+        <h1>MiniPress</h1>
+    </div>
     <div class=\"nav\">
         <ul>
             <li><a href=\"/\">Home</a></li>
             <li><a href=\"/categories\">Categories</a></li>
             <li><a href=\"/articles\">Articles</a></li>
             <li><a href=\"/createCategorie\">Créer une catégorie</a></li>
+            <li><a href=\"/createArticle\">Créer un article</a></li>
         </ul>
     </div>
 </header>";
