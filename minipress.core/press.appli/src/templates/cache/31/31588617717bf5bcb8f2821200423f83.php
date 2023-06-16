@@ -40,7 +40,7 @@ class __TwigTemplate_900da9347588e65e93926ef91030a463 extends Template
 <head>
     <title>Minipress</title>
     <meta charset=\"UTF-8\">
-    <link rel=\"stylesheet\" href=\"css/menu.css\";
+    <link rel=\"stylesheet\" href=\"/css/menu.css\";
 </head>
 <body>
 ";
