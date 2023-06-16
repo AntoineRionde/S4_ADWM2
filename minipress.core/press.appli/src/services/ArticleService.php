@@ -53,6 +53,8 @@ class ArticleService{
      */
     function createArticle(array $data): array
     {
+        //pens
+
         $article = new Article();
         $article->titre = $data['titre'];
         $article->date_creation = date_create()->format('Y-m-d H:i:s');

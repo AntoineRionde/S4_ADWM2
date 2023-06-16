@@ -3,6 +3,7 @@
 namespace press\app\services;
 
 use Exception;
+use MongoDB\Driver\Exception\AuthenticationException;
 use press\app\models\Categorie;
 use press\app\models\User;
 use Slim\Exception\HttpBadRequestException;
@@ -13,6 +14,44 @@ class UserService{
         $users = Categorie::all();
         return $users;
     }
+
+    //connexion
+
+    /**
+     * @param string $email
+     * @param string $passwd2check
+     * @return void
+     * gère la connexion d'un user
+     * @throws Exception
+     */
+    public static function authenticate(string $email, string $passwd2check): void {
+
+        $hash = User::where('username', $email)->pluck('password')->first();
+
+        echo($hash);
+        echo($passwd2check);
+        /*
+        $data = [
+            'hash' => $hash,
+            'passwd2check' => $passwd2check
+        ];
+        */
+
+        $passhash = password_hash($hash, PASSWORD_DEFAULT, ['cost'=> 12]);
+
+        /*
+        if (!password_verify($passwd2check, $passhash))
+            throw new \Exception("Auth error : invalid credentials");
+        return;
+        */
+
+        if(!($passwd2check === $hash)){
+            throw new \Exception("Auth error : invalid credentials");
+        }
+
+        //return $data;
+    }
+
 
     //Inscription
     /**
