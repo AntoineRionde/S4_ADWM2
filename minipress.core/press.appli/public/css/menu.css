@@ -1,0 +1,53 @@
+header{
+    width:100%
+}
+
+.nav li {
+    background-color: #32849C;
+    padding: 3%;
+    border-radius: 99999px;
+    text-align: center;
+    list-style-type: none;
+}
+
+.nav{
+    background-color: lightblue;
+    padding:2%;
+}
+
+.nom{
+    text-align: center;
+    font-family: "Lucida Console";
+    color:White;
+    background-color: #32849C;
+    padding: 2%;
+}
+
+.nav ul{
+    column-count:5;
+}
+
+.nav li a{
+    color:white;
+    text-decoration: none;
+}
+
+.nav li a{
+    color:white;
+    text-decoration: none;
+}
+
+.nav li a:hover{
+    color:#9AEFEE;
+    transition:0.5s;
+}
+
+footer{
+    background-color: #32849C;
+    width:94.6%;
+    overflow:hidden;
+    position:absolute;
+    bottom:0;
+    color:white;
+    padding:2%;
+}
