@@ -64,10 +64,12 @@ class __TwigTemplate_05a1282d91b1015bb258dfaf5d2262b9 extends Template
         foreach ($context['_seq'] as $context["_key"] => $context["cat"]) {
             // line 9
             echo "    <li>
-        <h2>";
+        <h2><a href=\"";
             // line 10
+            echo twig_escape_filter($this->env, $this->env->getRuntime('Slim\Views\TwigRuntimeExtension')->urlFor("getCategoriesByIdAction", ["id" => twig_get_attribute($this->env, $this->source, $context["cat"], "id", [], "any", false, false, false, 10)]), "html", null, true);
+            echo "\">";
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["cat"], "titre", [], "any", false, false, false, 10), "html", null, true);
-            echo "</h2>
+            echo "</h2></a>
         <h3>";
             // line 11
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["cat"], "description", [], "any", false, false, false, 11), "html", null, true);
@@ -94,7 +96,7 @@ class __TwigTemplate_05a1282d91b1015bb258dfaf5d2262b9 extends Template
 
     public function getDebugInfo()
     {
-        return array (  81 => 13,  73 => 11,  69 => 10,  66 => 9,  62 => 8,  58 => 6,  54 => 5,  47 => 3,  36 => 1,);
+        return array (  83 => 13,  75 => 11,  69 => 10,  66 => 9,  62 => 8,  58 => 6,  54 => 5,  47 => 3,  36 => 1,);
     }
 
     public function getSourceContext()

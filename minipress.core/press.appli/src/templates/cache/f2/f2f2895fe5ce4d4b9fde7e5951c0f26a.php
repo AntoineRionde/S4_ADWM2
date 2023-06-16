@@ -12,8 +12,8 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* templateArticles.twig */
-class __TwigTemplate_aed184cf1509f4028975d68cb4221868 extends Template
+/* articlesByCategories.twig */
+class __TwigTemplate_d705204e91ad707be9f5602fe1ca0905 extends Template
 {
     private $source;
     private $macros = [];
@@ -39,7 +39,7 @@ class __TwigTemplate_aed184cf1509f4028975d68cb4221868 extends Template
     protected function doDisplay(array $context, array $blocks = [])
     {
         $macros = $this->macros;
-        $this->parent = $this->loadTemplate("squelette.twig", "templateArticles.twig", 1);
+        $this->parent = $this->loadTemplate("squelette.twig", "articlesByCategories.twig", 1);
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
@@ -98,7 +98,7 @@ class __TwigTemplate_aed184cf1509f4028975d68cb4221868 extends Template
 
     public function getTemplateName()
     {
-        return "templateArticles.twig";
+        return "articlesByCategories.twig";
     }
 
     public function isTraitable()
@@ -113,6 +113,6 @@ class __TwigTemplate_aed184cf1509f4028975d68cb4221868 extends Template
 
     public function getSourceContext()
     {
-        return new Source("", "templateArticles.twig", "C:\\wamp64\\www\\SAE4_ADWM2\\minipress.core\\press.appli\\src\\templates\\templateArticles.twig");
+        return new Source("", "articlesByCategories.twig", "C:\\wamp64\\www\\SAE4_ADWM2\\minipress.core\\press.appli\\src\\templates\\articlesByCategories.twig");
     }
 }
