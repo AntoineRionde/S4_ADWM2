@@ -9,8 +9,10 @@
             {% set sortedArticles = articles|sort((a, b) => a.date_creation|date("Ymd") <=> b.date_creation|date("Ymd")) %}
             {% for art in sortedArticles %}
                 <li>
-                    <h2>{{ art.titre }}</h2>
-                    <p>Paru le : {{ art.date_creation }}</p>
+                    <h2>    {{art.titre}}</h2><p>paru le : {{art.date_creation}}</p>
+                    <p>    Résumé  :   {{art.resume }} </p>
+                    <p>    Contenu :   {{art.contenu}}</p>
+                    <p>    Auteur  :   {{art.auteur}}</p>
                 </li>
             {% endfor %}
         {% else %}

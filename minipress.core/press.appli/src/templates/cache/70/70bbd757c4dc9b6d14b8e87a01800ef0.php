@@ -68,12 +68,16 @@ class __TwigTemplate_84bf3232dd73b5cbab2fcd90fa12c71a extends Template
             // line 10
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["cat"], "titre", [], "any", false, false, false, 10), "html", null, true);
             echo "</h2>
+        <h3>";
+            // line 11
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["cat"], "description", [], "any", false, false, false, 11), "html", null, true);
+            echo "</h3>
         ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cat'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 12
+        // line 13
         echo "</ul>
 ";
     }
@@ -90,7 +94,7 @@ class __TwigTemplate_84bf3232dd73b5cbab2fcd90fa12c71a extends Template
 
     public function getDebugInfo()
     {
-        return array (  77 => 12,  69 => 10,  66 => 9,  62 => 8,  58 => 6,  54 => 5,  47 => 3,  36 => 1,);
+        return array (  81 => 13,  73 => 11,  69 => 10,  66 => 9,  62 => 8,  58 => 6,  54 => 5,  47 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
