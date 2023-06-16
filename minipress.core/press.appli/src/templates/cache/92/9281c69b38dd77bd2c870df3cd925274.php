@@ -37,9 +37,26 @@ class __TwigTemplate_3ac703dce7d998e2fbb856e3d6f1b568 extends Template
         echo "<header>
     <div class=\"nav\">
         <ul>
-            <li><a href=\"/\">Home</a></li>
-            <li><a href=\"/categories\">Categories</a></li>
-            <li><a href=\"/articles\">Articles</a></li>
+            <li><a href=\"";
+        // line 4
+        echo twig_escape_filter($this->env, $this->env->getRuntime('Slim\Views\TwigRuntimeExtension')->urlFor("home"), "html", null, true);
+        echo "\">Home</a></li>
+            <li><a href=\"";
+        // line 5
+        echo twig_escape_filter($this->env, $this->env->getRuntime('Slim\Views\TwigRuntimeExtension')->urlFor("categories"), "html", null, true);
+        echo "\">Categories</a></li>
+            <li><a href=\"";
+        // line 6
+        echo twig_escape_filter($this->env, $this->env->getRuntime('Slim\Views\TwigRuntimeExtension')->urlFor("articles"), "html", null, true);
+        echo "\">Articles</a></li>
+             <li><a href=\"";
+        // line 7
+        echo twig_escape_filter($this->env, $this->env->getRuntime('Slim\Views\TwigRuntimeExtension')->urlFor("createCategorie"), "html", null, true);
+        echo "\">Créer une catégorie</a></li>
+            <li><a href=\"";
+        // line 8
+        echo twig_escape_filter($this->env, $this->env->getRuntime('Slim\Views\TwigRuntimeExtension')->urlFor("createArticle"), "html", null, true);
+        echo "\">Créer un article</a></li>
         </ul>
     </div>
 </header>";
@@ -50,9 +67,14 @@ class __TwigTemplate_3ac703dce7d998e2fbb856e3d6f1b568 extends Template
         return "header.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  37 => 1,);
+        return array (  58 => 8,  54 => 7,  50 => 6,  46 => 5,  42 => 4,  37 => 1,);
     }
 
     public function getSourceContext()

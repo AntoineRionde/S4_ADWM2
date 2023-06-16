@@ -6,9 +6,11 @@ use press\app\actions\CreateArticleAction;
 use press\app\actions\CreateArticleProcessAction;
 use press\app\actions\createCategorieAction;
 use press\app\actions\GetArticleAction;
+use press\app\actions\GetCategoriesByIdAction;
 use press\app\actions\GetCategoriesAction;
 use press\app\actions\GetCreateCategorieFormAction;
 use press\app\actions\GetHomeAction;
+use press\app\actions\GetArticlesByCategorie;
 use press\app\actions\LoginAction;
 use press\app\actions\ProcessLoginAction;
 use press\app\actions\ProcessRegisterAction;
@@ -26,7 +28,10 @@ return function (App $app): void {
 
     // Routes to categories
     $app->get('/categories[/]', GetCategoriesAction::class)->setName("categories");
-    $app->get('/createCategorie',GetCreateCategorieFormAction::class)->setName('CreateCategorie');
+    $app->get('/categories/{id:\d+}[/]', GetCategoriesByIdAction::class)->setName('getCategoriesByIdAction');
+    $app->get('/categories/{id:\d+}/articles', GetArticlesByCategorie::class)->setName('getArticlesByCategorie');
+
+    $app->get('/createCategorie',GetCreateCategorieFormAction::class)->setName('createCategorie');
     $app->post('/createcategorie/done[/]',createCategorieAction::class)->setName('categorie created');
 
     //Routes to register

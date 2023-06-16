@@ -4,11 +4,11 @@
     </div>
     <div class="nav">
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/categories">Categories</a></li>
-            <li><a href="/articles">Articles</a></li>
-            <li><a href="/createCategorie">Créer une catégorie</a></li>
-            <li><a href="/createArticle">Créer un article</a></li>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('categories') }}">Categories</a></li>
+            <li><a href="{{ url_for('articles') }}">Articles</a></li>
+             <li><a href="{{ url_for('createCategorie') }}">Créer une catégorie</a></li>
+            <li><a href="{{ url_for('createArticle') }}">Créer un article</a></li>
         </ul>
     </div>
 </header>

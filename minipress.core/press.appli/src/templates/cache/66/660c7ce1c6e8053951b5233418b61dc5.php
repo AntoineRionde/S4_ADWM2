@@ -12,8 +12,8 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* squelette.twig */
-class __TwigTemplate_6162f85492f03c7624d2c42141e0b940 extends Template
+/* createCategorie.twig */
+class __TwigTemplate_b03b5d3d41a6703377a090b72cecfcc9 extends Template
 {
     private $source;
     private $macros = [];
@@ -24,56 +24,46 @@ class __TwigTemplate_6162f85492f03c7624d2c42141e0b940 extends Template
 
         $this->source = $this->getSourceContext();
 
-        $this->parent = false;
-
         $this->blocks = [
             'content' => [$this, 'block_content'],
         ];
     }
 
+    protected function doGetParent(array $context)
+    {
+        // line 1
+        return "squelette.twig";
+    }
+
     protected function doDisplay(array $context, array $blocks = [])
     {
         $macros = $this->macros;
-        // line 1
-        echo "<!DOCTYPE html>
-<html lang=\"fr\">
-<head>
-    <title>Minipress</title>
-    <meta charset=\"UTF-8\">
-</head>
-<body>
-";
-        // line 8
-        $this->loadTemplate("header.twig", "squelette.twig", 8)->display($context);
-        // line 9
-        echo "<div class=\"content\">
-    ";
-        // line 10
-        $this->displayBlock('content', $context, $blocks);
-        // line 11
-        echo "</div>
-<br />
-<br />
-<br />
-<br />
-";
-        // line 16
-        $this->loadTemplate("footer.twig", "squelette.twig", 16)->display($context);
-        // line 17
-        echo "</body>
-</html>";
+        $this->parent = $this->loadTemplate("squelette.twig", "createCategorie.twig", 1);
+        $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
-    // line 10
+    // line 3
     public function block_content($context, array $blocks = [])
     {
         $macros = $this->macros;
-        echo " ";
+        // line 4
+        echo "
+<form action=\"createcategorie/done\" method=\"POST\">
+    <label for=\"titre\">Titre de la catégorie : </label>
+    <input type=\"text\" name=\"titre\" id=\"titre\">
+
+    <label for=\"description\">Description : </label>
+    <input type=\"text\" name=\"description\" id=\"description\">
+
+    <input type=\"submit\" value=\"Valider\">
+</form>
+
+";
     }
 
     public function getTemplateName()
     {
-        return "squelette.twig";
+        return "createCategorie.twig";
     }
 
     public function isTraitable()
@@ -83,11 +73,11 @@ class __TwigTemplate_6162f85492f03c7624d2c42141e0b940 extends Template
 
     public function getDebugInfo()
     {
-        return array (  68 => 10,  63 => 17,  61 => 16,  54 => 11,  52 => 10,  49 => 9,  47 => 8,  38 => 1,);
+        return array (  50 => 4,  46 => 3,  35 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Source("", "squelette.twig", "C:\\wamp64\\www\\SAE4_ADWM2\\minipress.core\\press.appli\\src\\templates\\squelette.twig");
+        return new Source("", "createCategorie.twig", "C:\\wamp64\\www\\SAE4_ADWM2\\minipress.core\\press.appli\\src\\templates\\createCategorie.twig");
     }
 }

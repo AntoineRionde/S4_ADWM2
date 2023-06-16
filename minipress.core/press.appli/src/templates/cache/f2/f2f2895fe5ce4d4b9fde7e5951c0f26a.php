@@ -12,8 +12,8 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* templateArticles.twig */
-class __TwigTemplate_aed184cf1509f4028975d68cb4221868 extends Template
+/* articlesByCategories.twig */
+class __TwigTemplate_d705204e91ad707be9f5602fe1ca0905 extends Template
 {
     private $source;
     private $macros = [];
@@ -39,7 +39,7 @@ class __TwigTemplate_aed184cf1509f4028975d68cb4221868 extends Template
     protected function doDisplay(array $context, array $blocks = [])
     {
         $macros = $this->macros;
-        $this->parent = $this->loadTemplate("squelette.twig", "templateArticles.twig", 1);
+        $this->parent = $this->loadTemplate("squelette.twig", "articlesByCategories.twig", 1);
         $this->parent->display($context, array_merge($this->blocks, $blocks));
     }
 
@@ -70,23 +70,13 @@ class __TwigTemplate_aed184cf1509f4028975d68cb4221868 extends Template
             foreach ($context['_seq'] as $context["_key"] => $context["art"]) {
                 // line 11
                 echo "                <li>
-                    <h2>    ";
+                    <h2>";
                 // line 12
                 echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["art"], "titre", [], "any", false, false, false, 12), "html", null, true);
-                echo "</h2><p>paru le : ";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["art"], "date_creation", [], "any", false, false, false, 12), "html", null, true);
-                echo "</p>
-                    <p>    Résumé  :   ";
+                echo "</h2>
+                    <p>Paru le : ";
                 // line 13
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["art"], "resume", [], "any", false, false, false, 13), "html", null, true);
-                echo " </p>
-                    <p>    Contenu :   ";
-                // line 14
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["art"], "contenu", [], "any", false, false, false, 14), "html", null, true);
-                echo "</p>
-                    <p>    Auteur  :   ";
-                // line 15
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["art"], "auteur", [], "any", false, false, false, 15), "html", null, true);
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["art"], "date_creation", [], "any", false, false, false, 13), "html", null, true);
                 echo "</p>
                 </li>
             ";
@@ -94,21 +84,21 @@ class __TwigTemplate_aed184cf1509f4028975d68cb4221868 extends Template
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_iterated'], $context['_key'], $context['art'], $context['_parent'], $context['loop']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 18
+            // line 16
             echo "        ";
         } else {
-            // line 19
+            // line 17
             echo "            <li>Aucun article trouvé.</li>
         ";
         }
-        // line 21
+        // line 19
         echo "    </ul>
 ";
     }
 
     public function getTemplateName()
     {
-        return "templateArticles.twig";
+        return "articlesByCategories.twig";
     }
 
     public function isTraitable()
@@ -118,11 +108,11 @@ class __TwigTemplate_aed184cf1509f4028975d68cb4221868 extends Template
 
     public function getDebugInfo()
     {
-        return array (  105 => 21,  101 => 19,  98 => 18,  89 => 15,  85 => 14,  81 => 13,  75 => 12,  72 => 11,  67 => 10,  64 => 9,  62 => 8,  58 => 6,  54 => 5,  47 => 3,  36 => 1,);
+        return array (  95 => 19,  91 => 17,  88 => 16,  79 => 13,  75 => 12,  72 => 11,  67 => 10,  64 => 9,  62 => 8,  58 => 6,  54 => 5,  47 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
     {
-        return new Source("", "templateArticles.twig", "C:\\wamp64\\www\\SAE4_ADWM2\\minipress.core\\press.appli\\src\\templates\\templateArticles.twig");
+        return new Source("", "articlesByCategories.twig", "C:\\wamp64\\www\\SAE4_ADWM2\\minipress.core\\press.appli\\src\\templates\\articlesByCategories.twig");
     }
 }

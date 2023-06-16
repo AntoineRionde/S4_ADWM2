@@ -1,0 +1,10 @@
+{% extends "squelette.twig"%}
+
+{% block title %}Articles par catégorie{% endblock %}
+
+{% block content %}
+      
+        {% for art in articles_liste %}
+                {{art.titre}}
+        {% endfor %}
+{% endblock %}

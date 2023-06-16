@@ -107,5 +107,13 @@ class ArticleService{
         }
     }
 
+    public function getArticlesByCategorieId( $id) : array {
+        try {
+            return Article::where('idCateg', $id)->get()->toArray();
+        }catch(ModelNotFoundException $e) {
+            throw new HttpBadRequestException($request, "L'id de la catégorie n'est pas renseigné");
+        }
+    }
+
 
 }
