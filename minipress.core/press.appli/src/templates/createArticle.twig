@@ -3,6 +3,7 @@
 {% block title %}Création d'un article{% endblock %}
 
 {% block content %}
+    <link rel="stylesheet" href="/css/createArticle.css">
     <form action="{{ url_for('createArticlePost') }}" method="post">
 
         <label for="titre">Titre : </label>

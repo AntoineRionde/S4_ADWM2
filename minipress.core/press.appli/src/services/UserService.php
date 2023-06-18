@@ -28,28 +28,11 @@ class UserService{
 
         $hash = User::where('username', $email)->pluck('password')->first();
 
-        echo($hash);
-        echo($passwd2check);
-        /*
-        $data = [
-            'hash' => $hash,
-            'passwd2check' => $passwd2check
-        ];
-        */
-
         $passhash = password_hash($hash, PASSWORD_DEFAULT, ['cost'=> 12]);
 
-        /*
         if (!password_verify($passwd2check, $passhash))
             throw new \Exception("Auth error : invalid credentials");
-        return;
-        */
 
-        if(!($passwd2check === $hash)){
-            throw new \Exception("Auth error : invalid credentials");
-        }
-
-        //return $data;
     }
 
 

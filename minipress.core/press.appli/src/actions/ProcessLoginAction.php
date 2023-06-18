@@ -25,11 +25,10 @@ class ProcessLoginAction extends AbstractAction
         $userService = new UserService();
 
         try {
-             $userService::authenticate($username, $password);
-            //echo ($data['passwd2check']);
-            //echo ($data['hash']);
+            $userService::authenticate($username, $password);
             $url = $routeContext->getRouteParser()->urlFor('home');
         }catch (\Exception $e) {
+            //Afficher message d'erreur
             $url = $routeContext->getRouteParser()->urlFor('login');
         }
 

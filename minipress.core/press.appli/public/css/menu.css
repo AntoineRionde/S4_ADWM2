@@ -53,3 +53,7 @@ footer{
     overflow:hidden;
     color:white;
 }
+
+footer p {
+    text-align: center;
+}
