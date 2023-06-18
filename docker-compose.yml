@@ -17,8 +17,23 @@ services:
       - ./minipress.core/press.appli/src:/var/www/src
     networks:
       - press.net
-#    depends_on:
-#      - sql
+  #    depends_on:
+  #      - sql
+
+  php-api:
+    image: canals/php:latest
+    environment:
+      - http_proxy=http://www-cache.iutnc.univ-lorraine.fr:3128
+      - https_proxy=http://www-cache.iutnc.univ-lorraine.fr:3128
+    ports:
+      - "45005:80"
+    volumes:
+      - ./minipress.core/press.api/src:/var/www/src
+      - ./minipress.core/press.api/public:/var/www/html
+    networks:
+      - press.net
+  #    depends_on:
+  #      - sql
 
   sql:
     image: mariadb:latest
