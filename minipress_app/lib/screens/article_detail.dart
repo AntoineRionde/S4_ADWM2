@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minipress_app/models/Article.dart';
+import 'package:minipress_app/models/article.dart';
 
 class ArticleDetail extends StatefulWidget {
   final Article article;
@@ -21,8 +21,12 @@ class _ArticleDetailState extends State<ArticleDetail> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(widget.article.resume!),
-            Text(widget.article.contenu!),
+            Text("Resume : ${widget.article.resume!}"),
+            Text("Contenu : ${widget.article.contenu!}"),
+            const Text("\n"),
+            Text(
+                "Date de publication : ${widget.article.datePublication!.toString().substring(0, 10)}"),
+            Text("Auteur : ${widget.article.auteur!}"),
           ],
         ),
       ),

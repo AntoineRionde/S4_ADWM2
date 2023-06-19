@@ -14,7 +14,11 @@ class _MiniPressAppState extends State<MiniPressApp> {
     return MaterialApp(
       title: 'MiniPress app',
       theme: ThemeData(),
-      home: Scaffold(body: ArticleMaster()),
+      home: Scaffold(
+          appBar: AppBar(
+            title: const Text('MiniPress app'),
+          ),
+          body: ArticleMaster()),
     );
   }
 }

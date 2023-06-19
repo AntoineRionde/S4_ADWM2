@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:minipress_app/models/Article.dart';
+import 'package:minipress_app/models/article.dart';
 import 'package:minipress_app/screens/article_detail.dart';
 
 class ArticlePreview extends StatefulWidget {

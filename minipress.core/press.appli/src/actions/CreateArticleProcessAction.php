@@ -23,13 +23,9 @@ class CreateArticleProcessAction extends AbstractAction
         $data['titre'] = filter_var($data['titre'], FILTER_SANITIZE_SPECIAL_CHARS);
         $data['auteur'] = filter_var($data['auteur'], FILTER_SANITIZE_SPECIAL_CHARS);
 
-        // nl2br permet de conserver les sauts de ligne (car on utilise textarea)
+        // nl2br permet de conserver les sauts de ligne
         $data['resume'] = nl2br(htmlspecialchars($data['resume']));
         $data['contenu'] = nl2br(htmlspecialchars($data['contenu']));
-
-//        // remplacez les sauts de ligne par des <br>
-//        $data['resume']= str_replace("&nbsp", "<br>", $data['resume']);
-//        $data['contenu'] = str_replace("&nbsp", "<br>", $data['contenu']);
 
         $data['date'] = filter_var($data['date'], FILTER_SANITIZE_SPECIAL_CHARS);
         $data['image'] = filter_var($data['image'], FILTER_SANITIZE_SPECIAL_CHARS);

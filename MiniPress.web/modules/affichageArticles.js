@@ -8,18 +8,15 @@ export function affichageArticles() {
   const data = articles.getDataArticles();
 
   data.then((dataArticles) => {
-    dataArticles.articles.forEach((article, index) => {
-        //trié par date de création dans l'ordre chronologique croissant
-        dataArticles.articles.sort(function(a,b){
-            return new Date(b.date_creation) - new Date(a.date_creation);
-        });
+    // Tri des articles par date de création dans l'ordre chronologique décroissant
+    dataArticles.articles.sort(function(a, b) {
+      return new Date(a.date_creation) - new Date(b.date_creation);
+    });
 
-        //inverse l'ordre de daataArticles.articles
-        
-  
-      const titre = "Titre : "+ article.titre+ " ";
-      const date = "Creation : "+ article.date_creation + " ";
-      const auteur = "Auteur : "+article.auteur + " ";
+    dataArticles.articles.forEach((article, index) => {
+      const titre = "Titre : " + article.titre + " ";
+      const date = "Creation : " + article.date_creation + " ";
+      const auteur = "Auteur : " + article.auteur + " ";
 
       const catTitreElement = document.createElement('cat_titre');
       catTitreElement.textContent = titre;
