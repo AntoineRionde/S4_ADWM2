@@ -2,6 +2,8 @@
 
 namespace press\app\actions;
 
+use Exception;
+use press\app\services\auth\AuthService;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Slim\Routing\RouteContext;
@@ -17,29 +19,24 @@ class ProcessRegisterAction extends AbstractAction
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $routeContext = RouteContext::fromRequest($request);
-        $url = $routeContext->getRouteParser()->urlFor('home');
+        $urlRegister = $routeContext->getRouteParser()->urlFor('register');
 
-        //TODO : filtrer les valeurs
 
-        if ($request->getMethod() === 'POST') {
-            $username = $request->getParsedBody()['username'];
-            $password = $request->getParsedBody()['password'];
-            $confirm_password = $request->getParsedBody()['confirm_password'];
+        if ($request->getMethod() !== 'POST') {
+            return $response->withHeader('Location', $urlRegister)->withStatus(302);
         }
 
-        //récupérer les datas
-        if ($password === $confirm_password) {
-            $data = [
-                'username' => $username,
-                'password' => $password,
-                'role' => 0,
-            ];
+        $email = filter_var($request->getParsedBody()['username'], FILTER_SANITIZE_EMAIL);
+        $password = htmlspecialchars($request->getParsedBody()['password']);
+        $confirm_password = htmlspecialchars($request->getParsedBody()['confirm_password']);
+
+        try {
+            $authService = new AuthService();
+            $authService->register($email, $password, $confirm_password);
+        } catch (Exception $e) {
+            $urlRegister = $routeContext->getRouteParser()->urlFor('register', [], ['error' => $e->getMessage()]);
         }
+        return $response->withHeader('Location', $urlRegister)->withStatus(302);
 
-        //créer un nouvelle user
-
-        //insérer le user dans la bd
-
-        return $response->withHeader('Location', $url)->withStatus(302);
     }
 }
