@@ -7,6 +7,7 @@ use Slim\Psr7\Request as Request;
 use press\app\models\Article;
 use press\app\actions\AbstractAction;
 use press\app\services\articles\ArticleService;
+use Slim\Routing\RouteContext;
 use Slim\Views\twig;
 
 class GetCreateCategorieFormAction extends AbstractAction
