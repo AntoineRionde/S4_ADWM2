@@ -7,6 +7,7 @@ const getDataCategories = async() => {
             return await resp.json();
         }
     }catch(err){
+        console.log(err);
     }
 }
 
