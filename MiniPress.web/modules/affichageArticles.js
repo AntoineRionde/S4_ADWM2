@@ -1,4 +1,5 @@
 import articles from './articles.js';
+import categories from './categorie.js';
 
 export function affichageArticles() {
   const galleryContainer = document.getElementById('articles');
@@ -41,4 +42,24 @@ export function affichageArticles() {
   });
 }
 
+export const affichageArticlesByIdCateg = function(id){
+  const data = articles.getDataArticlesByIdCateg(id);
+  const html = document.querySelector('body');
 
+  
+  data.then(data => {
+    let content='';
+    data.forEach(article => {
+      content+=`
+        <li>
+          <h2>${article.titre}</h2>
+          <h3> écrit par ${article.auteur} et publié le ${article.date_publication}}</h3>
+          <p>${article.description}</p>
+        </li>
+      `;
+    });
+    html.innerHTML+='<div class="articles"><ul>'+content+'</ul></div>';
+  });
+  console.log(html);
+  return html;
+}
