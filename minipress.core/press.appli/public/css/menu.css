@@ -1,3 +1,8 @@
+body{
+    margin: 0;
+    width: 100vw;
+}
+
 header{
     width:100%
 }
@@ -44,8 +49,11 @@ header{
 
 footer{
     background-color: #32849C;
-    width:94.6%;
+    width:100%;
     overflow:hidden;
     color:white;
-    padding:2%;
+}
+
+footer p {
+    text-align: center;
 }

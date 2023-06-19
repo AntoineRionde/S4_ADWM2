@@ -1,12 +1,10 @@
 <?php
 
-namespace press\app\services;
+namespace press\api\services;
 
-use Erusev\Parsedown\Parsedown;
 use Exception;
-use Michelf\Markdown;
-use press\app\models\Article;
-use press\app\models\Categorie;
+use press\api\models\Article;
+use press\api\models\Categorie;
 use Slim\Exception\HttpBadRequestException;
 
 class ArticleService{
@@ -18,17 +16,6 @@ class ArticleService{
     function getArticles(): array
     {
         $articles = Article::all();
-
-        $parser = new \cebe\markdown\Markdown();
-        $parser->html5 = true;
-        $parser->keepListStartNumber = true;
-        foreach ($articles as $art)
-        {
-            // chaque resume et contenu d'un article est converti en html
-            $art['resume'] = $parser->parse($art['resume']);
-            $art['contenu'] = $parser->parse($art['contenu']);
-        }
-
         return $articles->toArray();
     }
 
@@ -51,18 +38,14 @@ class ArticleService{
      * @param array $data
      * @return array $article
      */
-    function createArticle(array $data): array
+    function createArticle(array &$data): array
     {
-        //pens
-
         $article = new Article();
         $article->titre = $data['titre'];
         $article->date_creation = date_create()->format('Y-m-d H:i:s');
         $article->auteur = $data['auteur'];
-
-        $article->resume = htmlspecialchars_decode(str_replace("&#13;&#10;", "", $data['resume']));
-        $article->contenu = htmlspecialchars_decode(str_replace("&#13;&#10;", "", $data['contenu']));
-
+        $article->resume = $data['resume'];
+        $article->contenu = $data['contenu'];
         $article->date_publication = date_create()->format('Y-m-d H:i:s');
 
         if ($data['image'] === '') {

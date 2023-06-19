@@ -1,6 +1,6 @@
 <?php
 
-namespace press\app\models;
+namespace press\api\models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -10,5 +10,5 @@ class User extends Model{
     public $incrementing = false;
     public $keyType = 'string';
     public $timestamps = false;
-    public $fillable = ['id', 'nom', 'prenom', 'username', 'password', 'role', 'active', 'activation_token', 'activation_expires', 'renew_token', 'renew_expires'];
+    public $fillable = ['id', 'nom', 'prenom', 'email', 'password', 'role', 'active', 'activation_token', 'activation_expires', 'renew_token', 'renew_expires'];
 }
