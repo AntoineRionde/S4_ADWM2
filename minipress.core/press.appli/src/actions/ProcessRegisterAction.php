@@ -5,10 +5,14 @@ namespace press\app\actions;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Slim\Routing\RouteContext;
-use Slim\Views\Twig;
 
 class ProcessRegisterAction extends AbstractAction
 {
+    public function __construct()
+    {
+        if (session_status() === PHP_SESSION_NONE)
+            session_start();
+    }
 
     public function __invoke(Request $request, Response $response, array $args): Response
     {
@@ -17,14 +21,14 @@ class ProcessRegisterAction extends AbstractAction
 
         //TODO : filtrer les valeurs
 
-        if($request->getMethod() === 'POST'){
+        if ($request->getMethod() === 'POST') {
             $username = $request->getParsedBody()['username'];
             $password = $request->getParsedBody()['password'];
             $confirm_password = $request->getParsedBody()['confirm_password'];
         }
 
         //récupérer les datas
-        if ($password === $confirm_password){
+        if ($password === $confirm_password) {
             $data = [
                 'username' => $username,
                 'password' => $password,
