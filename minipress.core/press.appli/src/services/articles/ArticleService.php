@@ -1,6 +1,6 @@
 <?php
 
-namespace press\app\services;
+namespace press\app\services\articles;
 
 use Erusev\Parsedown\Parsedown;
 use Exception;

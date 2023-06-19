@@ -5,7 +5,7 @@ use Slim\Psr7\Response as Response;
 use Slim\Psr7\Request as Request;
 use press\app\models\Categorie;
 use press\app\actions\AbstractAction;
-use press\app\services\ArticleService;
+use press\app\services\articles\ArticleService;
 use Slim\Views\Twig;
 
 class GetArticlesByCategorie extends AbstractAction{

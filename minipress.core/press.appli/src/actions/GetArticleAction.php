@@ -4,7 +4,7 @@ namespace press\app\actions;
 
 use Slim\Psr7\Response as Response;
 use Slim\Psr7\Request as Request;
-use press\app\services\ArticleService;
+use press\app\services\articles\ArticleService;
 use Slim\Views\twig;
 
 class GetArticleAction extends AbstractAction{

@@ -4,8 +4,8 @@ namespace press\app\actions;
 
 use gift\app\services\utils\CsrfService;
 use press\app\models\Categorie;
-use press\app\services\ArticleService;
-use press\app\services\CategorieService;
+use press\app\services\articles\ArticleService;
+use press\app\services\categories\CategorieService;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Slim\Views\Twig;

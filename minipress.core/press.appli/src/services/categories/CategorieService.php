@@ -1,6 +1,6 @@
 <?php
 
-namespace press\app\services;
+namespace press\app\services\categories;
 
 use PHPUnit\Exception;
 use press\app\models\Categorie;
