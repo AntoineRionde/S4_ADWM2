@@ -33,18 +33,25 @@ class _ArticleMasterState extends State<ArticleMaster> {
     return Column(
       children: <Widget>[
         FutureBuilder<String>(
-          future: _calculation,
-          builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-            if (snapshot.hasData) {
-              // return const Text(
-              //   "Data Loaded",
-              //   style: TextStyle(backgroundColor: Colors.red),
-            } else if (snapshot.hasError) {
-              return Text('${snapshot.error}');
-            }
-            return const CircularProgressIndicator();
-          },
-        ),
+            future: _calculation,
+            builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+              //   if (snapshot.hasData) {
+              //   } else if (snapshot.hasError) {
+              //     return Text('${snapshot.error}');
+              //   }
+              //   // on affiche un loader et on le supprime quand on a les données
+              //   return const CircularProgressIndicator();
+              // },
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const CircularProgressIndicator();
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
+              } else {
+                // Les données sont chargées, vous pouvez les utiliser ici
+                // const Text("Data Loaded", style: TextStyle(backgroundColor: Colors.red)),
+                return Container();
+              }
+            }),
         Expanded(
           child: FutureBuilder<List<Article>>(
             future: ArticleProvider().getArticles(),
@@ -58,15 +65,6 @@ class _ArticleMasterState extends State<ArticleMaster> {
                 }).toList();
                 return Column(
                   children: [
-                    const Icon(
-                      Icons.check_circle_outline,
-                      color: Colors.green,
-                      size: 60,
-                    ),
-                    // Padding(
-                    //   padding: const EdgeInsets.only(top: 16.0),
-                    //   child: Text('Result: ${snapshot.data}'),
-                    // ),
                     Expanded(
                       child: ListView(
                         children: articlePreview,

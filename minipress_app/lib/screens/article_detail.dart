@@ -21,8 +21,12 @@ class _ArticleDetailState extends State<ArticleDetail> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(widget.article.resume!),
-            Text(widget.article.contenu!),
+            Text("Resume : ${widget.article.resume!}"),
+            Text("Contenu : ${widget.article.contenu!}"),
+            const Text("\n"),
+            Text(
+                "Date de publication : ${widget.article.datePublication!.toString().substring(0, 10)}"),
+            Text("Auteur : ${widget.article.auteur!}"),
           ],
         ),
       ),
