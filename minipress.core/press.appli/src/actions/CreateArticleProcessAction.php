@@ -2,6 +2,8 @@
 
 namespace press\app\actions;
 
+use Erusev\Parsedown\Parsedown;
+use Michelf\Markdown;
 use press\app\services\ArticleService;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -15,8 +17,15 @@ class CreateArticleProcessAction extends AbstractAction
         $data = $request->getParsedBody();
         $data['titre'] = filter_var($data['titre'], FILTER_SANITIZE_SPECIAL_CHARS);
         $data['auteur'] = filter_var($data['auteur'], FILTER_SANITIZE_SPECIAL_CHARS);
-        $data['resume'] = filter_var($data['resume'], FILTER_SANITIZE_SPECIAL_CHARS);
-        $data['contenu'] = filter_var($data['contenu'], FILTER_SANITIZE_SPECIAL_CHARS);
+
+        // nl2br permet de conserver les sauts de ligne (car on utilise textarea)
+        $data['resume'] = nl2br(htmlspecialchars($data['resume']));
+        $data['contenu'] = nl2br(htmlspecialchars($data['contenu']));
+
+//        // remplacez les sauts de ligne par des <br>
+//        $data['resume']= str_replace("&nbsp", "<br>", $data['resume']);
+//        $data['contenu'] = str_replace("&nbsp", "<br>", $data['contenu']);
+
         $data['date'] = filter_var($data['date'], FILTER_SANITIZE_SPECIAL_CHARS);
         $data['image'] = filter_var($data['image'], FILTER_SANITIZE_SPECIAL_CHARS);
 

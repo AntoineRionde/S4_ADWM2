@@ -2,8 +2,7 @@
 
 namespace press\api\actions;
 
-use press\app\actions\AbstractAction;
-use press\app\services\CategorieService;
+use press\api\services\CategorieService;
 use Slim\Psr7\Request as Request;
 use Slim\Psr7\Response as Response;
 
@@ -17,6 +16,7 @@ class GetApiCategoriesAction extends AbstractAction
         $response->getBody()->write(json_encode($data));
         return
             $response->withHeader('Content-Type', 'application/json')
+                ->withHeader('Access-Control-Allow-Origin', '*')
                 ->withStatus(200);
     }
 }

@@ -3,3 +3,7 @@
 /minipress.core/press.appli/src/vendor/composer/installed.php
 /minipress.core/press.appli/src/vendor/*
 /minipress.core/press.appli/src/templates/cache/*
+
+/minipress.core/press.api/src/conf/db.conf
+/minipress.core/press.api/src/vendor/composer/installed.php
+/minipress.core/press.api/src/vendor/*
