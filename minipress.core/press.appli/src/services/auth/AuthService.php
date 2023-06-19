@@ -9,27 +9,27 @@ class AuthService
 {
     //connexion
     /**
-     * @param string $email
+     * @param string $username
      * @param string $password
      * @return void
      * gère la connexion d'un user
      * @throws Exception
      */
-    public function authenticate(string $email, string $password): ?array
+    public function authenticate(string $username, string $password): ?array
     {
 
-        if (empty($email) || empty($password)) {
+        if (empty($username) || empty($password)) {
             throw new \Exception("invalidCredentials");
         }
 
-        $user = User::where('email', $email)->first();
+        $user = User::where('username', $username)->first();
         if ($user === null) {
-            throw new \Exception("invalidCredentials");
+            throw new \Exception("invalidCredentials:mail");
         }
 
         $hash = $user->password;
         if (!password_verify($password, $hash)) {
-            throw new \Exception("invalidCredentials");
+            throw new \Exception("invalidCredentials:pass");
         }
 
         if ($user->active === 0) {
@@ -42,17 +42,17 @@ class AuthService
     //Inscription
 
     /**
-     * @param string $email
+     * @param string $username
      * @param string $password
      * @param string $confirmPassword
      * @return void
      * permet de s'inscire sur le site
      * @throws Exception
      */
-    public function register(string $email, string $password, string $ConfirmPassword): void
+    public function register(string $username, string $password, string $ConfirmPassword): void
     {
 
-        $user = User::where('email', $email)->first();
+        $user = User::where('username', $username)->first();
 
         if ($user !== null)
             throw new Exception("userAlreadyExists");
@@ -64,9 +64,9 @@ class AuthService
             throw new Exception("weakPassword");
 
         $user = new User();
-        $user->email = $email;
+        $user->username = $username;
         $user->password = password_hash($password, PASSWORD_DEFAULT, ['cost' => 12]);
-        $user->activation_token = $this->generateActivitionToken($email);
+        $user->activation_token = $this->generateActivitionToken($username);
         $user->activation_expire = date('Y-m-d H:i:s', 60 * 60);
         $user->role = '0';
         $user->created_at = date('Y-m-d H:i:s');
@@ -93,12 +93,12 @@ class AuthService
     //Activation
 
     /**
-     * @param string $email
+     * @param string $username
      * @return string
      * @throws Exception
      * génère une token d'activation
      */
-    private function generateActivitionToken(string $email): string
+    private function generateActivitionToken(string $username): string
     {
         $token = bin2hex(random_bytes(64));
         return $token;

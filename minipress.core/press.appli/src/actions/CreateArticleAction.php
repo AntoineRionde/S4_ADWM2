@@ -2,7 +2,7 @@
 
 namespace press\app\actions;
 
-use gift\app\services\utils\CsrfService;
+use press\app\services\utils\CsrfService;
 use press\app\models\Categorie;
 use press\app\services\articles\ArticleService;
 use press\app\services\categories\CategorieService;
