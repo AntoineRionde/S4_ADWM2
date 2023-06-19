@@ -7,9 +7,16 @@ use Slim\Psr7\Request as Request;
 use press\app\services\articles\ArticleService;
 use Slim\Views\twig;
 
-class GetArticleAction extends AbstractAction{
+class GetArticleAction extends AbstractAction
+{
+    public function __construct()
+    {
+        if (session_status() === PHP_SESSION_NONE)
+            session_start();
+    }
 
-    public function __invoke(Request $request, Response $response, array $args) : Response{
+    public function __invoke(Request $request, Response $response, array $args): Response
+    {
         $service = new ArticleService();
         $articles = $service->getArticles();
         $routeContext = \Slim\Routing\RouteContext::fromRequest($request)->getRouteParser();

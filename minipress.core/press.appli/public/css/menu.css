@@ -47,6 +47,10 @@ header{
     transition:0.5s;
 }
 
+.content{
+    margin:2em;
+}
+
 footer{
     background-color: #32849C;
     width:100%;

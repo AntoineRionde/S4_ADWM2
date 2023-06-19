@@ -2,22 +2,25 @@
 
 namespace press\app\actions;
 
-use press\app\models\User;
+use press\app\services\UserService;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Slim\Routing\RouteContext;
-use Slim\Views\Twig;
-use press\app\services\UserService;
 
 class ProcessLoginAction extends AbstractAction
 {
+    public function __construct()
+    {
+        if (session_status() === PHP_SESSION_NONE)
+            session_start();
+    }
 
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $routeContext = RouteContext::fromRequest($request);
 
 
-        if($request->getMethod() === 'POST'){
+        if ($request->getMethod() === 'POST') {
             $username = $request->getParsedBody()['username'];
             $password = $request->getParsedBody()['password'];
         }
@@ -27,7 +30,7 @@ class ProcessLoginAction extends AbstractAction
         try {
             $userService::authenticate($username, $password);
             $url = $routeContext->getRouteParser()->urlFor('home');
-        }catch (\Exception $e) {
+        } catch (\Exception $e) {
             //Afficher message d'erreur
             $url = $routeContext->getRouteParser()->urlFor('login');
         }
