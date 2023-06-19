@@ -1,6 +1,6 @@
-import articles from './modules/articles.js';
+import { affichageArticles } from './modules/affichageArticles';
 import categories from './modules/categorie.js';
-import { affichageCategories } from './modules/affichageCategories.js';
 
-console.log(articles.getDataArticles());
+affichageArticles();
+
 console.log(categories.getDataCategories().then(affichageCategories));

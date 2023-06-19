@@ -1,10 +1,12 @@
 <?php
-
 namespace press\app\actions;
 
-use press\app\services\ArticleService;
-use Slim\Psr7\Request as Request;
 use Slim\Psr7\Response as Response;
+use Slim\Psr7\Request as Request;
+use press\app\models\Categorie;
+use press\app\actions\AbstractAction;
+use press\app\services\articles\ArticleService;
+use Slim\Routing\RouteContext;
 use Slim\Views\Twig;
 
 class GetArticlesByCategorie extends AbstractAction
@@ -25,7 +27,7 @@ class GetArticlesByCategorie extends AbstractAction
         $service = new ArticleService();
         $articles = $service->getArticlesByCategorieId($args['id']);
 
-        $routeParser = \Slim\Routing\RouteContext::fromRequest($request)->getRouteParser();
+        $routeParser = RouteContext::fromRequest($request)->getRouteParser();
 
         foreach ($articles as $index => $art) {
             $articles[$index]['url'] = '/articles?id=' . $art['id'];

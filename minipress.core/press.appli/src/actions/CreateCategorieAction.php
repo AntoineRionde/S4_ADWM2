@@ -4,7 +4,7 @@ namespace press\app\actions;
 
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
-use press\app\services\CategorieService;
+use press\app\services\categories\CategorieService;
 use Slim\Views\twig;
 
 class createCategorieAction extends AbstractAction

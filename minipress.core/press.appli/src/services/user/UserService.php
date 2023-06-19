@@ -1,6 +1,6 @@
 <?php
 
-namespace press\app\services;
+namespace press\app\services\user;
 
 use press\app\models\Categorie;
 use press\app\models\User;
