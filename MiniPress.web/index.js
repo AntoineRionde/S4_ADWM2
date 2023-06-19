@@ -1,3 +1,3 @@
-import articles from './modules/articles.js';
+import { affichageArticles } from './modules/affichageArticles';
 
-console.log(articles.getDataArticles());
+affichageArticles();

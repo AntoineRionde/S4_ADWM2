@@ -59,66 +59,41 @@ class __TwigTemplate_9aebe27e47c464da7034f250b9f43f0c extends Template
         echo twig_escape_filter($this->env, $this->env->getRuntime('Slim\Views\TwigRuntimeExtension')->urlFor("createArticlePost"), "html", null, true);
         echo "\" method=\"post\">
 
-        <label for=\"titre\">Titre : </label>
-        <input type=\"text\" id=\"titre\" name=\"titre\">
+        <label for=\"titre\">Titre</label>
+        <input type=\"text\" id=\"titre\" value=\"";
+        // line 9
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "titre", [], "any", false, false, false, 9), "html", null, true);
+        echo "\">
 
-        <br />
-        <br />
+        <label for=\"auteur\">Auteur</label>
+        <input type=\"text\" id=\"auteur\" value=\"";
+        // line 12
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "auteur", [], "any", false, false, false, 12), "html", null, true);
+        echo "\" >
 
-        <label for=\"auteur\">Auteur : </label>
-        <input type=\"text\" id=\"auteur\" name=\"auteur\">
-
-        <br />
-        <br />
-
-        <label for=\"resume\" id=\"resume\">Résumé : </label>
+        <label for=\"resume\" id=\"resume\">Résumé</label>
         <textarea id=\"resume\" name=\"resume\" rows=\"5\" cols=\"33\">";
-        // line 21
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "resume", [], "any", false, false, false, 21), "html", null, true);
+        // line 15
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "resume", [], "any", false, false, false, 15), "html", null, true);
         echo "</textarea>
 
-        <br />
-        <br />
-
-        <label for=\"contenu\" id=\"contenu\">Contenu : </label>
+        <label for=\"contenu\" id=\"contenu\">Contenu</label>
         <textarea id=\"contenu\" name=\"contenu\" rows=\"5\" cols=\"33\">";
-        // line 27
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "contenu", [], "any", false, false, false, 27), "html", null, true);
+        // line 18
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "contenu", [], "any", false, false, false, 18), "html", null, true);
         echo "</textarea>
 
-        <br />
-        <br />
+        <label for=\"url_image\">Image</label>    
+        <input type=\"file\" id=\"url_image\" name=\"url_image\" value=\"";
+        // line 21
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "image", [], "any", false, false, false, 21), "html", null, true);
+        echo "\">
 
-        <label for=\"image\">Image : </label>
-        <input type=\"file\" id=\"image\" name=\"image\" accept=\"image/png, image/jpeg\">
-
-        <br />
-        <br />
-
-        <label for=\"cat-select\">Choississez une catégorie : </label>
-        <select name=\"cats\" id=\"cat-select\">
-            <option value=\"\">Choisir une catégorie</option>
-            ";
-        // line 41
-        $context['_parent'] = $context;
-        $context['_seq'] = twig_ensure_traversable(($context["categories"] ?? null));
-        foreach ($context['_seq'] as $context["_key"] => $context["cat"]) {
-            // line 42
-            echo "                <option value=\"";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["cat"], "id", [], "any", false, false, false, 42), "html", null, true);
-            echo "\">";
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["cat"], "titre", [], "any", false, false, false, 42), "html", null, true);
-            echo "</option>
-            ";
-        }
-        $_parent = $context['_parent'];
-        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['cat'], $context['_parent'], $context['loop']);
-        $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 44
-        echo "        </select>
-
-        <br />
-        <br />
+        <label for=\"idCateg\">Id de la catégorie</label>
+        <input type=\"number\" id=\"idCateg\" name=\"idCateg\" value=\"";
+        // line 24
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, ($context["article"] ?? null), "idCateg", [], "any", false, false, false, 24), "html", null, true);
+        echo "\">
 
         <input type=\"submit\" value=\"Envoyer\">
 
@@ -139,7 +114,7 @@ class __TwigTemplate_9aebe27e47c464da7034f250b9f43f0c extends Template
 
     public function getDebugInfo()
     {
-        return array (  118 => 44,  107 => 42,  103 => 41,  86 => 27,  77 => 21,  58 => 6,  54 => 5,  47 => 3,  36 => 1,);
+        return array (  95 => 24,  89 => 21,  83 => 18,  77 => 15,  71 => 12,  65 => 9,  58 => 6,  54 => 5,  47 => 3,  36 => 1,);
     }
 
     public function getSourceContext()

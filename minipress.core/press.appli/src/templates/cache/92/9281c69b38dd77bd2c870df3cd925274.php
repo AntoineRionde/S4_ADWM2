@@ -35,26 +35,29 @@ class __TwigTemplate_3ac703dce7d998e2fbb856e3d6f1b568 extends Template
         $macros = $this->macros;
         // line 1
         echo "<header>
+    <div class=\"nom\">
+        <h1>MiniPress</h1>
+    </div>
     <div class=\"nav\">
         <ul>
             <li><a href=\"";
-        // line 4
+        // line 7
         echo twig_escape_filter($this->env, $this->env->getRuntime('Slim\Views\TwigRuntimeExtension')->urlFor("home"), "html", null, true);
         echo "\">Home</a></li>
             <li><a href=\"";
-        // line 5
+        // line 8
         echo twig_escape_filter($this->env, $this->env->getRuntime('Slim\Views\TwigRuntimeExtension')->urlFor("categories"), "html", null, true);
         echo "\">Categories</a></li>
             <li><a href=\"";
-        // line 6
+        // line 9
         echo twig_escape_filter($this->env, $this->env->getRuntime('Slim\Views\TwigRuntimeExtension')->urlFor("articles"), "html", null, true);
         echo "\">Articles</a></li>
              <li><a href=\"";
-        // line 7
+        // line 10
         echo twig_escape_filter($this->env, $this->env->getRuntime('Slim\Views\TwigRuntimeExtension')->urlFor("createCategorie"), "html", null, true);
         echo "\">Créer une catégorie</a></li>
             <li><a href=\"";
-        // line 8
+        // line 11
         echo twig_escape_filter($this->env, $this->env->getRuntime('Slim\Views\TwigRuntimeExtension')->urlFor("createArticle"), "html", null, true);
         echo "\">Créer un article</a></li>
         </ul>
@@ -74,7 +77,7 @@ class __TwigTemplate_3ac703dce7d998e2fbb856e3d6f1b568 extends Template
 
     public function getDebugInfo()
     {
-        return array (  58 => 8,  54 => 7,  50 => 6,  46 => 5,  42 => 4,  37 => 1,);
+        return array (  61 => 11,  57 => 10,  53 => 9,  49 => 8,  45 => 7,  37 => 1,);
     }
 
     public function getSourceContext()
