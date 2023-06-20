@@ -8,14 +8,14 @@ class ArticleProvider extends ChangeNotifier {
 
   Future<List<Article>> getArticles() async {
     if (_articles.isNotEmpty) {
-      return Future<List<Article>>.value(_articles);
+      return _articles;
     }
     return await fetchArticles();
   }
 
   Future<List<Article>> fetchArticles() async {
-    final response = await http.get(Uri.parse(
-        'http://docketu.iutnc.univ-lorraine.fr:45005/api/articles?sort=date-desc'));
+    final response = await http.get(
+        Uri.parse('http://docketu.iutnc.univ-lorraine.fr:45005/api/articles'));
     final articles = <Article>[];
 
     if (response.statusCode == 200) {
@@ -23,8 +23,8 @@ class ArticleProvider extends ChangeNotifier {
       final jsonArticles = jsonBody['articles'];
       for (var jsonArticle in jsonArticles) {
         final articleUrl = jsonArticle['url']['self']['href'];
-        final articleId = articleUrl.split('/').last;
-        final article = await fetchArticle(int.parse(articleId));
+        final articleId = int.parse(articleUrl.split('/').last);
+        final article = await fetchArticle(articleId);
         articles.add(article);
       }
       _articles = articles;

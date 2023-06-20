@@ -46,7 +46,7 @@ class CategorieProvider extends ChangeNotifier {
     final response = await http.get(Uri.parse(
         'http://docketu.iutnc.univ-lorraine.fr:45005/api/categories/$categorieId/articles'));
     final articles = <Article>[];
-    print(response);
+
     if (response.statusCode == 200) {
       final jsonBody = json.decode(response.body);
       final jsonArticles = jsonBody['articles'];
@@ -59,6 +59,7 @@ class CategorieProvider extends ChangeNotifier {
         articles.add(article);
       }
       _articles = articles;
+      print(articles[1].title);
       return articles;
     } else {
       throw Exception('Failed to fetch articles');

@@ -5,7 +5,6 @@ class Article {
   final String? auteur;
   final String? resume;
   final String? contenu;
-  final DateTime? datePublication;
   final String? image;
   final int? idCateg;
 
@@ -16,7 +15,6 @@ class Article {
     this.auteur,
     this.resume,
     this.contenu,
-    this.datePublication,
     this.image,
     this.idCateg,
   });
@@ -29,7 +27,6 @@ class Article {
       auteur: json['auteur'],
       resume: json['resume'],
       contenu: json['contenu'],
-      datePublication: DateTime.parse(json['date_publication']),
       image: json['image'],
       idCateg: json['cat_id'],
     );

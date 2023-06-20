@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:minipress_app/models/article.dart';
+import 'package:markdown/markdown.dart' as markdown;
+import 'package:html/parser.dart';
 
 class ArticleDetail extends StatefulWidget {
   final Article article;
@@ -21,8 +23,10 @@ class _ArticleDetailState extends State<ArticleDetail> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Resume : ${widget.article.resume!}"),
-            Text("Contenu : ${widget.article.contenu!}"),
+            Text(
+                "Resume : ${parse(markdown.markdownToHtml(widget.article.resume!)).outerHtml}"),
+            Text(
+                "Contenu : ${parse(markdown.markdownToHtml(widget.article.contenu!)).outerHtml}"),
             const Text("\n"),
             Text(
                 "Date de création : ${widget.article.dateCreation!.toString().substring(0, 10)}"),
