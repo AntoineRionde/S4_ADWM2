@@ -30,11 +30,11 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE IF NOT EXISTS `article` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `titre` varchar(30) NOT NULL,
+  `titre` mediumtext NOT NULL,
   `date_creation` date DEFAULT NULL,
-  `auteur` varchar(30) NOT NULL,
-  `resume` varchar(256) NOT NULL,
-  `contenu` varchar(256) NOT NULL,
+  `auteur` varchar(64) NOT NULL,
+  `resume` mediumtext NOT NULL,
+  `contenu` longtext NOT NULL,
   `date_publication` date DEFAULT NULL,
   `image` varchar(256) DEFAULT NULL,
   `cat_id` int NOT NULL,

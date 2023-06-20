@@ -28,9 +28,9 @@ class GetArticleAction extends AbstractAction
     {
         $service = new ArticleService();
         $articles = $service->getArticles();
-        // convert encode to utf8
+
         foreach ($articles as $article) {
-            $article['titre'] = utf8_encode($article['titre']);
+            $article['titre'] = html_entity_decode($article['titre']);
         }
         $routeContext = RouteContext::fromRequest($request)->getRouteParser();
         $data = ['articles' => $articles];
