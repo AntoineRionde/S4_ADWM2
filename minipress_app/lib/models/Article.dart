@@ -6,7 +6,7 @@ class Article {
   final String? contenu;
   final DateTime? datePublication;
   final String? image;
-  final int? idCateg;
+  final int? cat_id;
 
   Article({
     this.title,
@@ -16,7 +16,7 @@ class Article {
     this.contenu,
     this.datePublication,
     this.image,
-    this.idCateg,
+    this.cat_id,
   });
 
   factory Article.fromJson(Map<String, dynamic> json) {
@@ -28,7 +28,7 @@ class Article {
       contenu: json['contenu'],
       datePublication: DateTime.parse(json['date_publication']),
       image: json['image'],
-      idCateg: json['idCateg'],
+      cat_id: json['cat_id'],
     );
   }
 }

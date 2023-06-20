@@ -55,8 +55,8 @@ export function affichageArticles(ascendant = false) {
   document.body.appendChild(galleryContainer);
 }
 
-export const affichageArticlesByIdCateg = function(id){
-  const data = articles.getDataArticlesByIdCateg(id);
+export const affichageArticlesBycat_id = function(id){
+  const data = articles.getDataArticlesBycat_id(id);
   const html = document.querySelector('body');
 
   

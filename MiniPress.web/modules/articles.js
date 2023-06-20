@@ -11,7 +11,7 @@ const getDataArticles = async () => {
   }
 }
 
-const getDataArticlesByIdCateg = async (id) => {
+const getDataArticlesBycat_id = async (id) => {
   const data = getDataArticles(); 
 
   return data.then(data => {
@@ -19,7 +19,7 @@ const getDataArticlesByIdCateg = async (id) => {
       return fetch(element.url.self.href)
       .then(response => response.json())
       .then(articleDetail => {
-        if(articleDetail.article.idCateg == id){
+        if(articleDetail.article.cat_id == id){
           return articleDetail.article;
         }
       });
@@ -55,7 +55,7 @@ const getDataArticlesByAuteur = async (auteur) => {
 
 export default {
     getDataArticles: getDataArticles,
-    getDataArticlesByIdCateg: getDataArticlesByIdCateg,
+    getDataArticlesBycat_id: getDataArticlesBycat_id,
     getArticleDetail: getArticleDetail,
    getDataArticlesByAuteur: getDataArticlesByAuteur 
 }

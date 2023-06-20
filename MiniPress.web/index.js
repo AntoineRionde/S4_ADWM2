@@ -35,5 +35,4 @@ if (window.location.search.includes('reloadedArt=true')) {
     }, 100);
 }
 
-affichageArticlesByMotCle("sain");
 

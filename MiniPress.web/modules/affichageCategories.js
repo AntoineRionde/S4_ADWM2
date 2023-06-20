@@ -1,5 +1,5 @@
 import categorie from "./categorie";
-import { affichageArticlesByIdCateg } from './affichageArticles';
+import { affichageArticlesBycat_id } from './affichageArticles';
 
 export const affichageCategories = function(){
     const data = categorie.getDataCategories();
@@ -23,7 +23,7 @@ export const affichageCategories = function(){
         for (let i = 0; i < categorieElements.length; i++) {
           categorieElements[i].addEventListener('click', function() {
             const categoryId = this.getAttribute('data-id');
-            affichageArticlesByIdCateg(categoryId); 
+            affichageArticlesBycat_id(categoryId); 
           });
         }
     });

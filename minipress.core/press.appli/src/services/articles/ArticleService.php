@@ -70,7 +70,7 @@ class ArticleService{
         }
         $article->image = $data['image'];
 
-        $article->idCateg = $data['cats'];
+        $article->cat_id = $data['cats'];
         $article->save();
         return $article->toArray();
     }
@@ -101,7 +101,7 @@ class ArticleService{
             $article = Article::findOrFail($idArt);
             $article->titre = $data['titre'];
             $article->contenu = $data['contenu'];
-            $article->idCateg = $data['idCateg'];
+            $article->cat_id = $data['cat_id'];
             $article->save();
             return $article->toArray();
         }catch(\Exception $e) {
@@ -117,7 +117,7 @@ class ArticleService{
      */
     function getArticlesByCategorie(int $idCat) : array {
         try {
-            $articles = Article::where('idCateg', $idCat)->get();
+            $articles = Article::where('cat_id', $idCat)->get();
             return $articles->toArray();
         }catch(\Exception $e) {
             throw new \Exception( "L'id de la catégorie n'est pas renseigné");
@@ -129,7 +129,7 @@ class ArticleService{
      */
     public function getArticlesByCategorieId($id) : array {
         try {
-            return Article::where('idCateg', $id)->get()->toArray();
+            return Article::where('cat_id', $id)->get()->toArray();
         }catch(\Exception $e) {
             throw new Exception( "L'id de la catégorie n'est pas renseigné");
         }

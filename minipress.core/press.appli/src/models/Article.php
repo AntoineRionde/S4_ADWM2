@@ -11,9 +11,9 @@ class Article extends Model{
     public $incrementing = false;
     public $keyType = 'string';
     public $timestamps = false;
-    public $fillable = ['id', 'titre', 'date_creation', 'auteur', 'resume', 'contenu', 'date_publication', 'image', 'idCateg'];
+    public $fillable = ['id', 'titre', 'date_creation', 'auteur', 'resume', 'contenu', 'date_publication', 'image', 'cat_id'];
 
     function categories(): BelongsTo{
-        return $this->belongsTo(Categorie::class, 'idCateg');
+        return $this->belongsTo(Categorie::class, 'cat_id');
     }
 }

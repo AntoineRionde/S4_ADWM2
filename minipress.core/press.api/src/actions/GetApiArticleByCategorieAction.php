@@ -20,7 +20,7 @@ class GetApiArticleByCategorieAction extends AbstractAction
             unset($articles[$key]['resume']);
             unset($articles[$key]['date_publication']);
             unset($articles[$key]['image']);
-            unset($articles[$key]['idCateg']);
+            unset($articles[$key]['cat_id']);
         }
 
         $data = ['articles' => $articles];
