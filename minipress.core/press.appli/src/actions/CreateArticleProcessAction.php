@@ -19,10 +19,9 @@ class CreateArticleProcessAction extends AbstractAction
     {
         $data = $request->getParsedBody();
         $data['titre'] = htmlspecialchars($data['titre']);
-
-        // nl2br permet de conserver les sauts de ligne
-        $data['resume'] = nl2br(htmlspecialchars($data['resume']));
-        $data['contenu'] = nl2br(htmlspecialchars($data['contenu']));
+        
+        $data['resume'] = htmlspecialchars($data['resume']);
+        $data['contenu'] = htmlspecialchars($data['contenu']);
 
         $data['image'] = filter_var($data['image'], FILTER_SANITIZE_SPECIAL_CHARS);
 
@@ -33,6 +32,6 @@ class CreateArticleProcessAction extends AbstractAction
 
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
 
-        return $response->withHeader('location', $routeParser->urlFor('home'))->withStatus(302);
+        return $response->withHeader('location', $routeParser->urlFor('articles'))->withStatus(302);
     }
 }
