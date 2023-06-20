@@ -2,8 +2,7 @@
 
 namespace press\app\actions;
 
-use \Exception;
-use press\app\services\user\UserService;
+use Exception;
 use press\app\services\auth\AuthService;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;

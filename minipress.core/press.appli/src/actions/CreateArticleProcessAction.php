@@ -31,7 +31,7 @@ class CreateArticleProcessAction extends AbstractAction
         $data['image'] = filter_var($data['image'], FILTER_SANITIZE_SPECIAL_CHARS);
 
         $articleService = new ArticleService();
-        $article = $articleService->createArticle($data);
+        /*$article = */$articleService->createArticle($data);
 
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
 

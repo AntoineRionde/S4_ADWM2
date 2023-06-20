@@ -4,7 +4,6 @@ namespace press\app\services\categories;
 
 use PHPUnit\Exception;
 use press\app\models\Categorie;
-use Slim\Exception\HttpBadRequestException;
 
 class CategorieService{
 
@@ -13,7 +12,7 @@ class CategorieService{
      * @param array $donnee
      * @return Categorie categorie
      */
-    function create(array $donnee){
+    function create(array $donnee): string{
         $categorie = new Categorie;
         $categorie->id = $donnee['id'];
         $categorie->titre = $donnee['titre'];
@@ -35,12 +34,13 @@ class CategorieService{
      * Méthode permettant de récupérer une catégorie par son id
      * @param int $id
      * @return array $categorie
+     * @throws \Exception
      */
     function getCategorieById(int $id) : array {
         try {
             return Categorie::findOrFail($id)->toArray();
         }catch(Exception $e) {
-            throw new HttpBadRequestException( "L'id de la catégorie n'est pas renseigné");
+            throw new \Exception( "L'id de la catégorie n'est pas renseigné");
         }
     }
 
@@ -58,9 +58,9 @@ class CategorieService{
     }
 
     /**
-     * Méthode permettant de supprimer une catégorie
-     * @param $idCat id de la categorie a supprimer
-     * @return array $categorie
+     * @param $idCat
+     * @return array
+     * @throws \Exception
      */
     function deleteCategorie($idCat) : array{
         try {
@@ -68,7 +68,7 @@ class CategorieService{
             $categorie->delete();
             return $categorie->toArray();
         }catch(Exception $e) {
-            throw new HttpBadRequestException("L'id de la catégorie n'est pas renseigné");
+            throw new \Exception("L'id de la catégorie n'est pas renseigné");
         }
     }
 }

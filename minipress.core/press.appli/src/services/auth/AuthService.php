@@ -11,7 +11,7 @@ class AuthService
     /**
      * @param string $username
      * @param string $password
-     * @return void
+     * @return array|null gère la connexion d'un user
      * gère la connexion d'un user
      * @throws Exception
      */
@@ -19,17 +19,17 @@ class AuthService
     {
 
         if (empty($username) || empty($password)) {
-            throw new \Exception("invalidCredentials");
+            throw new Exception("invalidCredentials");
         }
 
         $user = User::where('username', $username)->first();
         if ($user === null) {
-            throw new \Exception("invalidCredentials:mail");
+            throw new Exception("invalidCredentials:mail");
         }
 
         $hash = $user->password;
         if (!password_verify($password, $hash)) {
-            throw new \Exception("invalidCredentials:pass");
+            throw new Exception("invalidCredentials:pass");
         }
 
         if ($user->active === 0) {
@@ -44,7 +44,8 @@ class AuthService
     /**
      * @param string $username
      * @param string $password
-     * @param string $confirmPassword
+     * @param string $ConfirmPassword
+     * @param int $role
      * @return void
      * permet de s'inscire sur le site
      * @throws Exception
@@ -108,7 +109,7 @@ class AuthService
 
     /**
      * @param string $token
-     * @return bool
+     * @return void active un compte utilisateur
      * active un compte utilisateur
      */
     public function activate(string $token): void

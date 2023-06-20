@@ -1,13 +1,16 @@
 <?php
 namespace press\app\actions;
 
+use Exception;
+use Slim\Exception\HttpBadRequestException;
 use Slim\Psr7\Response as Response;
 use Slim\Psr7\Request as Request;
-use press\app\models\Categorie;
-use press\app\actions\AbstractAction;
 use press\app\services\articles\ArticleService;
 use Slim\Routing\RouteContext;
 use Slim\Views\Twig;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class GetArticlesByCategorie extends AbstractAction
 {
@@ -17,10 +20,16 @@ class GetArticlesByCategorie extends AbstractAction
             session_start();
     }
 
+    //TODO à vérifier
+
+    /**
+     * @throws SyntaxError
+     * @throws RuntimeError
+     * @throws LoaderError
+     * @throws Exception
+     */
     public function __invoke(Request $request, Response $response, array $args): Response
     {
-
-
         if (isset($args['id']) && !is_numeric($args['id'])) {
             throw new HttpBadRequestException($request, "La catégorie n'existe pas");
         }
@@ -36,7 +45,5 @@ class GetArticlesByCategorie extends AbstractAction
         $data = ['idCateg' => $args['id'], 'articles_liste' => $articles];
         $view = Twig::fromRequest($request);
         return $view->render($response, 'articlesByCategorie.twig', $data);
-
-
     }
 }
