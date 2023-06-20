@@ -1,27 +1,19 @@
 import articles from './articles.js';
 import categories from './categorie.js';
 
-export function affichageArticles(ascendant = false) {
+export function affichageArticles(descendant = true) {
   const galleryContainer = document.createElement('ul');
   galleryContainer.id = 'articles';
   galleryContainer.innerHTML = '';
   let data = articles.getDataArticles();
 
-  if(ascendant){
-    data = articles.getDataArticlesSortDateAsc();
+  if(descendant){
+    data = articles.getDataArticlesSortDateDesc();
   }
 
   data.then((dataArticles) => {
-    // Tri des articles par date de création dans l'ordre chronologique décroissant
-    dataArticles.articles.sort(function(a, b) {
-      if(!ascendant){
-        return new Date(a.date_creation) - new Date(b.date_creation);
-      }else{
-        return new Date(b.date_creation) - new Date(a.date_creation);
-      }
-    });
-
-    dataArticles.articles.forEach((article, index) => {
+  
+    dataArticles.articles.forEach((article, index) => { 
       const titre = "Titre : " + article.titre + " ";
       const date = "Creation : " + article.date_creation + " ";
       const auteur = "Auteur : " + article.auteur + " ";
@@ -34,6 +26,7 @@ export function affichageArticles(ascendant = false) {
 
       artAuteurElement.addEventListener('click', function() {
         affichageArticlesByAuteur(article.auteur);
+        galleryContainer.style.display = 'none';
       });
 
       const artCreaElement = document.createElement('art_crea');
@@ -50,6 +43,7 @@ export function affichageArticles(ascendant = false) {
         .then(articleDetail => {
           artTitreElement.addEventListener('click', function() {
             affichageArticleDetail(articleDetail.article.id);
+            galleryContainer.style.display = 'none';
           });
         });
     });
@@ -58,26 +52,27 @@ export function affichageArticles(ascendant = false) {
   document.body.appendChild(galleryContainer);
 }
 
-export const affichageArticlesBycat_id = function(id){
+export const affichageArticlesBycat_id = function (id) {
   const data = articles.getDataArticlesBycat_id(id);
-  const html = document.querySelector('body');
+  const html = document.getElementById('articles');
 
-  
   data.then(data => {
-    let content='';
+    let content = '';
     data.forEach(article => {
-      content+=`
+      content += `
         <li>
           <h2>${article.titre}</h2>
-          <h3> écrit par ${article.auteur} et publié le ${article.date_publication}}</h3>
-          <p>${article.description}</p>
+          <h3>écrit par ${article.auteur} et publié le ${article.date_publication}</h3>
+          <p>${article.resume}</p>
         </li>
       `;
     });
-    html.innerHTML+='<div class="articles"><ul>'+content+'</ul></div>';
+    html.innerHTML = `<ul>${content}</ul>`;
+
+    const selectedCategory = document.getElementById('selectedCategory');
+    html.insertAdjacentElement('beforebegin', selectedCategory);
   });
-  return html;
-}
+};
 
 
 export const affichageArticleDetail = function(id) {
@@ -101,23 +96,22 @@ export const affichageArticleDetail = function(id) {
 
 export const affichageArticlesByAuteur = function(auteur) {
   const data = articles.getDataArticlesByAuteur(auteur);
-  const html = document.querySelector('body');
+  const html = document.getElementById('auteur');
 
   data.then(data => {
-    let content = '';
+    let content = '<h2>Articles de ' + auteur + '</h2>';
     data.forEach(article => {
       content += `
-        <li>
+        <li><h1
           <h2>${article.titre}</h2>
           <h3>écrit par ${article.auteur} et publié le ${article.date_creation}</h3>
         </li>
       `;
     });
-    html.innerHTML += '<div class="articles"><ul>' + content + '</ul></div>';
+    html.innerHTML = '<div class="articles"><ul>' + content + '</ul></div>';
   });
-
-  return html;
-} 
+ 
+}
 
 export const affichageArticlesByMotCle = function(mot){
   const galleryContainer = document.getElementById('articles');
@@ -154,7 +148,7 @@ export const affichageArticlesByMotCle = function(mot){
 
             artAuteurElement.addEventListener('click', function() {
               affichageArticlesByAuteur(article.article.auteur);
-            }); 5
+            }); 
 
             galleryContainer.appendChild(artAuteurElement);
 
