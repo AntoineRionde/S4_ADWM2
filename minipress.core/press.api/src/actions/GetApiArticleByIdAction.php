@@ -11,7 +11,7 @@ class GetApiArticleByIdAction
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $service = new ArticleService();
-        $article = $service->getArticleById($args['id_a']);
+        $article = $service->getArticlePublishedById($args['id_a']);
 
         $data = ['article' => $article];
         $response->getBody()->write(json_encode($data));

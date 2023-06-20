@@ -18,7 +18,7 @@ class CreateArticleProcessAction extends AbstractAction
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $data = $request->getParsedBody();
-        $data['titre'] = htmlspecialchars($data['titre']);
+        $data['titre'] = filter_var($data['titre'], FILTER_SANITIZE_SPECIAL_CHARS);
         
         $data['resume'] = htmlspecialchars($data['resume']);
         $data['contenu'] = htmlspecialchars($data['contenu']);
