@@ -2,7 +2,8 @@ import articles from './articles.js';
 import categories from './categorie.js';
 
 export function affichageArticles(ascendant = false) {
-  const galleryContainer = document.getElementById('articles');
+  const galleryContainer = document.createElement('ul');
+  galleryContainer.id = 'articles';
   galleryContainer.innerHTML = '';
 
   const data = articles.getDataArticles();
