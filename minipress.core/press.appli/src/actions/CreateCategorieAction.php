@@ -7,7 +7,7 @@ use Slim\Psr7\Response;
 use press\app\services\categories\CategorieService;
 use Slim\Views\twig;
 
-class createCategorieAction extends AbstractAction
+class CreateCategorieAction extends AbstractAction
 {
     public function __construct()
     {

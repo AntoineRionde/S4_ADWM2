@@ -26,7 +26,7 @@ class CreateUserProcessAction extends AbstractAction
             return $response->withHeader('Location', $urlRegister)->withStatus(302);
         }
 
-        $username = filter_var($request->getParsedBody()['username'], FILTER_SANITIZE_EMAIL);
+        $email = filter_var($request->getParsedBody()['email'], FILTER_SANITIZE_EMAIL);
         $password = htmlspecialchars($request->getParsedBody()['password']);
         $role = 0;
         if(isset($request->getParsedBody()['admin'])){
@@ -35,7 +35,7 @@ class CreateUserProcessAction extends AbstractAction
 
         try {
             $authService = new AuthService();
-            $authService->register($username, $password, $password, $role);
+            $authService->register($email, $password, $password, $role);
 
         } catch (Exception $e) {
             $urlRegister = $routeContext->getRouteParser()->urlFor('createUser', [], ['error' => $e->getMessage()]);

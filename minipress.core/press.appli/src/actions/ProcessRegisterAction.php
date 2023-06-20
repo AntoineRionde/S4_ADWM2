@@ -26,7 +26,7 @@ class ProcessRegisterAction extends AbstractAction
             return $response->withHeader('Location', $urlRegister)->withStatus(302);
         }
 
-        $email = filter_var($request->getParsedBody()['username'], FILTER_SANITIZE_EMAIL);
+        $email = filter_var($request->getParsedBody()['email'], FILTER_SANITIZE_EMAIL);
         $password = htmlspecialchars($request->getParsedBody()['password']);
         $confirm_password = htmlspecialchars($request->getParsedBody()['confirm_password']);
 
