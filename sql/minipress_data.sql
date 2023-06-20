@@ -6,12 +6,12 @@ INSERT INTO article (id, titre, date_creation , auteur, resume, contenu, date_pu
 
 
 -- Insérer des auteurs dans la table "auteurs"
-INSERT INTO user (id, nom, prenom, password, activation_token, renew_token, email) VALUES
-                                                                                       (1, 'John', 'Doe', '123', 'fb5d3a14f5085b4decb07cff6f5b20b67fb2684136f92ef31e7fa4d9f3e0ddb2', 'fb5d3a14f5085b4decb07cff6f5b20b67fb2684136f92ef31e7fa4d9f3e0dd', 'john.doe@example.com'),
-                                                                                       (2, 'Jane', 'Smith', '456', 'fb5d3a14f5085b4decb07cff6f5b20b67fb2684136f92ef31e7fa4d9f3e0ddb2', 'fb5d3a14f5085b4decb07cff6f5b20b67fb2684136f92ef31e7fa4d9f3e0dd', 'jane.smith@example.com');
+INSERT INTO user (id, nom, prenom, password, activation_token, renew_token, username) VALUES
+                                                                                       (1, 'John', 'Doe', '$2y$12$dAtXy/zAZsx0xp2s4Wxuq.lgb65n2qGORBYtWoSwsl/JQ7d3dbqUu', 'fb5d3a14f5085b4decb07cff6f5b20b67fb2684136f92ef31e7fa4d9f3e0ddb2', 'fb5d3a14f5085b4decb07cff6f5b20b67fb2684136f92ef31e7fa4d9f3e0dd', 'john.doe@example.com'),
+                                                                                       (2, 'Jane', 'Smith', '$2y$12$dAtXy/zAZsx0xp2s4Wxuq.lgb65n2qGORBYtWoSwsl/JQ7d3dbqUu', 'fb5d3a14f5085b4decb07cff6f5b20b67fb2684136f92ef31e7fa4d9f3e0ddb2', 'fb5d3a14f5085b4decb07cff6f5b20b67fb2684136f92ef31e7fa4d9f3e0dd', 'jane.smith@example.com');
 
 -- Insérer des catégories dans la table "categories"
-INSERT INTO categories (id, nom) VALUES
+INSERT INTO categorie (id, titre) VALUES
                                      (1, 'Technologie'),
                                      (2, 'Voyages'),
                                      (3, 'Santé');

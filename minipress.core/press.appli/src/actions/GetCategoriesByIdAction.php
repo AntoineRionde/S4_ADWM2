@@ -6,7 +6,11 @@ use Slim\Psr7\Response as Response;
 use Slim\Psr7\Request as Request;
 use Slim\Exception\HttpBadRequestException;
 use press\app\services\categories\CategorieService;
+use Slim\Routing\RouteContext;
 use Slim\Views\Twig;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class GetCategoriesByIdAction extends AbstractAction
 {
@@ -15,6 +19,12 @@ class GetCategoriesByIdAction extends AbstractAction
         if (session_status() === PHP_SESSION_NONE)
             session_start();
     }
+
+    /**
+     * @throws SyntaxError
+     * @throws RuntimeError
+     * @throws LoaderError
+     */
     public function __invoke(Request $request, Response $response, array $args): Response
     {
 
@@ -27,7 +37,7 @@ class GetCategoriesByIdAction extends AbstractAction
 
 
         }
-        $routeContext = \Slim\Routing\RouteContext::fromRequest($request);
+        $routeContext = RouteContext::fromRequest($request);
 
         $url = $routeContext->getRouteParser()->urlFor('getArticlesByCategorie', ['id' => $args['id']]);
         $cat['url_articles'] = $url;

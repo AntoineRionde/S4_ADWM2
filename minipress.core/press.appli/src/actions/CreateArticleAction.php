@@ -2,13 +2,13 @@
 
 namespace press\app\actions;
 
-use press\app\services\utils\CsrfService;
-use press\app\models\Categorie;
-use press\app\services\articles\ArticleService;
 use press\app\services\categories\CategorieService;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Slim\Views\Twig;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class CreateArticleAction extends AbstractAction
 {
@@ -19,6 +19,11 @@ class CreateArticleAction extends AbstractAction
             session_start();
     }
 
+    /**
+     * @throws RuntimeError
+     * @throws SyntaxError
+     * @throws LoaderError
+     */
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $view = Twig::fromRequest($request);

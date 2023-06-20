@@ -61,3 +61,52 @@ footer{
 footer p {
     text-align: center;
 }
+
+/* Styliser le formulaire */
+form {
+    width: 500px;
+    margin: 5em auto;
+}
+
+#username {
+    margin-bottom: 2em;
+}
+
+/* Styliser les étiquettes */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+/* Styliser les champs de saisie */
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Styliser le bouton de soumission */
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #32849C;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Changer le style du bouton au survol */
+input[type="submit"]:hover {
+    background-color: lightblue;
+}
+
+/* Changer le style du bouton lorsqu'il est pressé */
+input[type="submit"]:active {
+    background-color: #32849C;
+}

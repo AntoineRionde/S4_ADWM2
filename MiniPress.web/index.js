@@ -1,4 +1,4 @@
-import { affichageArticles } from './modules/affichageArticles';
+import { affichageArticles, affichageArticlesByMotCle } from './modules/affichageArticles';
 import { affichageCategories } from './modules/affichageCategories';
 
 
@@ -35,4 +35,5 @@ if (window.location.search.includes('reloadedArt=true')) {
     }, 100);
 }
 
+affichageArticlesByMotCle("sain");
 

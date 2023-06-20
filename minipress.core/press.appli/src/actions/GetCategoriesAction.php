@@ -5,6 +5,9 @@ use Slim\Psr7\Response as Response;
 use Slim\Psr7\Request as Request;
 use press\app\services\categories\CategorieService;
 use Slim\Views\Twig;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class GetCategoriesAction extends AbstractAction
 {
@@ -13,6 +16,12 @@ class GetCategoriesAction extends AbstractAction
         if (session_status() === PHP_SESSION_NONE)
             session_start();
     }
+
+    /**
+     * @throws SyntaxError
+     * @throws RuntimeError
+     * @throws LoaderError
+     */
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $service = new CategorieService();

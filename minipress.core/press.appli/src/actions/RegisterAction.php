@@ -6,6 +6,9 @@ use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Slim\Routing\RouteContext;
 use Slim\Views\Twig;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class RegisterAction extends AbstractAction
 {
@@ -15,6 +18,11 @@ class RegisterAction extends AbstractAction
             session_start();
     }
 
+    /**
+     * @throws SyntaxError
+     * @throws RuntimeError
+     * @throws LoaderError
+     */
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $basePath = RouteContext::fromRequest($request)->getBasePath() ;

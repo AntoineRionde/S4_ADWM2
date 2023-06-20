@@ -25,15 +25,13 @@ class ProcessLoginAction extends AbstractAction
             return $response->withHeader('Location', $urlLogin)->withStatus(302);
         }
 
-        $email = filter_var($request->getParsedBody()['username'], FILTER_SANITIZE_EMAIL);
-        $password = htmlspecialchars($request->getParsedBody()['password']);
+        $data = $request->getParsedBody();
 
-        if (isset($_SESSION['target_url'])) {
-            $url = $_SESSION['target_url'];
-            unset($_SESSION['target_url']);
-        } else {
-            $url = $routeContext->getRouteParser()->urlFor('home');
-        }
+        $email = filter_var($data['username'], FILTER_SANITIZE_EMAIL);
+        $password = htmlspecialchars($data['password']);
+
+        $url = $routeContext->getRouteParser()->urlFor($data['target']);
+
 
         $authService = new AuthService();
 

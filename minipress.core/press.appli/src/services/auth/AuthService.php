@@ -11,7 +11,7 @@ class AuthService
     /**
      * @param string $username
      * @param string $password
-     * @return void
+     * @return array|null gère la connexion d'un user
      * gère la connexion d'un user
      * @throws Exception
      */
@@ -19,17 +19,17 @@ class AuthService
     {
 
         if (empty($username) || empty($password)) {
-            throw new \Exception("invalidCredentials");
+            throw new Exception("invalidCredentials");
         }
 
         $user = User::where('username', $username)->first();
         if ($user === null) {
-            throw new \Exception("invalidCredentials:mail");
+            throw new Exception("invalidCredentials:mail");
         }
 
         $hash = $user->password;
         if (!password_verify($password, $hash)) {
-            throw new \Exception("invalidCredentials:pass");
+            throw new Exception("invalidCredentials:pass");
         }
 
         if ($user->active === 0) {
@@ -44,12 +44,13 @@ class AuthService
     /**
      * @param string $username
      * @param string $password
-     * @param string $confirmPassword
+     * @param string $ConfirmPassword
+     * @param int $role
      * @return void
      * permet de s'inscire sur le site
      * @throws Exception
      */
-    public function register(string $username, string $password, string $ConfirmPassword): void
+    public function register(string $username, string $password, string $ConfirmPassword, int $role = 0): void
     {
 
         $user = User::where('username', $username)->first();
@@ -65,11 +66,13 @@ class AuthService
 
         $user = new User();
         $user->username = $username;
+        $user->nom = "";
+        $user->prenom = "";
         $user->password = password_hash($password, PASSWORD_DEFAULT, ['cost' => 12]);
         $user->activation_token = $this->generateActivitionToken($username);
-        $user->activation_expire = date('Y-m-d H:i:s', 60 * 60);
-        $user->role = '0';
-        $user->created_at = date('Y-m-d H:i:s');
+        $user->activation_expires = date('Y-m-d H:i:s', 60 * 60);
+        $user->role = $role;
+        //$user->created_at = date('Y-m-d H:i:s');
         $user->save();
     }
 
@@ -106,7 +109,7 @@ class AuthService
 
     /**
      * @param string $token
-     * @return bool
+     * @return void active un compte utilisateur
      * active un compte utilisateur
      */
     public function activate(string $token): void

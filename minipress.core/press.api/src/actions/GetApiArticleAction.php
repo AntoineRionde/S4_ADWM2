@@ -22,6 +22,25 @@ class GetApiArticleAction extends AbstractAction{
             unset($articles[$key]['idCateg']);
         }
 
+        if(isset($_GET['sort'])){
+            $sort = $_GET['sort'];
+            if($sort == 'date-asc'){
+                usort($articles, function($a, $b) {
+                    return $a['date_creation'] <=> $b['date_creation'];
+                });
+            }
+            else if($sort == 'date-desc'){
+                usort($articles, function($a, $b) {
+                    return $b['date_creation'] <=> $a['date_creation'];
+                });
+            }
+            else if($sort == 'auteur'){
+                usort($articles, function($a, $b) {
+                    return $a['auteur'] <=> $b['auteur'];
+                });
+            }
+        }
+
         $data = ['articles' => $articles];
         $response->getBody()->write(json_encode($data));
         return
