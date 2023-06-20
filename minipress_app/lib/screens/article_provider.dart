@@ -14,8 +14,8 @@ class ArticleProvider extends ChangeNotifier {
   }
 
   Future<List<Article>> fetchArticles() async {
-    final response = await http.get(
-        Uri.parse('http://docketu.iutnc.univ-lorraine.fr:45005/api/articles'));
+    final response = await http.get(Uri.parse(
+        'http://docketu.iutnc.univ-lorraine.fr:45005/api/articles?sort=date-desc'));
     final articles = <Article>[];
 
     if (response.statusCode == 200) {

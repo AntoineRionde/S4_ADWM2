@@ -57,7 +57,7 @@ class _ArticleMasterState extends State<ArticleMaster> {
                     ],
                   );
                 } else {
-                  return const Text('Chargement en cours');
+                  return const Text("Chargement en cours");
                 }
               },
             ),

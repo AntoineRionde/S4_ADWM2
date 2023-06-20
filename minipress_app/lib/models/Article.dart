@@ -31,7 +31,7 @@ class Article {
       contenu: json['contenu'],
       datePublication: DateTime.parse(json['date_publication']),
       image: json['image'],
-      idCateg: json['idCateg'],
+      idCateg: json['cat_id'],
     );
   }
 }

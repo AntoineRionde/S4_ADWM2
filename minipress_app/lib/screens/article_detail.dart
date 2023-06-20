@@ -25,7 +25,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
             Text("Contenu : ${widget.article.contenu!}"),
             const Text("\n"),
             Text(
-                "Date de publication : ${widget.article.datePublication!.toString().substring(0, 10)}"),
+                "Date de création : ${widget.article.dateCreation!.toString().substring(0, 10)}"),
             Text("Auteur : ${widget.article.auteur!}"),
           ],
         ),
