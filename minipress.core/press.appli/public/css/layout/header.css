@@ -32,3 +32,14 @@ header {
     margin-right: 5em;
 }
 
+#header-nav a {
+    margin-left: 1em;
+    font-size: 1.1em;
+    font-weight: 300;
+}
+
+#header-nav a:hover {
+    color: #9AEFEE;
+    transition: ease-in-out .5s;
+}
+

@@ -4,6 +4,7 @@ namespace press\app\actions;
 
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
+use Slim\Routing\RouteContext;
 use Slim\Views\Twig;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -25,7 +26,7 @@ class GetHomeAction extends AbstractAction
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $view = Twig::fromRequest($request);
-        $view->render($response, 'home.twig');
+        $view->render($response, 'home.twig', ['user' => $_SESSION['user'] ?? null]);
         return $response;
     }
 }

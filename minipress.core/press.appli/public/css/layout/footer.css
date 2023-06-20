@@ -3,8 +3,12 @@ footer {
     height: 60px;
     background: #212121;
 
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 
     color: white;
+}
+
+footer p {
+    margin: 0;
 }
