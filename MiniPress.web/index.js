@@ -1,4 +1,4 @@
-import { affichageArticles } from './modules/affichageArticles';
+import { affichageArticles, affichageArticlesByMotCle } from './modules/affichageArticles';
 import { affichageCategories } from './modules/affichageCategories';
 
 
@@ -11,6 +11,8 @@ displayCat.addEventListener('click', () => {
 });
 
 displayArt.addEventListener('click', () => {
-    affichageArticles();
+    affichageArticles(true);
 });
+
+affichageArticlesByMotCle("sain");
 

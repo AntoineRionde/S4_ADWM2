@@ -49,7 +49,7 @@ class AuthService
      * permet de s'inscire sur le site
      * @throws Exception
      */
-    public function register(string $username, string $password, string $ConfirmPassword): void
+    public function register(string $username, string $password, string $ConfirmPassword, int $role = 0): void
     {
 
         $user = User::where('username', $username)->first();
@@ -65,11 +65,13 @@ class AuthService
 
         $user = new User();
         $user->username = $username;
+        $user->nom = "";
+        $user->prenom = "";
         $user->password = password_hash($password, PASSWORD_DEFAULT, ['cost' => 12]);
         $user->activation_token = $this->generateActivitionToken($username);
-        $user->activation_expire = date('Y-m-d H:i:s', 60 * 60);
-        $user->role = '0';
-        $user->created_at = date('Y-m-d H:i:s');
+        $user->activation_expires = date('Y-m-d H:i:s', 60 * 60);
+        $user->role = $role;
+        //$user->created_at = date('Y-m-d H:i:s');
         $user->save();
     }
 

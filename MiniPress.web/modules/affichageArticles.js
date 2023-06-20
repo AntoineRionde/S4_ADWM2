@@ -1,7 +1,7 @@
 import articles from './articles.js';
 import categories from './categorie.js';
 
-export function affichageArticles() {
+export function affichageArticles(ascendant = false) {
   const galleryContainer = document.getElementById('articles');
   galleryContainer.innerHTML = '';
 
@@ -10,7 +10,11 @@ export function affichageArticles() {
   data.then((dataArticles) => {
     // Tri des articles par date de création dans l'ordre chronologique décroissant
     dataArticles.articles.sort(function(a, b) {
-      return new Date(a.date_creation) - new Date(b.date_creation);
+      if(!ascendant){
+        return new Date(a.date_creation) - new Date(b.date_creation);
+      }else{
+        return new Date(b.date_creation) - new Date(a.date_creation);
+      }
     });
 
     dataArticles.articles.forEach((article, index) => {
@@ -118,4 +122,51 @@ export const affichageArticlesByAuteur = function(auteur) {
   return html;
 } 
 
+export const affichageArticlesByMotCle = function(mot){
+  const galleryContainer = document.getElementById('articles');
+  galleryContainer.innerHTML = '';
 
+  const data = articles.getDataArticles();
+  return data.then(dataArticles => {
+
+    dataArticles.articles = dataArticles.articles.map(article => {
+      return fetch(article.url.self.href)
+        .then(response => response.json())
+        .then(articleDetail => {
+          if(articleDetail.article.titre.includes(mot)||articleDetail.article.resume.includes(mot)){
+            return articleDetail;
+          }
+        }).then(article => {
+          if(article != undefined){
+            console.log(article.article);
+            const titre = "Titre : " + article.article.titre + " ";
+            const date = "Creation : " + article.article.date_creation + " ";
+            const auteur = "Auteur : " + article.article.auteur + " ";
+
+            const artTitreElement = document.createElement('art_titre');
+            artTitreElement.textContent = titre;
+
+            artTitreElement.addEventListener('click', function() {
+              affichageArticleDetail(article.article.id);
+            });
+
+            galleryContainer.appendChild(artTitreElement);
+
+            const artAuteurElement = document.createElement('art_auteur');
+            artAuteurElement.textContent = auteur;
+
+            artAuteurElement.addEventListener('click', function() {
+              affichageArticlesByAuteur(article.article.auteur);
+            }); 5
+
+            galleryContainer.appendChild(artAuteurElement);
+
+            const artCreaElement = document.createElement('art_crea');
+            artCreaElement.textContent = date;
+            galleryContainer.appendChild(artCreaElement);
+          }
+        });
+    });
+  });
+  
+}

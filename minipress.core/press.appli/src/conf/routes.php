@@ -1,16 +1,16 @@
 <?php
 
-use press\api\actions\GetApiArticleAction;
-use press\api\actions\GetApiCategoriesAction;
 use press\app\actions\CreateArticleAction;
 use press\app\actions\CreateArticleProcessAction;
 use press\app\actions\createCategorieAction;
+use press\app\actions\CreateUserAction;
+use press\app\actions\CreateUserProcessAction;
 use press\app\actions\GetArticleAction;
-use press\app\actions\GetCategoriesByIdAction;
+use press\app\actions\GetArticlesByCategorie;
 use press\app\actions\GetCategoriesAction;
+use press\app\actions\GetCategoriesByIdAction;
 use press\app\actions\GetCreateCategorieFormAction;
 use press\app\actions\GetHomeAction;
-use press\app\actions\GetArticlesByCategorie;
 use press\app\actions\LoginAction;
 use press\app\actions\LoginErrorAction;
 use press\app\actions\LoginVerifyAction;
@@ -37,8 +37,8 @@ return function (App $app): void {
     $app->get('/categories/{id:\d+}[/]', GetCategoriesByIdAction::class)->setName('getCategoriesByIdAction');
     $app->get('/categories/{id:\d+}/articles', GetArticlesByCategorie::class)->setName('getArticlesByCategorie');
 
-    $app->get('/create-categorie',GetCreateCategorieFormAction::class)->setName('createCategorie');
-    $app->post('/create-categorie/done[/]',createCategorieAction::class)->setName('categorie created');
+    $app->get('/create-categorie', GetCreateCategorieFormAction::class)->setName('createCategorie');
+    $app->post('/create-categorie/done[/]', createCategorieAction::class)->setName('categorie created');
 
     //Routes to register
     $app->get('/register[/]', RegisterAction::class)->setName("register");
@@ -51,7 +51,8 @@ return function (App $app): void {
     //Routes to logout
     $app->get('/logout', LogoutAction::class)->setName("logout");
 
-    //Routes to API
-    $app->get('/api/articles[/]', GetApiArticleAction::class)->setName("articlesApi");
-    $app->get('/api/categories[/]', GetApiCategoriesAction::class)->setName("categoriesApi");
+    //route de création d'utilisateur par admin
+    $app->get('/createUser[/]', CreateUserAction::class)->setName("createUser");
+    $app->post('/createUser[/]', CreateUserProcessAction::class)->setName("createUserPost");
+
 };
