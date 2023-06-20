@@ -2,7 +2,7 @@
 
 use press\app\actions\CreateArticleAction;
 use press\app\actions\CreateArticleProcessAction;
-use press\app\actions\createCategorieAction;
+use press\app\actions\CreateCategorieAction;
 use press\app\actions\CreateUserAction;
 use press\app\actions\CreateUserProcessAction;
 use press\app\actions\GetArticleAction;
@@ -12,7 +12,6 @@ use press\app\actions\GetCategoriesByIdAction;
 use press\app\actions\GetCreateCategorieFormAction;
 use press\app\actions\GetHomeAction;
 use press\app\actions\LoginAction;
-use press\app\actions\LoginErrorAction;
 use press\app\actions\LoginVerifyAction;
 use press\app\actions\LogoutAction;
 use press\app\actions\ProcessLoginAction;
@@ -38,7 +37,7 @@ return function (App $app): void {
     $app->get('/categories/{id:\d+}/articles', GetArticlesByCategorie::class)->setName('getArticlesByCategorie');
 
     $app->get('/create-categorie', GetCreateCategorieFormAction::class)->setName('createCategorie');
-    $app->post('/create-categorie/done[/]', createCategorieAction::class)->setName('categorie created');
+    $app->post('/create-categorie/done[/]', CreateCategorieAction::class)->setName('categorie created');
 
     //Routes to register
     $app->get('/register[/]', RegisterAction::class)->setName("register");

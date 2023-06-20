@@ -27,7 +27,7 @@ class ProcessLoginAction extends AbstractAction
 
         $data = $request->getParsedBody();
 
-        $email = filter_var($data['username'], FILTER_SANITIZE_EMAIL);
+        $email = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
         $password = htmlspecialchars($data['password']);
 
         $url = $routeContext->getRouteParser()->urlFor($data['target']);
