@@ -1,4 +1,5 @@
 class Article {
+  final int? id;
   final String? title;
   final DateTime? dateCreation;
   final String? auteur;
@@ -9,6 +10,7 @@ class Article {
   final int? idCateg;
 
   Article({
+    this.id,
     this.title,
     this.dateCreation,
     this.auteur,
@@ -21,6 +23,7 @@ class Article {
 
   factory Article.fromJson(Map<String, dynamic> json) {
     return Article(
+      id: json['id'],
       title: json['titre'],
       dateCreation: DateTime.parse(json['date_creation']),
       auteur: json['auteur'],

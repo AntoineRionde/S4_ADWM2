@@ -6,21 +6,21 @@ import 'package:http/http.dart' as http;
 class ArticleProvider extends ChangeNotifier {
   List<Article> _articles = <Article>[];
 
-  Future<List<Article>> getArticles() {
+  Future<List<Article>> getArticles() async {
     if (_articles.isNotEmpty) {
       return Future<List<Article>>.value(_articles);
     }
-    return fetchArticles();
+    return await fetchArticles();
   }
 
   Future<List<Article>> fetchArticles() async {
     final response = await http.get(
         Uri.parse('http://docketu.iutnc.univ-lorraine.fr:45005/api/articles'));
+    final articles = <Article>[];
 
     if (response.statusCode == 200) {
       final jsonBody = json.decode(response.body);
       final jsonArticles = jsonBody['articles'];
-      final articles = <Article>[];
       for (var jsonArticle in jsonArticles) {
         final articleUrl = jsonArticle['url']['self']['href'];
         final articleId = articleUrl.split('/').last;
@@ -28,9 +28,6 @@ class ArticleProvider extends ChangeNotifier {
         articles.add(article);
       }
       _articles = articles;
-      notifyListeners();
-      print(jsonBody);
-      print(articles);
       return articles;
     } else {
       throw Exception('Failed to fetch articles');
@@ -44,9 +41,6 @@ class ArticleProvider extends ChangeNotifier {
     if (response.statusCode == 200) {
       final jsonBody = json.decode(response.body);
       final jsonArticle = jsonBody['article'];
-
-      print(jsonArticle);
-      notifyListeners();
       return Article.fromJson(jsonArticle);
     } else {
       throw Exception('Failed to fetch article');
