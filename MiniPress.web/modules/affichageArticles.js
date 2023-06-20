@@ -18,7 +18,7 @@ export function affichageArticles(ascendant = false) {
       }
     });
 
-    dataArticles.articles.forEach((article, index) => {
+    dataArticles.articles.forEach((article, index) => { 
       const titre = "Titre : " + article.titre + " ";
       const date = "Creation : " + article.date_creation + " ";
       const auteur = "Auteur : " + article.auteur + " ";
@@ -31,6 +31,7 @@ export function affichageArticles(ascendant = false) {
 
       artAuteurElement.addEventListener('click', function() {
         affichageArticlesByAuteur(article.auteur);
+        galleryContainer.style.display = 'none';
       });
 
       const artCreaElement = document.createElement('art_crea');
@@ -47,6 +48,7 @@ export function affichageArticles(ascendant = false) {
         .then(articleDetail => {
           artTitreElement.addEventListener('click', function() {
             affichageArticleDetail(articleDetail.article.id);
+            galleryContainer.style.display = 'none';
           });
         });
     });
