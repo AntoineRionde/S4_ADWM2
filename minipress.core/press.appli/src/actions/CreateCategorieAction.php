@@ -6,6 +6,9 @@ use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use press\app\services\categories\CategorieService;
 use Slim\Views\twig;
+use Twig\Error\LoaderError;
+use Twig\Error\RuntimeError;
+use Twig\Error\SyntaxError;
 
 class CreateCategorieAction extends AbstractAction
 {
@@ -15,6 +18,11 @@ class CreateCategorieAction extends AbstractAction
             session_start();
     }
 
+    /**
+     * @throws SyntaxError
+     * @throws RuntimeError
+     * @throws LoaderError
+     */
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $titre = $request->getParsedBody()['titre'];

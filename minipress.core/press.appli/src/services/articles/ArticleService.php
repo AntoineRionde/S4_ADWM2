@@ -40,6 +40,7 @@ class ArticleService
         try {
             return Article::findOrFail($id)->toArray();
         } catch (Exception $e) {
+            //TODO : modifier exception
             throw new Exception("L'id de l'article n'est pas renseigné");
         }
     }
@@ -79,6 +80,7 @@ class ArticleService
             $article->delete();
             return $article->toArray();
         } catch (Exception $e) {
+            //TODO : modifier exception
             throw new Exception("L'id de l'article n'est pas renseigné");
         }
     }
@@ -100,6 +102,7 @@ class ArticleService
             $article->save();
             return $article->toArray();
         } catch (Exception $e) {
+            //TODO : modifier exception
             throw new Exception("L'id de l'article n'est pas renseigné");
         }
     }
@@ -116,6 +119,7 @@ class ArticleService
         try {
             return Article::where('idCateg', $id)->get()->toArray();
         } catch (Exception $e) {
+            //TODO : modifier exception
             throw new Exception("L'id de la catégorie n'est pas renseigné");
         }
     }

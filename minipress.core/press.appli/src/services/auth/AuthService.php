@@ -19,17 +19,20 @@ class AuthService
     {
 
         if (empty($email) || empty($password)) {
-            throw new Exception("invalidCredentials");
+            //TODO : modifier exception
+            throw new AuthServiceInvalidCredentialsException();
         }
 
         $user = User::where('email', $email)->first();
         if ($user === null) {
-            throw new Exception("invalidCredentials:mail");
+            //TODO : modifier exception
+            throw new AuthServiceInvalidCredentialsException();
         }
 
         $hash = $user->password;
         if (!password_verify($password, $hash)) {
-            throw new Exception("invalidCredentials:pass");
+            //TODO : modifier exception
+            throw new AuthServiceInvalidCredentialsException();
         }
 
         if ($user->active === 0) {
@@ -56,12 +59,15 @@ class AuthService
         $user = User::where('email', $email)->first();
 
         if ($user !== null)
+            //TODO : modifier exception
             throw new Exception("userAlreadyExists");
 
         if ($password !== $ConfirmPassword)
+            //TODO : modifier exception
             throw new Exception("passwordNotMatch");
 
         if (!$this->checkPasswordStrength($password, 8))
+            //TODO : modifier exception
             throw new Exception("weakPassword");
 
         $user = new User();

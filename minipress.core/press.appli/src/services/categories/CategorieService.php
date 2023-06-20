@@ -40,6 +40,7 @@ class CategorieService{
         try {
             return Categorie::findOrFail($id)->toArray();
         }catch(Exception $e) {
+            //TODO : modifier exception
             throw new \Exception( "L'id de la catégorie n'est pas renseigné");
         }
     }
@@ -68,6 +69,7 @@ class CategorieService{
             $categorie->delete();
             return $categorie->toArray();
         }catch(Exception $e) {
+            //TODO : modifier exception
             throw new \Exception("L'id de la catégorie n'est pas renseigné");
         }
     }
