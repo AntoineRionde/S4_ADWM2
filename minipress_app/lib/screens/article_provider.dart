@@ -29,6 +29,7 @@ class ArticleProvider extends ChangeNotifier {
       }
       _articles = articles;
       notifyListeners();
+      print(jsonBody);
       print(articles);
       return articles;
     } else {
@@ -44,6 +45,8 @@ class ArticleProvider extends ChangeNotifier {
       final jsonBody = json.decode(response.body);
       final jsonArticle = jsonBody['article'];
 
+      print(jsonArticle);
+      notifyListeners();
       return Article.fromJson(jsonArticle);
     } else {
       throw Exception('Failed to fetch article');

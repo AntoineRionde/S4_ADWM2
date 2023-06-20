@@ -14,17 +14,21 @@ class ArticleMaster extends StatefulWidget {
 }
 
 class _ArticleMasterState extends State<ArticleMaster> {
-  final Future<String> _calculation = Future<String>.delayed(
-    const Duration(seconds: 2),
-    () => 'Data Loaded',
-  );
+  // final Future<String> _calculation = Future<String>.delayed(
+  //   const Duration(seconds: 2),
+  //   () => 'Data Loaded',
+  // );
 
   Future<List<Article>> _fetchArticles() async {
+    print('cc');
     if (widget.articles.isNotEmpty) {
+      print("hey");
       return Future<List<Article>>.value(widget.articles);
     }
+    print("cc2");
     final articlesProvider =
         Provider.of<ArticleProvider>(context, listen: false);
+    print("ok");
     return articlesProvider.fetchArticles();
   }
 
@@ -32,26 +36,17 @@ class _ArticleMasterState extends State<ArticleMaster> {
   Widget build(BuildContext context) {
     return Column(
       children: <Widget>[
-        FutureBuilder<String>(
-            future: _calculation,
-            builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-              //   if (snapshot.hasData) {
-              //   } else if (snapshot.hasError) {
-              //     return Text('${snapshot.error}');
-              //   }
-              //   // on affiche un loader et on le supprime quand on a les données
-              //   return const CircularProgressIndicator();
-              // },
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const CircularProgressIndicator();
-              } else if (snapshot.hasError) {
-                return Text('${snapshot.error}');
-              } else {
-                // Les données sont chargées, vous pouvez les utiliser ici
-                // const Text("Data Loaded", style: TextStyle(backgroundColor: Colors.red)),
-                return Container();
-              }
-            }),
+        // FutureBuilder<String>(
+        //     future: _calculation,
+        //     builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+        //       if (snapshot.connectionState == ConnectionState.waiting) {
+        //         return const CircularProgressIndicator();
+        //       } else if (snapshot.hasError) {
+        //         return Text('${snapshot.error}');
+        //       } else {
+        //         return Container();
+        //       }
+        //     }),
         Expanded(
           child: FutureBuilder<List<Article>>(
             future: ArticleProvider().getArticles(),
@@ -59,6 +54,7 @@ class _ArticleMasterState extends State<ArticleMaster> {
                 (BuildContext context, AsyncSnapshot<List<Article>> snapshot) {
               if (snapshot.hasData) {
                 widget.articles = snapshot.data!;
+                print(widget.articles);
                 final List<ArticlePreview> articlePreview =
                     snapshot.data!.map((article) {
                   return ArticlePreview(article: article);
@@ -78,6 +74,13 @@ class _ArticleMasterState extends State<ArticleMaster> {
             },
           ),
         ),
+        // FloatingActionButton(
+        //     onPressed: () async {
+        //       await Navigator.of(context).push(
+        //           MaterialPageRoute(builder: (context) => CategorieMaster()));
+        //       setState(() {});
+        //     },
+        //     child: const Text("Catégories")),
       ],
     );
   }

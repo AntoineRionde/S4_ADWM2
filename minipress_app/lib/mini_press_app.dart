@@ -15,10 +15,11 @@ class _MiniPressAppState extends State<MiniPressApp> {
       title: 'MiniPress app',
       theme: ThemeData(),
       home: Scaffold(
-          appBar: AppBar(
-            title: const Text('MiniPress app'),
-          ),
-          body: ArticleMaster()),
+        appBar: AppBar(
+          title: const Text('MiniPress app'),
+        ),
+        body: ArticleMaster(),
+      ),
     );
   }
 }
