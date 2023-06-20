@@ -1,5 +1,5 @@
-import { apiMiniPress } from "./config";
 import categorie from "./categorie";
+import { affichageArticlesByIdCateg } from './affichageArticles';
 
 export const affichageCategories = function(){
     const data = categorie.getDataCategories();
@@ -10,9 +10,10 @@ export const affichageCategories = function(){
     data.then(data => {
         let content='';
         data.categories.forEach(element => {
-            content+=`
-                <li><p>Categorie ${element.id} : ${element.titre}, ${element.description}</p></li>
-            `;
+            content+=
+                
+            `<li><p class="categorie" data-id="${element.id}">Categorie ${element.id} : ${element.titre}, ${element.description}</p></li>`;
+       
         });
         html.innerHTML=`
         '<div class="categories" id ="categories">
@@ -21,5 +22,14 @@ export const affichageCategories = function(){
             <ul>${content}</ul>
         </div>
         `;
+        
+        const categorieElements = document.getElementsByClassName('categorie');
+        for (let i = 0; i < categorieElements.length; i++) {
+          categorieElements[i].addEventListener('click', function() {
+            const categoryId = this.getAttribute('data-id');
+            affichageArticlesByIdCateg(categoryId); 
+          });
+        }
     });
 };
+

@@ -31,7 +31,31 @@ const getDataArticlesByIdCateg = async (id) => {
   });
 }
 
+
+const getArticleDetail = async (articleId) => {
+  try {
+    let resp = await fetch(`${apiMiniPress}articles/${articleId}`);
+    if (resp.ok) {
+      return await resp.json();
+    }
+  } catch (err) {
+    console.log(err);
+  }
+} 
+
+
+const getDataArticlesByAuteur = async (auteur) => {
+  const data = getDataArticles();
+
+  return data.then(data => {
+    const articlesFiltre = data.articles.filter(article => article.auteur === auteur);
+    return articlesFiltre;
+  });
+}
+
 export default {
     getDataArticles: getDataArticles,
-    getDataArticlesByIdCateg: getDataArticlesByIdCateg
+    getDataArticlesByIdCateg: getDataArticlesByIdCateg,
+    getArticleDetail: getArticleDetail,
+   getDataArticlesByAuteur: getDataArticlesByAuteur 
 }
