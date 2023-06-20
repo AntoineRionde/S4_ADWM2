@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minipress_app/models/article.dart';
 import 'package:minipress_app/screens/article_preview.dart';
-import 'package:minipress_app/screens/categorie_master.dart';
 import 'package:provider/provider.dart';
 import 'package:minipress_app/screens/article_provider.dart';
 
@@ -42,7 +41,6 @@ class _ArticleMasterState extends State<ArticleMaster> {
                   AsyncSnapshot<List<Article>> snapshot) {
                 if (snapshot.hasData) {
                   widget.articles = snapshot.data!;
-                  // print(widget.articles);
                   final List<ArticlePreview> articlePreview =
                       snapshot.data!.map((article) {
                     return ArticlePreview(article: article);
@@ -50,10 +48,9 @@ class _ArticleMasterState extends State<ArticleMaster> {
                   return Column(
                     children: [
                       Expanded(
-                        child: ListView(
-                          children: articlePreview,
-                        ),
-                      ),
+                          child: ListView(
+                        children: articlePreview,
+                      )),
                     ],
                   );
                 } else {
@@ -62,17 +59,13 @@ class _ArticleMasterState extends State<ArticleMaster> {
               },
             ),
           ),
-          // FloatingActionButton(onPressed: () {
-          //   Navigator.of(context)
-          //       .push(MaterialPageRoute(builder: (context) => CategorieMaster()));
-          // }),
-          FloatingActionButton(
-              onPressed: () async {
-                await Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => CategorieMaster()));
-                setState(() {});
-              },
-              child: const Text("Catégories")),
+          // FloatingActionButton(
+          //     onPressed: () async {
+          //       await Navigator.of(context).push(
+          //           MaterialPageRoute(builder: (context) => CategorieMaster()));
+          //       setState(() {});
+          //     },
+          //     child: const Icon(Icons.category)),
         ],
       ),
     );

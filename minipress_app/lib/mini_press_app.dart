@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minipress_app/screens/article_master.dart';
+import 'package:minipress_app/screens/categorie_master.dart';
 
 class MiniPressApp extends StatefulWidget {
   const MiniPressApp({Key? key}) : super(key: key);
@@ -18,7 +19,12 @@ class _MiniPressAppState extends State<MiniPressApp> {
         appBar: AppBar(
           title: const Text('MiniPress app'),
         ),
-        body: ArticleMaster(),
+        body: Column(children: [
+          const Text("Liste des articles"),
+          Expanded(child: ArticleMaster()),
+          const Text("Liste des catégories"),
+          Expanded(child: CategorieMaster()),
+        ]),
       ),
     );
   }
