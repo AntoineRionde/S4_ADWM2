@@ -11,6 +11,6 @@ return function (App $app): void {
     //Routes to API
     $app->get('/api/articles[/]', GetApiArticleAction::class)->setName("articlesApi");
     $app->get('/api/categories[/]', GetApiCategoriesAction::class)->setName("categoriesApi");
-    $app->get('/api/categories/{id_categ}/articles', GetApiArticleByCategorieAction::class)->setName("articlesByCategoriesApi");
+    $app->get('/api/categories/{cat_id}/articles', GetApiArticleByCategorieAction::class)->setName("articlesByCategoriesApi");
     $app->get('/api/articles/{id_a}', GetApiArticleByIdAction::class)->setName("articleByIdApi");
 };
