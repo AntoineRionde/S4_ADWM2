@@ -2,7 +2,8 @@ import articles from './articles.js';
 import categories from './categorie.js';
 
 export function affichageArticles(ascendant = false) {
-  const galleryContainer = document.getElementById('articles');
+  const galleryContainer = document.createElement('ul');
+  galleryContainer.id = 'articles';
   galleryContainer.innerHTML = '';
   let data = articles.getDataArticles();
 
@@ -27,45 +28,38 @@ export function affichageArticles(ascendant = false) {
 
       const artTitreElement = document.createElement('art_titre');
       artTitreElement.textContent = titre;
-      
-      fetch(article.url.self.href) 
-      .then(response => response.json())
-      .then(articleDetail => {
-
-        artTitreElement.addEventListener('click', function() {
-          affichageArticleDetail(articleDetail.article.id);
-        });
-
-      });
-
-
-
-      galleryContainer.appendChild(artTitreElement);
 
       const artAuteurElement = document.createElement('art_auteur');
       artAuteurElement.textContent = auteur;
 
       artAuteurElement.addEventListener('click', function() {
         affichageArticlesByAuteur(article.auteur);
-      }); 5
-
-      galleryContainer.appendChild(artAuteurElement);
+      });
 
       const artCreaElement = document.createElement('art_crea');
       artCreaElement.textContent = date;
-      galleryContainer.appendChild(artCreaElement);
 
-      if (index !== dataArticles.articles.length - 1) {
-        const separatorDiv = document.createElement('div');
-        separatorDiv.classList.add('articles_separateur');
-        galleryContainer.appendChild(separatorDiv);
-      }      
+      const listItem = document.createElement('li');
+      listItem.appendChild(artTitreElement);
+      listItem.appendChild(artAuteurElement);
+      listItem.appendChild(artCreaElement);
+      galleryContainer.appendChild(listItem);
+
+      fetch(article.url.self.href)
+        .then(response => response.json())
+        .then(articleDetail => {
+          artTitreElement.addEventListener('click', function() {
+            affichageArticleDetail(articleDetail.article.id);
+          });
+        });
     });
   });
+
+  document.body.appendChild(galleryContainer);
 }
 
-export const affichageArticlesByIdCateg = function(id){
-  const data = articles.getDataArticlesByIdCateg(id);
+export const affichageArticlesBycat_id = function(id){
+  const data = articles.getDataArticlesBycat_id(id);
   const html = document.querySelector('body');
 
   
@@ -101,7 +95,7 @@ export const affichageArticleDetail = function(id) {
     html.appendChild(articleElement);
   });
 
-  return html;
+ 
 }
 
 

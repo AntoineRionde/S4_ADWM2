@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `article` (
   `contenu` varchar(256) NOT NULL,
   `date_publication` date DEFAULT NULL,
   `image` varchar(256) DEFAULT NULL,
-  `idCateg` int NOT NULL,
+  `cat_id` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 

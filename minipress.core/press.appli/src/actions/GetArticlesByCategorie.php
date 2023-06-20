@@ -42,7 +42,7 @@ class GetArticlesByCategorie extends AbstractAction
             $articles[$index]['url'] = '/articles?id=' . $art['id'];
 
         }
-        $data = ['idCateg' => $args['id'], 'articles_liste' => $articles];
+        $data = ['cat_id' => $args['id'], 'articles_liste' => $articles];
         $view = Twig::fromRequest($request);
         return $view->render($response, 'articlesByCategorie.twig', $data);
     }

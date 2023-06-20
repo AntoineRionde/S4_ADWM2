@@ -12,9 +12,9 @@ class UserService{
         return $users;
     }
 
-    public function IsUserExist(string $username): bool
+    public function IsUserExist(string $email): bool
     {
-        $user = User::where('username', $username)->first();
+        $user = User::where('email', $email)->first();
         return (bool)$user;
     }
 

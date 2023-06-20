@@ -11,7 +11,7 @@ class GetApiArticleByCategorieAction extends AbstractAction
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $service = new ArticleService();
-        $articles = $service->getArticlesByCategorie($args['id_categ']);
+        $articles = $service->getArticlesByCategorieId($args['cat_id']);
 
         foreach ($articles as $key => $value) {
             $articles[$key]['url']['self']['href'] = 'http://docketu.iutnc.univ-lorraine.fr:45005/api/articles/' . $value['id'];
@@ -20,7 +20,7 @@ class GetApiArticleByCategorieAction extends AbstractAction
             unset($articles[$key]['resume']);
             unset($articles[$key]['date_publication']);
             unset($articles[$key]['image']);
-            unset($articles[$key]['idCateg']);
+            unset($articles[$key]['cat_id']);
         }
 
         $data = ['articles' => $articles];

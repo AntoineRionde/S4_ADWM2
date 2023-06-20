@@ -3,6 +3,7 @@
 namespace press\api\services;
 
 use Exception;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use press\api\models\Article;
 use press\api\models\Categorie;
 use Slim\Exception\HttpBadRequestException;
@@ -54,7 +55,7 @@ class ArticleService{
         }
         $article->image = $data['image'];
 
-        $article->idCateg = $data['cats'];
+        $article->cat_id = $data['cat_id'];
         $article->save();
         return $article->toArray();
     }
@@ -85,7 +86,7 @@ class ArticleService{
             $article = Article::findOrFail($idArt);
             $article->titre = $data['titre'];
             $article->contenu = $data['contenu'];
-            $article->idCateg = $data['idCateg'];
+            $article->cat_id = $data['idCateg'];
             $article->save();
             return $article->toArray();
         }catch(\Exception $e) {
@@ -94,26 +95,22 @@ class ArticleService{
     }
 
     /**
-     * méthode permettant de récupérer les articles d'une catégorie
-     * @param int $idCat id de la catégorie
+     * Méthode permettant de récupérer les articles d'une catégorie
+     * @param int $id id de la catégorie
      * @return array $articles
      * @throws Exception $e
      */
-    function getArticlesByCategorie(int $idCat) : array {
+    public function getArticlesByCategorieId($id) : array {
         try {
-            $articles = Article::where('idCateg', $idCat)->get();
-            return $articles->toArray();
-        }catch(\Exception $e) {
-            throw new \Exception( "L'id de la catégorie n'est pas renseigné");
+            return Article::where('cat_id', $id)->get()->toArray();
+        }catch(ModelNotFoundException $e) {
+                throw new Exception("L'id de la catégorie n'est pas renseigné");
         }
     }
 
-    public function getArticlesByCategorieId( $id) : array {
-        try {
-            return Article::where('idCateg', $id)->get()->toArray();
-        }catch(ModelNotFoundException $e) {
-            throw new HttpBadRequestException($request, "L'id de la catégorie n'est pas renseigné");
-        }
+    public function getPublishedArticles()
+    {
+        return Article::where('date_publication', '<=', date_create()->format('Y-m-d H:i:s'))->get()->toArray();
     }
 
 
