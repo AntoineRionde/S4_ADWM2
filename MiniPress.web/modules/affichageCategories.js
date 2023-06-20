@@ -4,8 +4,8 @@ import { affichageArticlesByIdCateg } from './affichageArticles';
 export const affichageCategories = function(){
     const data = categorie.getDataCategories();
 
-    const html = document.querySelector('body');
-    html.innerHTML+='<div class="categories" id ="categories"><ul>';
+    const html = document.getElementById('articles');
+    html.innerHTML+='<ul>';
 
     data.then(data => {
         let content='';
@@ -16,11 +16,7 @@ export const affichageCategories = function(){
        
         });
         html.innerHTML=`
-        '<div class="categories" id ="categories">
-            <h1>Bienvenue sur MiniPress</h1>
-            <div class="categories" id ="categories">
             <ul>${content}</ul>
-        </div>
         `;
         
         const categorieElements = document.getElementsByClassName('categorie');
