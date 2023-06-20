@@ -30,7 +30,7 @@ class GetArticleAction extends AbstractAction
         $articles = $service->getArticles();
 
         foreach ($articles as $article) {
-            $article['titre'] = html_entity_decode($article['titre']);
+            $article['titre'] = htmlspecialchars_decode($article['titre'], ENT_QUOTES);
         }
         $routeContext = RouteContext::fromRequest($request)->getRouteParser();
         $data = ['articles' => $articles];

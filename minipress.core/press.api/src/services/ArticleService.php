@@ -5,10 +5,9 @@ namespace press\api\services;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use press\api\models\Article;
-use press\api\models\Categorie;
-use Slim\Exception\HttpBadRequestException;
 
-class ArticleService{
+class ArticleService
+{
 
     /**
      * Méthode permettant de récupérer tous les articles
@@ -27,11 +26,12 @@ class ArticleService{
      * @return array $article
      * @throws Exception $e
      */
-    function getArticleById(int $id) : array {
+    function getArticleById(int $id): array
+    {
         try {
             return Article::findOrFail($id)->toArray();
-        }catch(\Exception $e) {
-            throw new \Exception( "L'id de l'article n'est pas renseigné");
+        } catch (\Exception $e) {
+            throw new \Exception("L'id de l'article n'est pas renseigné");
         }
     }
 
@@ -71,17 +71,19 @@ class ArticleService{
             $article = Article::findOrFail($idArt);
             $article->delete();
             return $article->toArray();
-        }catch(\Exception $e) {
-            throw new \Exception( "L'id de l'article n'est pas renseigné");
+        } catch (\Exception $e) {
+            throw new \Exception("L'id de l'article n'est pas renseigné");
         }
     }
+
     /**
      * Méthode permettant de mettre à jour un article
      * @param int $idArt
      * @param array $data
      * @return array $article
      */
-    function updateArticle(int $idArt, array $data) : array {
+    function updateArticle(int $idArt, array $data): array
+    {
         try {
             $article = Article::findOrFail($idArt);
             $article->titre = $data['titre'];
@@ -89,8 +91,8 @@ class ArticleService{
             $article->cat_id = $data['idCateg'];
             $article->save();
             return $article->toArray();
-        }catch(\Exception $e) {
-            throw new \Exception( "L'id de l'article n'est pas renseigné");
+        } catch (\Exception $e) {
+            throw new \Exception("L'id de l'article n'est pas renseigné");
         }
     }
 
@@ -100,11 +102,12 @@ class ArticleService{
      * @return array $articles
      * @throws Exception $e
      */
-    public function getArticlesByCategorieId($id) : array {
+    public function getArticlesByCategorieId($id): array
+    {
         try {
             return Article::where('cat_id', $id)->get()->toArray();
-        }catch(ModelNotFoundException $e) {
-                throw new Exception("L'id de la catégorie n'est pas renseigné");
+        } catch (ModelNotFoundException $e) {
+            throw new Exception("L'id de la catégorie n'est pas renseigné");
         }
     }
 
