@@ -55,26 +55,27 @@ export function affichageArticles(ascendant = false) {
   document.body.appendChild(galleryContainer);
 }
 
-export const affichageArticlesBycat_id = function(id){
+export const affichageArticlesBycat_id = function (id) {
   const data = articles.getDataArticlesBycat_id(id);
-  const html = document.querySelector('body');
+  const html = document.getElementById('articles');
 
-  
   data.then(data => {
-    let content='';
+    let content = '';
     data.forEach(article => {
-      content+=`
+      content += `
         <li>
           <h2>${article.titre}</h2>
-          <h3> écrit par ${article.auteur} et publié le ${article.date_publication}}</h3>
-          <p>${article.description}</p>
+          <h3>écrit par ${article.auteur} et publié le ${article.date_publication}</h3>
+          <p>${article.resume}</p>
         </li>
       `;
     });
-    html.innerHTML+='<div class="articles"><ul>'+content+'</ul></div>';
+    html.innerHTML = `<ul>${content}</ul>`;
+
+    const selectedCategory = document.getElementById('selectedCategory');
+    html.insertAdjacentElement('beforebegin', selectedCategory);
   });
-  return html;
-}
+};
 
 
 export const affichageArticleDetail = function(id) {
