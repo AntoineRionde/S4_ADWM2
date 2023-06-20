@@ -38,13 +38,10 @@ label {
     font-weight: bold;
 }
 
-#username {
-    margin-bottom: 2em;
-}
-
 /* Styliser les champs de saisie */
 input[type="text"],
-input[type="password"] {
+input[type="password"],
+input[type="email"] {
     width: 100%;
     padding: 8px;
     margin-bottom: 10px;

@@ -1,6 +1,9 @@
+{% extends "squelette.twig" %}
+
+{% block content %}
 <form action="{{ url_for('registerAction') }}" method="POST">
-    <label for="username">Nom d'utilisateur (@email):</label>
-    <input type="email" name="username" id="username">
+    <label for="email">Nom d'utilisateur (@email):</label>
+    <input type="email" name="username" id="email">
 
     <label for="password">Mot de passe :</label>
     <input type="password" name="password" id="password">
@@ -10,3 +13,4 @@
 
     <input type="submit" value="S'inscrire">
 </form>
+{% endblock %}
