@@ -114,7 +114,7 @@ class ArticleService
     public function getArticlesByCategorieId(int $id): array
     {
         try {
-            return Article::where('idCateg', $id)->get()->toArray();
+            return Article::where('cat_id', $id)->get()->toArray();
         } catch (Exception $e) {
             throw new Exception("L'id de la catégorie n'est pas renseigné");
         }

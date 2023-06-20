@@ -1,15 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <link rel="stylesheet" href="/css/menu.css" ;>
-</head>
+{% extends "squelette.twig" %}
 
-<header>
-    <div class="nom">
-        <h1>MiniPress : Login</h1>
-    </div>
-</header>
-<body>
+{% block content %}
 <form action="{{ url_for('loginAction') }}" method="POST">
     <label for="email">Nom d'utilisateur :</label>
     <input type="text" name="email" id="email">
@@ -20,8 +11,4 @@
     <input type="hidden" name="target" value="{{ resources['target'] }}">
     <input type="submit" value="Se connecter">
 </form>
-
-{% include 'footer.twig' %}
-
-</body>
-</html>
+{% endblock %}
