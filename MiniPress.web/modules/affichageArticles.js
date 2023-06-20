@@ -4,8 +4,11 @@ import categories from './categorie.js';
 export function affichageArticles(ascendant = false) {
   const galleryContainer = document.getElementById('articles');
   galleryContainer.innerHTML = '';
+  let data = articles.getDataArticles();
 
-  const data = articles.getDataArticles();
+  if(ascendant){
+    data = articles.getDataArticlesSortDateAsc();
+  }
 
   data.then((dataArticles) => {
     // Tri des articles par date de création dans l'ordre chronologique décroissant
