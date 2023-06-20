@@ -2,14 +2,12 @@
 
 namespace press\app\services\articles;
 
-use Erusev\Parsedown\Parsedown;
+use cebe\markdown\Markdown;
 use Exception;
-use Michelf\Markdown;
 use press\app\models\Article;
-use press\app\models\Categorie;
-use Slim\Exception\HttpBadRequestException;
 
-class ArticleService{
+class ArticleService
+{
 
     /**
      * Méthode permettant de récupérer tous les articles
@@ -19,11 +17,10 @@ class ArticleService{
     {
         $articles = Article::all();
 
-        $parser = new \cebe\markdown\Markdown();
+        $parser = new Markdown();
         $parser->html5 = true;
         $parser->keepListStartNumber = true;
-        foreach ($articles as $art)
-        {
+        foreach ($articles as $art) {
             // chaque resume et contenu d'un article est converti en html
             $art['resume'] = $parser->parse($art['resume']);
             $art['contenu'] = $parser->parse($art['contenu']);
@@ -38,20 +35,20 @@ class ArticleService{
      * @return array $article
      * @throws Exception $e
      */
-    function getArticleById(int $id) : array {
+    function getArticleById(int $id): array
+    {
         try {
             return Article::findOrFail($id)->toArray();
-        }catch(\Exception $e) {
-            throw new \Exception( "L'id de l'article n'est pas renseigné");
+        } catch (Exception $e) {
+            throw new Exception("L'id de l'article n'est pas renseigné");
         }
     }
 
     /**
      * Méthode permettant de créer un article
      * @param array $data
-     * @return array $article
      */
-    function createArticle(array $data): array
+    function createArticle(array $data): void
     {
         //pens
 
@@ -63,22 +60,17 @@ class ArticleService{
         $article->resume = htmlspecialchars_decode(str_replace("&#13;&#10;", "", $data['resume']));
         $article->contenu = htmlspecialchars_decode(str_replace("&#13;&#10;", "", $data['contenu']));
 
-        $article->date_publication = date_create()->format('Y-m-d H:i:s');
-
-        if ($data['image'] === '') {
-            $data['image'] = null;
-        }
         $article->image = $data['image'];
+        $article->cat_id = $data['cat_id'];
 
-        $article->cat_id = $data['cats'];
         $article->save();
-        return $article->toArray();
     }
 
     /**
      * Méthode permettant de supprimer un article
      * @param int $idArt
      * @return array $article
+     * @throws Exception
      */
     function deleteArticle(int $idArt): array
     {
@@ -86,17 +78,20 @@ class ArticleService{
             $article = Article::findOrFail($idArt);
             $article->delete();
             return $article->toArray();
-        }catch(\Exception $e) {
-            throw new \Exception( "L'id de l'article n'est pas renseigné");
+        } catch (Exception $e) {
+            throw new Exception("L'id de l'article n'est pas renseigné");
         }
     }
+
     /**
      * Méthode permettant de mettre à jour un article
      * @param int $idArt
      * @param array $data
      * @return array $article
+     * @throws Exception
      */
-    function updateArticle(int $idArt, array $data) : array {
+    function updateArticle(int $idArt, array $data): array
+    {
         try {
             $article = Article::findOrFail($idArt);
             $article->titre = $data['titre'];
@@ -104,36 +99,30 @@ class ArticleService{
             $article->cat_id = $data['cat_id'];
             $article->save();
             return $article->toArray();
-        }catch(\Exception $e) {
-            throw new \Exception( "L'id de l'article n'est pas renseigné");
+        } catch (Exception $e) {
+            throw new Exception("L'id de l'article n'est pas renseigné");
         }
     }
 
+
     /**
-     * méthode permettant de récupérer les articles d'une catégorie
-     * @param int $idCat id de la catégorie
+     * Méthode permettant de récupérer les articles d'une catégorie
+     * @param int $id id de la catégorie
      * @return array $articles
      * @throws Exception $e
      */
-    function getArticlesByCategorie(int $idCat) : array {
+    public function getArticlesByCategorieId(int $id): array
+    {
         try {
-            $articles = Article::where('cat_id', $idCat)->get();
-            return $articles->toArray();
-        }catch(\Exception $e) {
-            throw new \Exception( "L'id de la catégorie n'est pas renseigné");
+            return Article::where('idCateg', $id)->get()->toArray();
+        } catch (Exception $e) {
+            throw new Exception("L'id de la catégorie n'est pas renseigné");
         }
     }
 
-    /**
-     * @throws Exception
-     */
-    public function getArticlesByCategorieId($id) : array {
-        try {
-            return Article::where('cat_id', $id)->get()->toArray();
-        }catch(\Exception $e) {
-            throw new Exception( "L'id de la catégorie n'est pas renseigné");
-        }
+    public function getPublishedArticles()
+    {
+        return Article::where('date_publication', '<=', date_create()->format('Y-m-d H:i:s'))->get()->toArray();
     }
-
 
 }

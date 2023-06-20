@@ -1,19 +1,10 @@
 {% extends "squelette.twig"%}
 
-{% block title %}Création d'un article{% endblock %}
-
 {% block content %}
-    <link rel="stylesheet" href="/css/createArticle.css">
     <form action="{{ url_for('createArticlePost') }}" method="post">
 
         <label for="titre">Titre : </label>
         <input type="text" id="titre" name="titre">
-
-        <br />
-        <br />
-
-        <label for="auteur">Auteur : </label>
-        <input type="text" id="auteur" name="auteur">
 
         <br />
         <br />
@@ -37,7 +28,7 @@
         <br />
 
         <label for="cat-select">Choississez une catégorie : </label>
-        <select name="cats" id="cat-select">
+        <select name="cat_id" id="cat-select">
             <option value="">Choisir une catégorie</option>
             {% for cat in categories %}
                 <option value="{{ cat.id }}">{{ cat.titre }}</option>
