@@ -51,7 +51,7 @@ DROP TABLE IF EXISTS `categorie`;
 CREATE TABLE IF NOT EXISTS `categorie` (
   `id` int NOT NULL AUTO_INCREMENT,
   `titre` varchar(30) NOT NULL,
-  `description` varchar(256) NOT NULL,
+  `description` varchar(256),
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
@@ -66,13 +66,13 @@ CREATE TABLE IF NOT EXISTS `user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(30) NOT NULL,
   `prenom` varchar(30) NOT NULL,
-  `email` varchar(256) NOT NULL,
+  `username` varchar(256) NOT NULL,
   `password` varchar(256) NOT NULL,
   `role` tinyint(1) NOT NULL DEFAULT '0',
   `active` tinyint(1) NOT NULL DEFAULT '0',
   `activation_token` varchar(128) NOT NULL,
   `activation_expires` timestamp(2) NULL DEFAULT NULL,
-  `renew_token` varchar(128) NOT NULL,
+  `renew_token` varchar(128) NULL DEFAULT NULL,
   `renew_expires` timestamp(2) NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;

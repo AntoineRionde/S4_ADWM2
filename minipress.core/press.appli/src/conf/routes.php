@@ -5,6 +5,8 @@ use press\api\actions\GetApiCategoriesAction;
 use press\app\actions\CreateArticleAction;
 use press\app\actions\CreateArticleProcessAction;
 use press\app\actions\createCategorieAction;
+use press\app\actions\CreateUserAction;
+use press\app\actions\CreateUserProcessAction;
 use press\app\actions\GetArticleAction;
 use press\app\actions\GetCategoriesByIdAction;
 use press\app\actions\GetCategoriesAction;
@@ -12,7 +14,6 @@ use press\app\actions\GetCreateCategorieFormAction;
 use press\app\actions\GetHomeAction;
 use press\app\actions\GetArticlesByCategorie;
 use press\app\actions\LoginAction;
-use press\app\actions\LoginErrorAction;
 use press\app\actions\ProcessLoginAction;
 use press\app\actions\ProcessRegisterAction;
 use press\app\actions\RegisterAction;
@@ -46,4 +47,9 @@ return function (App $app): void {
     //Routes to API
     $app->get('/api/articles[/]', GetApiArticleAction::class)->setName("articlesApi");
     $app->get('/api/categories[/]', GetApiCategoriesAction::class)->setName("categoriesApi");
+
+    //route de création d'utilisateur par admin
+    $app->get('/createUser[/]', CreateUserAction::class)->setName("createUser");
+    $app->post('/createUser[/]', CreateUserProcessAction::class)->setName("createUserPost");
+
 };
