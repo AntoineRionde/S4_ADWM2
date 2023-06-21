@@ -7,6 +7,19 @@ use press\app\models\User;
 
 class UserService{
 
+    /**
+     * Méthode statique vérifiant le niveau d'accès de l'utilisateur
+     * @param int $id
+     * @throws AccessControlException
+     */
+    public static function checkAcessRole(int $id)
+    {
+        $user = User::where('id', $id)->first();
+        if (!$user->role) {
+            throw new AccessControlException();
+        }
+    }
+
     function getUser(){
         $users = Categorie::all();
         return $users;
