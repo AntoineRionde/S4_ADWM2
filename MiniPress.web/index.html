@@ -3,21 +3,24 @@
 <head>
     <meta charset="UTF-8">
 
-    <link rel="stylesheet"  >
+    <link rel="stylesheet" href="index.css";>
 
     <title>MiniPress.web</title>
 </head>
 <body>
-    <h1> Bienvenue sur MiniPress</h1>
-<script type="module" src="index.js"></script>
-<div id="selectedCategory"></div>
-<nav>
-    <div class="buttons">
-  
-      <button id="displayCat">Afficher les catégories </button>
-      <button id="displayArt">Afficher les articles </button>  
-    </div>
-  </nav>
+  <div class="entete">
+    <h1>MiniPress</h1>
+    <script type="module" src="index.js"></script>
+    <div id="selectedCategory"></div>
+    <nav>
+      <div class="buttons">
+        <button id="displayCat">Afficher les catégories </button>
+        <button id="displayArt">Afficher les articles </button>  
+        <input type="text" id="mot" name="mot" placeholder="Entrez un mot clé">
+        <button id="displayMot">Aficher les articles via un mot clé</button>
+      </div>
+    </nav>
+  </div>
 
     <categories id="categories">
     </categories>
@@ -25,6 +28,5 @@
     </articles>
     <auteur id="auteur">
     </auteur>
-
 </body>
 </html>

@@ -22,6 +22,17 @@ const getDataArticlesSortDateDesc = async () => {
   }
 }
 
+const getDataArticlesSortDateAsc = async () => {
+  try {
+    let resp = await fetch(`${apiMiniPress}articles?sort=date-asc`);
+    if (resp.ok) {
+      return await resp.json();
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
 const getDataArticlesBycat_id = async (id) => {
   const data = getDataArticles(); 
 
@@ -69,5 +80,6 @@ export default {
     getDataArticlesBycat_id: getDataArticlesBycat_id,
     getArticleDetail: getArticleDetail,
     getDataArticlesByAuteur: getDataArticlesByAuteur,
-    getDataArticlesSortDateDesc: getDataArticlesSortDateDesc
+    getDataArticlesSortDateDesc: getDataArticlesSortDateDesc,
+    getDataArticlesSortDateAsc : getDataArticlesSortDateAsc
 }

@@ -1,13 +1,14 @@
 import articles from './articles.js';
 import categories from './categorie.js';
+import { resetAffichage } from '../index.js';
 
-export function affichageArticles(descendant = true) {
+export function affichageArticles(ascendant = true) {
+  resetAffichage();
   const galleryContainer = document.createElement('ul');
-  galleryContainer.id = 'articles';
+  galleryContainer.id = 'listArticles';
   galleryContainer.innerHTML = '';
-  let data = articles.getDataArticles();
-
-  if(descendant){
+  let data = articles.getDataArticlesSortDateAsc();
+  if(!ascendant){
     data = articles.getDataArticlesSortDateDesc();
   }
 
@@ -43,16 +44,35 @@ export function affichageArticles(descendant = true) {
         .then(articleDetail => {
           artTitreElement.addEventListener('click', function() {
             affichageArticleDetail(articleDetail.article.id);
-            galleryContainer.style.display = 'none';
+            galleryContainer.innerHTML="";
+            galleryContainer.outerHTML="";
           });
         });
     });
   });
+  let button = document.createElement('BUTTON');
+  button.appendChild(document.createTextNode('Trier par date descendante'));
+  button.addEventListener('click',function(){
+    affichageArticles(false);
+    galleryContainer.innerHTML="";
+    galleryContainer.outerHTML="";
+  });
+  galleryContainer.appendChild(button);
 
-  document.body.appendChild(galleryContainer);
+  let buttonAsc = document.createElement('BUTTON');
+  buttonAsc.appendChild(document.createTextNode('Trier par date ascendante'));
+  buttonAsc.addEventListener('click',function(){
+    affichageArticles();
+    galleryContainer.innerHTML="";
+    galleryContainer.outerHTML="";
+  });
+  galleryContainer.appendChild(buttonAsc);
+
+  document.getElementById('articles').appendChild(galleryContainer);
 }
 
 export const affichageArticlesBycat_id = function (id) {
+  resetAffichage();
   const data = articles.getDataArticlesBycat_id(id);
   const html = document.getElementById('articles');
 
@@ -76,17 +96,20 @@ export const affichageArticlesBycat_id = function (id) {
 
 
 export const affichageArticleDetail = function(id) {
+  resetAffichage();
   const data = articles.getArticleDetail(id);
-  const html = document.querySelector('body');
+  const html = document.querySelector('articles');
 
   data.then(article => {
     const articleElement = document.createElement('div');
+    articleElement.id='article';
     articleElement.innerHTML = `
       <h2>${article.article.titre}</h2>
       <h3>écrit par ${article.article.auteur} et publié le ${article.article.date_publication}</h3>
       <p>${article.article.resume}</p>
       <p>${article.article.contenu}</p>
     `;
+
     html.appendChild(articleElement);
   });
 
@@ -95,6 +118,7 @@ export const affichageArticleDetail = function(id) {
 
 
 export const affichageArticlesByAuteur = function(auteur) {
+  resetAffichage();
   const data = articles.getDataArticlesByAuteur(auteur);
   const html = document.getElementById('auteur');
 
@@ -113,14 +137,19 @@ export const affichageArticlesByAuteur = function(auteur) {
  
 }
 
-export const affichageArticlesByMotCle = function(mot){
-  const galleryContainer = document.getElementById('articles');
+export const affichageArticlesByMotCle = function(mot, ascendant=false){
+  resetAffichage();
+  const galleryContainer = document.createElement('ul');
+  galleryContainer.id = 'listArticles';
   galleryContainer.innerHTML = '';
 
-  const data = articles.getDataArticles();
-  return data.then(dataArticles => {
-
-    dataArticles.articles = dataArticles.articles.map(article => {
+  let data = articles.getDataArticlesSortDateAsc();
+  if(!ascendant){
+    data = articles.getDataArticles();
+  }
+  
+  data.then(dataArticles => {
+    return dataArticles.articles = dataArticles.articles.map(article => {
       return fetch(article.url.self.href)
         .then(response => response.json())
         .then(articleDetail => {
@@ -129,7 +158,6 @@ export const affichageArticlesByMotCle = function(mot){
           }
         }).then(article => {
           if(article != undefined){
-            console.log(article.article);
             const titre = "Titre : " + article.article.titre + " ";
             const date = "Creation : " + article.article.date_creation + " ";
             const auteur = "Auteur : " + article.article.auteur + " ";
@@ -137,27 +165,46 @@ export const affichageArticlesByMotCle = function(mot){
             const artTitreElement = document.createElement('art_titre');
             artTitreElement.textContent = titre;
 
-            artTitreElement.addEventListener('click', function() {
-              affichageArticleDetail(article.article.id);
-            });
-
-            galleryContainer.appendChild(artTitreElement);
-
             const artAuteurElement = document.createElement('art_auteur');
             artAuteurElement.textContent = auteur;
 
             artAuteurElement.addEventListener('click', function() {
               affichageArticlesByAuteur(article.article.auteur);
-            }); 
-
-            galleryContainer.appendChild(artAuteurElement);
+              galleryContainer.style.display = 'none';
+            });
 
             const artCreaElement = document.createElement('art_crea');
             artCreaElement.textContent = date;
-            galleryContainer.appendChild(artCreaElement);
+
+            const listItem = document.createElement('li');
+            listItem.appendChild(artTitreElement);
+            listItem.appendChild(artAuteurElement);
+            listItem.appendChild(artCreaElement);
+            galleryContainer.appendChild(listItem);
+            
+            artTitreElement.addEventListener('click', function() {
+              affichageArticleDetail(article.article.id);
+              galleryContainer.style.display = 'none';
+            });
           }
-        });
+      });
     });
   });
-  
+  let button = document.createElement('BUTTON');
+  button.appendChild(document.createTextNode('Trier par date descendante'));
+  button.addEventListener('click',function(){
+    affichageArticlesByMotCle(mot);
+    galleryContainer.innerHTML="";
+  });
+  galleryContainer.appendChild(button);
+
+  let buttonAsc = document.createElement('BUTTON');
+  buttonAsc.appendChild(document.createTextNode('Trier par date ascendante'));
+  buttonAsc.addEventListener('click',function(){
+    affichageArticlesByMotCle(mot, true);
+    galleryContainer.innerHTML="";
+  });
+  galleryContainer.appendChild(buttonAsc);
+
+  document.getElementById('articles').appendChild(galleryContainer);
 }
