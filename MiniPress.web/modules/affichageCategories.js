@@ -13,12 +13,15 @@ export const affichageCategories = function () {
     let content = '';
     data.categories.forEach(element => {
       content +=
-        `<li><p class="categorie" data-id="${element.id}">Categorie ${element.id} : ${element.titre}, ${element.description}</p></li>`;
+        `<li>
+          <p class="categorie" id="categorie" data-id="${element.id}">Categorie ${element.id} : ${element.titre}, ${element.description}</p>
+        </li>`;
     });
     html.innerHTML = `<ul>${content}</ul>`;
 
     const categorieElements = document.getElementsByClassName('categorie');
     for (let i = 0; i < categorieElements.length; i++) {
+      console.log(categorieElements[i]);
       categorieElements[i].addEventListener('click', function () {
         const categoryId = this.getAttribute('data-id');
         affichageArticlesBycat_id(categoryId);

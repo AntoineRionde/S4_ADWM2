@@ -15,15 +15,18 @@ export function affichageArticles(ascendant = true) {
   data.then((dataArticles) => {
   
     dataArticles.articles.forEach((article, index) => { 
-      const titre = "Titre : " + article.titre + " ";
-      const date = "Creation : " + article.date_creation + " ";
-      const auteur = "Auteur : " + article.auteur + " ";
+      const titre = article.titre;
+      const date = article.date_creation;
+      const auteur = article.auteur;
 
       const artTitreElement = document.createElement('art_titre');
-      artTitreElement.textContent = titre;
+      artTitreElement.style.display='flex';
+      artTitreElement.innerHTML=`<p id="titreLabel">Titre : </p><p id="titreContent"> ${titre}</p>`;
+            
 
       const artAuteurElement = document.createElement('art_auteur');
-      artAuteurElement.textContent = auteur;
+      artAuteurElement.style.display='flex';
+      artAuteurElement.innerHTML=`<p id="auteurLabel">Auteur : </p><p id="auteurContent">${auteur}</p>`
 
       artAuteurElement.addEventListener('click', function() {
         affichageArticlesByAuteur(article.auteur);
@@ -31,7 +34,8 @@ export function affichageArticles(ascendant = true) {
       });
 
       const artCreaElement = document.createElement('art_crea');
-      artCreaElement.textContent = date;
+      artCreaElement.style.display="flex";
+      artCreaElement.innerHTML=`<p id="dateLabel">Date de création : </p><p id="dateContent">${date}</p>`
 
       const listItem = document.createElement('li');
       listItem.appendChild(artTitreElement);
@@ -143,30 +147,35 @@ export const affichageArticlesByMotCle = function(mot, ascendant=false){
   galleryContainer.id = 'listArticles';
   galleryContainer.innerHTML = '';
 
-  let data = articles.getDataArticlesSortDateAsc();
-  if(!ascendant){
-    data = articles.getDataArticles();
+  let data = articles.getDataArticlesSortDateDesc();
+  if(ascendant){
+    data = articles.getDataArticlesSortDateAsc();
   }
+  let i=0;
   
   data.then(dataArticles => {
-    return dataArticles.articles = dataArticles.articles.map(article => {
+    return dataArticles.articles = dataArticles.articles.forEach(article => {
       return fetch(article.url.self.href)
         .then(response => response.json())
         .then(articleDetail => {
           if(articleDetail.article.titre.includes(mot)||articleDetail.article.resume.includes(mot)){
+            i++;
             return articleDetail;
           }
         }).then(article => {
           if(article != undefined){
-            const titre = "Titre : " + article.article.titre + " ";
-            const date = "Creation : " + article.article.date_creation + " ";
-            const auteur = "Auteur : " + article.article.auteur + " ";
+            const titre = article.article.titre;
+            const date = article.article.date_creation;
+            const auteur = article.article.auteur;
 
             const artTitreElement = document.createElement('art_titre');
-            artTitreElement.textContent = titre;
+            artTitreElement.style.display='flex';
+            artTitreElement.innerHTML=`<p id="titreLabel">Titre : </p><p id="titreContent"> ${titre}</p>`;
+            
 
             const artAuteurElement = document.createElement('art_auteur');
-            artAuteurElement.textContent = auteur;
+            artAuteurElement.style.display='flex';
+            artAuteurElement.innerHTML=`<p id="auteurLabel">Auteur : </p><p id="auteurContent">${auteur}</p>`
 
             artAuteurElement.addEventListener('click', function() {
               affichageArticlesByAuteur(article.article.auteur);
@@ -174,7 +183,8 @@ export const affichageArticlesByMotCle = function(mot, ascendant=false){
             });
 
             const artCreaElement = document.createElement('art_crea');
-            artCreaElement.textContent = date;
+            artCreaElement.style.display="flex";
+            artCreaElement.innerHTML=`<p id="dateLabel">Date de création : </p><p id="dateContent">${date}</p>`
 
             const listItem = document.createElement('li');
             listItem.appendChild(artTitreElement);
@@ -205,6 +215,7 @@ export const affichageArticlesByMotCle = function(mot, ascendant=false){
     galleryContainer.innerHTML="";
   });
   galleryContainer.appendChild(buttonAsc);
-
+  
   document.getElementById('articles').appendChild(galleryContainer);
+  return i;
 }
