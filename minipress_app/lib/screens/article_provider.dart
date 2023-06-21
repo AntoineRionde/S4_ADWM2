@@ -13,6 +13,36 @@ class ArticleProvider extends ChangeNotifier {
     return await fetchArticles();
   }
 
+  Future<List<Article>> getArticlesByTri(bool sortOrder) async {
+    if (_articles.isNotEmpty) {
+      return _articles;
+    }
+    return await fetchArticlesByTri(sortOrder);
+  }
+
+  Future<List<Article>> fetchArticlesByTri(bool sortOrder) async {
+    String order = sortOrder ? 'date-asc' : 'date-desc';
+
+    final response = await http.get(Uri.parse(
+        'http://docketu.iutnc.univ-lorraine.fr:45005/api/articles?sort=$order'));
+    final articles = <Article>[];
+
+    if (response.statusCode == 200) {
+      final jsonBody = json.decode(response.body);
+      final jsonArticles = jsonBody['articles'];
+      for (var jsonArticle in jsonArticles) {
+        final articleUrl = jsonArticle['url']['self']['href'];
+        final articleId = int.parse(articleUrl.split('/').last);
+        final article = await fetchArticle(articleId);
+        articles.add(article);
+      }
+      _articles = articles;
+      return articles;
+    } else {
+      throw Exception('Failed to fetch articles');
+    }
+  }
+
   Future<List<Article>> fetchArticles() async {
     final response = await http.get(
         Uri.parse('http://docketu.iutnc.univ-lorraine.fr:45005/api/articles'));

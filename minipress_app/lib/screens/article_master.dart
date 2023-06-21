@@ -11,6 +11,7 @@ class ArticleMaster extends StatefulWidget {
   State<ArticleMaster> createState() => _ArticleMasterState();
 
   List<Article> articles = <Article>[];
+  bool? sortAscending; // Variable pour stocker l'ordre de tri
 }
 
 class _ArticleMasterState extends State<ArticleMaster> {
@@ -25,7 +26,6 @@ class _ArticleMasterState extends State<ArticleMaster> {
     }
     final articlesProvider =
         Provider.of<ArticleProvider>(context, listen: false);
-
     return articlesProvider.getArticles();
   }
 
@@ -34,9 +34,33 @@ class _ArticleMasterState extends State<ArticleMaster> {
     return Scaffold(
       body: Column(
         children: <Widget>[
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    widget.sortAscending = true; // Tri ascendant
+                  });
+                },
+                child: const Text('Tri Ascendant'),
+              ),
+              const SizedBox(width: 10),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    widget.sortAscending = false; // Tri descendant
+                  });
+                },
+                child: const Text('Tri Descendant'),
+              ),
+            ],
+          ),
           Expanded(
             child: FutureBuilder<List<Article>>(
-              future: ArticleProvider().getArticles(),
+              future: widget.sortAscending == null
+                  ? ArticleProvider().getArticles()
+                  : ArticleProvider().getArticlesByTri(widget.sortAscending!),
               builder: (BuildContext context,
                   AsyncSnapshot<List<Article>> snapshot) {
                 if (snapshot.hasData) {
@@ -48,9 +72,14 @@ class _ArticleMasterState extends State<ArticleMaster> {
                   return Column(
                     children: [
                       Expanded(
-                          child: ListView(
+                          child: Scrollbar(
+                              child: ListView(
                         children: articlePreview,
-                      )),
+                        // Les éléments de la ListView
+                      ))),
+                      //     child: ListView(
+                      //   children: articlePreview,
+                      // )),
                     ],
                   );
                 } else {
