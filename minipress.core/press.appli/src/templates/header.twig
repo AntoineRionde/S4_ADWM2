@@ -1,8 +1,8 @@
 <header class="flex-row">
-    <div id="header-title" class="flex-row">
+    <a href="{{ url_for('home') }}" id="header-title" class="flex-row">
         <h1>MiniPress</h1>
         <img src="/img/newspaper.svg" alt="Logo MiniPress">
-    </div>
+    </a>
     <nav id="header-nav">
         <a href="{{ url_for('home') }}">Accueil</a>
         {% if user %}

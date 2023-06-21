@@ -47,11 +47,16 @@ hr {
 
 /* ---------------------------- ERROR ---------------------------- */
 
-.style-error {
+.error {
+    width: 100%;
+    padding: 1em 0;
+
     color: #DE3C4B;
-    font-size: 1em;
+    font-size: 1.2em;
     font-weight: 300;
     text-align: center;
+
+    background: rgba(222, 60, 75, 0.1);
 }
 
 /* ---------------------------- FORMULAIRE ---------------------------- */
