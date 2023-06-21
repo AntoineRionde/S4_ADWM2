@@ -4,6 +4,7 @@ namespace press\app\actions;
 
 use Exception;
 use press\app\services\auth\AuthService;
+use press\app\services\auth\InvalidCredentialsException;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Slim\Routing\RouteContext;
@@ -38,8 +39,9 @@ class ProcessLoginAction extends AbstractAction
         try {
             $user = $authService->authenticate($email, $password);
             $_SESSION['user'] = $user;
-        } catch (Exception $e) {
-            $url = $routeContext->getRouteParser()->urlFor('login', [], ['error' => $e->getMessage()]);
+        } catch (InvalidCredentialsException $e) {
+            $_SESSION['error'] = $e->getMessage();
+            $url = $routeContext->getRouteParser()->urlFor('login');
         }
 
         return $response->withHeader('Location', $url)->withStatus(302);

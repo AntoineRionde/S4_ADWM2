@@ -5,7 +5,7 @@ namespace press\app\services\auth;
 use Exception;
 use Throwable;
 
-class AuthServiceInvalidCredentialsException extends Exception
+class InvalidCredentialsException extends Exception
 {
     public function __construct(string $message = "invalidCredentials", int $code = 0, Throwable $previous = null)
     {

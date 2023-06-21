@@ -41,11 +41,11 @@ return function (App $app): void {
 
     //Routes to register
     $app->get('/register[/]', RegisterAction::class)->setName("register");
-    $app->post('/register-action[/]', ProcessRegisterAction::class)->setName("registerAction");
+    $app->post('/register[/]', ProcessRegisterAction::class)->setName("registerAction");
 
     //Routes to login
     $app->get('/login', LoginAction::class)->setName("login");
-    $app->post('/login-action[/]', ProcessLoginAction::class)->setName("loginAction");
+    $app->post('/login', ProcessLoginAction::class)->setName("loginAction");
 
     //Routes to logout
     $app->get('/logout', LogoutAction::class)->setName("logout");
