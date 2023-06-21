@@ -14,7 +14,7 @@ class GetApiArticleByIdAction
         $service = new ArticleService();
         $serviceUser = new UserService();
         $article = $service->getArticlePublishedById($args['id_a']);
-        $articles['id-auteur'] =$serviceUser->getIdUsersByEmail($service->getEmailByArticleId($args['id_a']));
+        $article['id_auteur'] =$serviceUser->getIdUsersByEmail($service->getEmailByArticleId($args['id_a']));
         $data = ['article' => $article];
 
         $response->getBody()->write(json_encode($data));
