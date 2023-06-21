@@ -45,10 +45,10 @@ class ArticleService
     }
 
     
-    function getArticlesByEmailAuteur(int $email): array
+    function getArticlesByEmailAuteur(string $email): array
     {
         try {
-            return Article::where('email', $email)->get()->toArray();
+            return Article::where('email', $email)->where('date_publication', '<=', date_create()->format('Y-m-d H:i:s'))->get()->toArray();
         } catch (ModelNotFoundException $e) {
             throw new Exception("L'id de l'auteur n'est pas renseigné");
         }
