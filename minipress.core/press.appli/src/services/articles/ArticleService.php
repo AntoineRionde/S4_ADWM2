@@ -5,6 +5,7 @@ namespace press\app\services\articles;
 use cebe\markdown\Markdown;
 use Exception;
 use press\app\models\Article;
+use press\app\services\categories\IdCategorieException;
 
 class ArticleService
 {
@@ -27,22 +28,6 @@ class ArticleService
         }
 
         return $articles->toArray();
-    }
-
-    /**
-     * Méthode permettant de récupérer un article par son id
-     * @param int $id
-     * @return array $article
-     * @throws Exception $e
-     */
-    function getArticleById(int $id): array
-    {
-        try {
-            return Article::findOrFail($id)->toArray();
-        } catch (Exception $e) {
-            //TODO : modifier exception
-            throw new Exception("L'id de l'article n'est pas renseigné");
-        }
     }
 
     /**
@@ -69,46 +54,6 @@ class ArticleService
         $article->save();
     }
 
-    /**
-     * Méthode permettant de supprimer un article
-     * @param int $idArt
-     * @return array $article
-     * @throws Exception
-     */
-    function deleteArticle(int $idArt): array
-    {
-        try {
-            $article = Article::findOrFail($idArt);
-            $article->delete();
-            return $article->toArray();
-        } catch (Exception $e) {
-            //TODO : modifier exception
-            throw new Exception("L'id de l'article n'est pas renseigné");
-        }
-    }
-
-    /**
-     * Méthode permettant de mettre à jour un article
-     * @param int $idArt
-     * @param array $data
-     * @return array $article
-     * @throws Exception
-     */
-    function updateArticle(int $idArt, array $data): array
-    {
-        try {
-            $article = Article::findOrFail($idArt);
-            $article->titre = $data['titre'];
-            $article->contenu = $data['contenu'];
-            $article->cat_id = $data['cat_id'];
-            $article->save();
-            return $article->toArray();
-        } catch (Exception $e) {
-            //TODO : modifier exception
-            throw new Exception("L'id de l'article n'est pas renseigné");
-        }
-    }
-
 
     /**
      * Méthode permettant de récupérer les articles d'une catégorie
@@ -121,8 +66,7 @@ class ArticleService
         try {
             return Article::where('cat_id', $id)->get()->toArray();
         } catch (Exception $e) {
-            //TODO : modifier exception
-            throw new Exception("L'id de la catégorie n'est pas renseigné");
+            throw new IdCategorieException();
         }
     }
 
