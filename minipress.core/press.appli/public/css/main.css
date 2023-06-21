@@ -22,14 +22,31 @@ a {
     flex-direction: column;
 }
 
+.center {
+    justify-content: center;
+    align-items: center;
+}
+
 #content {
+    width: 100%;
     height: calc(100vh - 160px);
 }
 
-#container {
+.container {
     width: 100%;
     height: 100%;
 }
+
+/* ---------------------------- ERROR ---------------------------- */
+
+.style-error {
+    color: #DE3C4B;
+    font-size: 1em;
+    font-weight: 300;
+    text-align: center;
+}
+
+/* ---------------------------- FORMULAIRE ---------------------------- */
 
 /* Styliser le formulaire */
 form {
@@ -41,39 +58,60 @@ form {
 label {
     display: block;
     margin-bottom: 5px;
-    font-weight: bold;
+    font-weight: 400;
 }
 
 /* Styliser les champs de saisie */
-input[type="text"],
-input[type="password"],
-input[type="email"] {
+input {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
+    padding: .5em;
+    margin-bottom: 1em;
+
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+
+    font-family: 'Poppins', sans-serif;
 }
 
 /* Styliser le bouton de soumission */
 input[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    box-shadow: inset 0px 0px 13px 15px rgba(50,226,255,0.5);
-    background-color: #212121;
-    color: white;
+    width: 40%;
+    padding: 0.5em;
+
     border: none;
     border-radius: 4px;
+
+    background-color: #030151;
+
+    color: white;
+    font-size: 1em;
+
     cursor: pointer;
 }
 
 /* Changer le style du bouton au survol */
 input[type="submit"]:hover {
-    background-color: lightblue;
+    background-color: #6279B8;
+    transition: background-color 0.5s ;
 }
 
 /* Changer le style du bouton lorsqu'il est pressé */
 input[type="submit"]:active {
-    background-color: #32849C;
+    background-color: #8EA4D2;
+}
+
+#submit-container {
+    justify-content: space-between;
+    align-items: center;
+}
+
+#submit-container a {
+    font-size: 1.1em;
+    font-weight: 300;
+}
+
+#submit-container a:hover {
+    color: #6279B8;
+    transition: ease-in-out .5s;
 }
