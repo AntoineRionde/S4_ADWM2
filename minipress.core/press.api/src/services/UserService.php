@@ -115,7 +115,7 @@ class UserService{
     function getIdUsersByEmail(String $email): string
     {
         try {
-            return Article::where('email', $email)->firstOrFail()->id;
+            return User::where('email', $email)->firstOrFail()->id;
         } catch (ModelNotFoundException $e) {
             throw new Exception("L'id de l'utilisateur n'est pas renseigné");
         }
