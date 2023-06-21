@@ -1,14 +1,19 @@
 {% extends "squelette.twig" %}
 
 {% block content %}
-<form action="{{ url_for('loginAction') }}" method="POST">
-    <label for="email">Nom d'utilisateur :</label>
-    <input type="text" name="email" id="email">
+    <div class="container flex-row center">
+        <form action="{{ url_for('loginAction') }}" method="POST">
+            <label for="email">Nom d'utilisateur :</label>
+            <input type="text" name="email" id="email">
 
-    <label for="password">Mot de passe :</label>
-    <input type="password" name="password" id="password">
+            <label for="password">Mot de passe :</label>
+            <input type="password" name="password" id="password">
 
-    <input type="hidden" name="target" value="{{ resources['target'] }}">
-    <input type="submit" value="Se connecter">
-</form>
+            <input type="hidden" name="target" value="{{ resources['target'] }}">
+            <div id="submit-container" class="flex-row">
+                    <a href="{{ url_for('register') }}">Nouveau ?</a>
+            <input type="submit" value="Se connecter">
+            </div>
+        </form>
+    </div>
 {% endblock %}
