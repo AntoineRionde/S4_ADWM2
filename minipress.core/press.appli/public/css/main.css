@@ -37,6 +37,14 @@ a {
     height: 100%;
 }
 
+hr {
+    width: 85%;
+    margin-bottom: 2em;
+    padding: 0;
+    border: 0;
+    border-bottom: 1px solid #212121;
+}
+
 /* ---------------------------- ERROR ---------------------------- */
 
 .style-error {
@@ -114,4 +122,58 @@ input[type="submit"]:active {
 #submit-container a:hover {
     color: #6279B8;
     transition: ease-in-out .5s;
+}
+
+/* ---------------------------- CATEGORIES ---------------------------- */
+
+#categories-title {
+    margin: 1em 0 0.25em 0;
+    padding: 0;
+
+    font-size: 2em;
+    font-weight: 300;
+
+    text-transform: uppercase;
+}
+
+#categories_list {
+    width: 100%;
+    height: 100%;
+    margin: 0 0 1em 0;
+    padding: 0;
+    list-style: none;
+}
+
+.categories_list_item {
+    margin: 0 0 1em 0;
+    padding: 1em 0;
+
+    width: 100%;
+
+    align-items: center;
+
+    background: rgba(3, 3, 255, 0.1);
+}
+
+.categories_list_item:hover {
+    background: rgba(2, 2, 255, 0.2);
+    transition: ease-in-out .5s;
+}
+
+.categories_list_item h2 {
+    margin: 0 1em 0 6em;
+    padding: 0;
+
+    font-size: 1.5em;
+    font-weight: 300;
+
+    text-transform: uppercase;
+}
+
+.categories_list_item h3 {
+    margin: 0;
+    padding: 0;
+
+    font-size: 1.1em;
+    font-weight: 400;
 }

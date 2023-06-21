@@ -1,14 +1,19 @@
-{% extends "squelette.twig"%}
-
-{% block title %}Categories{% endblock %}
+{% extends "squelette.twig" %}
 
 {% block content %}
-    <h1>Categories</h1>
-<ul>
-    {% for cat in categories %}
-    <li>
-        <h2><a href="{{ url_for('getCategoriesByIdAction', { 'id': cat.id }) }}">{{cat.titre}}</h2></a>
-        <h3>{{cat.description}}</h3>
-        {% endfor %}
-</ul>
+    <div class="container flex-column center">
+        <h1 id="categories-title">Categories</h1>
+        <hr/>
+        <div id="categories_list">
+            {% for cat in categories %}
+                <a href="{{ url_for('getCategoriesByIdAction', { 'id': cat.id }) }}">
+                    <div class="categories_list_item flex-row">
+
+                        <h2>{{ cat.titre }}</h2>
+                        <h3>{{ cat.description }}</h3>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock %}
