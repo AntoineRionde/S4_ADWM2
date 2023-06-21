@@ -2,10 +2,11 @@
 
 {% block title %}Categorie {{ id }}{% endblock %}
 
+{% if error %}
+    <p class="styleError">{{ error }}</p>
+{% endif %}
 {% block content %}
-
-
-    <div
+    <div>
         <h1>Categorie {{ id }}</h1>
         <h3><a href="{{ url_articles }}">Voir les articles</a></h3>
     </div>

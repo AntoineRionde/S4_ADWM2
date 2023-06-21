@@ -1,7 +1,9 @@
 {% extends "squelette.twig"%}
 
 {% block content %}
-
+    {% if error %}
+        <p class="styleError">{{ error }}</p>
+    {% endif %}
 <form action="createcategorie/done" method="POST">
     <label for="titre">Titre de la catégorie : </label>
     <input type="text" name="titre" id="titre">
