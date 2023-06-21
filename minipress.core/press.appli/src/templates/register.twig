@@ -7,6 +7,10 @@
 <form action="{{ url_for('registerAction') }}" method="POST">
     <label for="email">Nom d'utilisateur (@email):</label>
     <input type="email" name="email" required id="email">
+    <div class="container flex-row center">
+        <form action="{{ url_for('registerAction') }}" method="POST">
+            <label for="email">Nom d'utilisateur (@email):</label>
+            <input type="email" name="username" id="email">
 
     <label for="password">Mot de passe :</label>
     <input type="password" name="password" required id="password">
@@ -14,6 +18,10 @@
     <label for="confirm_password">Confirmer le mot de passe :</label>
     <input type="password" name="confirm_password" required id="confirm_password">
 
-    <input type="submit" value="S'inscrire">
-</form>
+            <div id="submit-container" class="flex-row">
+                <a href="{{ url_for('login') }}">Déja inscrit ?</a>
+                <input type="submit" value="S'inscrire">
+            </div>
+        </form>
+    </div>
 {% endblock %}
