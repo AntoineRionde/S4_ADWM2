@@ -34,7 +34,8 @@ class ProcessRegisterAction extends AbstractAction
             $authService = new AuthService();
             $authService->register($email, $password, $confirm_password);
         } catch (Exception $e) {
-            $urlRegister = $routeContext->getRouteParser()->urlFor('register', [], ['error' => $e->getMessage()]);
+            $_SESSION['error'] = $e->getMessage();
+            $urlRegister = $routeContext->getRouteParser()->urlFor('register');
         }
         return $response->withHeader('Location', $urlRegister)->withStatus(302);
 

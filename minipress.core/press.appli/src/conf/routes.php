@@ -37,7 +37,7 @@ return function (App $app): void {
     $app->get('/categories/{id:\d+}/articles', GetArticlesByCategorie::class)->setName('getArticlesByCategorie');
 
     $app->get('/create-categorie', GetCreateCategorieFormAction::class)->setName('createCategorie');
-    $app->post('/create-categorie/done[/]', CreateCategorieAction::class)->setName('categorie created');
+    $app->post('/create-categorie', CreateCategorieAction::class)->setName('categorie created');
 
     //Routes to register
     $app->get('/register[/]', RegisterAction::class)->setName("register");

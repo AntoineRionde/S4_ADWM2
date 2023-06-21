@@ -2,7 +2,6 @@
 
 namespace press\app\actions;
 
-use Exception;
 use press\app\services\auth\AuthService;
 use press\app\services\auth\InvalidCredentialsException;
 use Slim\Psr7\Request;
@@ -32,7 +31,6 @@ class ProcessLoginAction extends AbstractAction
         $password = htmlspecialchars($data['password']);
 
         $url = $routeContext->getRouteParser()->urlFor($data['target']);
-
 
         $authService = new AuthService();
 

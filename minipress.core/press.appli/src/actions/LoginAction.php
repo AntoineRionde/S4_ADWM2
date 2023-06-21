@@ -26,6 +26,7 @@ class LoginAction extends AbstractAction
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $error = $_SESSION['error'] ?? "";
+        unset($_SESSION['error']);
         $target = $_GET['target'] ?? "home";
         $basePath = RouteContext::fromRequest($request)->getBasePath();
         $css_dir = $basePath . "/styles";
