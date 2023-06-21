@@ -35,10 +35,10 @@ class ArticleService
         }
     }
 
-    function getArticlesByIdAuteur(int $id_auteur): array
+    function getArticlesByIdAuteur(int $id): array
     {
         try {
-            return Article::where('id_auteur', $id_auteur)->get()->toArray();
+            return Article::where('id', $id)->get()->toArray();
         } catch (ModelNotFoundException $e) {
             throw new Exception("L'id de l'auteur n'est pas renseigné");
         }

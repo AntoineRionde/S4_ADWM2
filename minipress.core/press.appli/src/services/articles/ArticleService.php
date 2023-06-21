@@ -130,5 +130,6 @@ class ArticleService
     {
         return Article::where('date_publication', '<=', date_create()->format('Y-m-d H:i:s'))->get()->toArray();
     }
+    
 
 }

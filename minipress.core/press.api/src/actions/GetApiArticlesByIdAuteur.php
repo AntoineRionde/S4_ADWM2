@@ -1,17 +1,17 @@
 <?php
 
-namespace press\api\actions;
+namespace press\app\actions;
 
 use press\api\services\ArticleService;
 use Slim\Psr7\Request as Request;
 use Slim\Psr7\Response as Response;
 
-class GetApiArticleByIdAction
+class GetApiArticlesByIdAuteur
 {
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $service = new ArticleService();
-        $article = $service->getArticlesByIdAuteur($args['id_a']);
+        $article = $service->getArticlesByIdAuteur($args['id']);
 
         $data = ['article' => $article];
         echo json_encode($data);
