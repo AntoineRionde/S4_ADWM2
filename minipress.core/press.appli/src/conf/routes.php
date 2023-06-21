@@ -22,15 +22,15 @@ use Slim\App;
 
 return function (App $app): void {
 
-    $app->get('/', GetHomeAction::class)->setName('home');
+    $app->get('/home', GetHomeAction::class)->setName('home');
 
     // Routes de vérification de connection (Redirection)
     $app->get('/login-verify/{target}[/]', LoginVerifyAction::class)->setName('loginVerify');
 
     // Routes to articles
     $app->get('/articles[/]', GetArticleAction::class)->setName("articles");
-    $app->get('/createArticle[/]', CreateArticleAction::class)->setName('createArticle');
-    $app->post('/createArticle[/]', CreateArticleProcessAction::class)->setName('createArticlePost');
+    $app->get('/create-article[/]', CreateArticleAction::class)->setName('createArticle');
+    $app->post('/create-article[/]', CreateArticleProcessAction::class)->setName('createArticlePost');
 
     // Routes to categories
     $app->get('/categories[/]', GetCategoriesAction::class)->setName("categories");
@@ -55,7 +55,7 @@ return function (App $app): void {
     $app->get('/logout', LogoutAction::class)->setName("logout");
 
     //route de création d'utilisateur par admin
-    $app->get('/createUser[/]', CreateUserAction::class)->setName("createUser");
-    $app->post('/createUser[/]', CreateUserProcessAction::class)->setName("createUserPost");
+    $app->get('/create-user[/]', CreateUserAction::class)->setName("createUser");
+    $app->post('/create-user[/]', CreateUserProcessAction::class)->setName("createUserPost");
 
 };
