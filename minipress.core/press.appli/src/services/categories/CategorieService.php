@@ -2,7 +2,7 @@
 
 namespace press\app\services\categories;
 
-use PHPUnit\Exception;
+use \Exception;
 use press\app\models\Categorie;
 
 class CategorieService{
@@ -11,14 +11,29 @@ class CategorieService{
      * Méthode permettant de créer une nouvelle categorie via un tableau de données donné
      * @param array $donnee
      * @return Categorie categorie
+     * @throws Exception
      */
     function create(array $donnee): string{
         $categorie = new Categorie;
         $categorie->id = $donnee['id'];
         $categorie->titre = $donnee['titre'];
         $categorie->description = $donnee['description'];
+        if ($this->IsCategorieExist($categorie->titre))
+            throw new CategoryAlreadyExistsException();
         $categorie->save();
         return $categorie;
+    }
+
+    /**
+     * @param string $titre
+     * @return bool
+     * permet de tester une catégorie existe déjà dans la base
+     * utile lors de la création d'une catégorie
+     */
+    public function IsCategorieExist(string $titre):bool
+    {
+        $titre = Categorie::where('titre', $titre)->first();
+        return (bool)$titre;
     }
 
     /**

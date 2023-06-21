@@ -13,7 +13,9 @@ export const affichageCategories = function () {
     let content = '';
     data.categories.forEach(element => {
       content +=
-        `<li><p class="categorie" data-id="${element.id}">Categorie ${element.id} : ${element.titre}, ${element.description}</p></li>`;
+        `<li>
+          <p class="categorie" id="categorie" data-id="${element.id}">Categorie ${element.id} : ${element.titre}, ${element.description}</p>
+        </li>`;
     });
     html.innerHTML = `<ul>${content}</ul>`;
 

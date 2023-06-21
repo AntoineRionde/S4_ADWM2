@@ -6,12 +6,83 @@
     font-family: 'Poppins', sans-serif;
     display: flex;
     flex-direction: row;
+    width: 100%;
+    height: 100px;
+    align-items: center;
+    justify-content: space-between;
 }
 
-.entete h1{
+.titre{
+    margin-left: 2em;
+    justify-content: space-around;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    cursor:pointer;
+}
+
+.titre img{
+    margin-left:0.5em;
+    width: 2em;
+    height: 2em;
+}
+
+#categorie{
+    text-decoration: underline;
+    cursor:pointer;
+}
+
+#categorie:hover{
+    transition: 0.5s;
+    color:darkred;
+}
+
+#titreContent{
+    cursor:pointer;
+    text-decoration: underline;
+}
+
+#titreContent:hover{
+    color:darkred;
+    text-decoration: underline;
+    transition: 0.5s;
+    cursor:pointer;
+}
+
+#titreLabel{
+    font-weight: bold;
+}
+
+#auteurContent{
+    cursor:pointer;
+    text-decoration: underline;
+}
+
+#auteurContent:hover{
+    color:darkred;
+    transition: 0.5s;
+    cursor:pointer;
+}
+
+#auteurLabel{
+    font-weight: bold;
+}
+
+#dateLabel{
+    font-weight: bold;
+}
+
+.titre h1{
     font-size: 2.5em;
     font-weight: 300;
+    display: block;
     text-transform: uppercase;
+    margin-left:50px;
+}
+
+.buttons{
+    margin-right:50px;
+    display:block;
 }
 
 .buttons button{
