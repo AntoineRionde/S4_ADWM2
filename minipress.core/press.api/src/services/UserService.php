@@ -102,5 +102,4 @@ class UserService{
         return $isActivate;
     }
 
-
 }

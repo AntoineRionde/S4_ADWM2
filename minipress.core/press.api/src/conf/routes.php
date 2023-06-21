@@ -13,4 +13,5 @@ return function (App $app): void {
     $app->get('/api/categories[/]', GetApiCategoriesAction::class)->setName("categoriesApi");
     $app->get('/api/categories/{cat_id}/articles', GetApiArticleByCategorieAction::class)->setName("articlesByCategoriesApi");
     $app->get('/api/articles/{id_a}', GetApiArticleByIdAction::class)->setName("articleByIdApi");
+    $app->get('/api/auteurs/{id_auteur}/articles', GetApiArticlesByIdAuteur::class)->setName("articlesByAuteurApi");
 };

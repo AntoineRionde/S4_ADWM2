@@ -19,6 +19,8 @@ class CreateArticleProcessAction extends AbstractAction
     {
         $data = $request->getParsedBody();
         $data['titre'] = htmlspecialchars($data['titre']);
+
+        $data['email'] = $_SESSION['user']['email'];
         
         $data['resume'] = htmlspecialchars($data['resume']);
         $data['contenu'] = htmlspecialchars($data['contenu']);

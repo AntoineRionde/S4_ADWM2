@@ -57,6 +57,8 @@ class ArticleService
         $article->titre = $data['titre'];
         $article->date_creation = date_create()->format('Y-m-d H:i:s');
         $article->auteur = $data['auteur'];
+        $article->email = $data['email'];
+
 
         $article->resume = htmlspecialchars_decode(str_replace("&#13;&#10;", "", $data['resume']));
         $article->contenu = htmlspecialchars_decode(str_replace("&#13;&#10;", "", $data['contenu']));
