@@ -54,4 +54,13 @@ class ArticleService
         }
     }
 
+    function getEmailByArticleId(int $id): string
+    {
+        try {
+            return Article::where('id', $id)->firstOrFail()->email;
+        } catch (ModelNotFoundException $e) {
+            throw new Exception("L'id de l'utilisateur n'est pas renseigné");
+        }
+    }
+
 }
