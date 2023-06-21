@@ -2,8 +2,10 @@
 
 namespace press\app\actions;
 
-use Exception;
 use press\app\services\auth\AuthService;
+use press\app\services\auth\PasswordNotMatchException;
+use press\app\services\auth\UserAlreadyExistsException;
+use press\app\services\auth\WeakPasswordException;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 use Slim\Routing\RouteContext;
@@ -33,10 +35,17 @@ class ProcessRegisterAction extends AbstractAction
         try {
             $authService = new AuthService();
             $authService->register($email, $password, $confirm_password);
-        } catch (Exception $e) {
-            $_SESSION['error'] = $e->getMessage();
+        } catch (PasswordNotMatchException $pe) {
+            $_SESSION['error'] = $pe->getMessage();
+            $urlRegister = $routeContext->getRouteParser()->urlFor('register');
+        } catch (WeakPasswordException $we) {
+            $_SESSION['error'] = $we->getMessage();
+            $urlRegister = $routeContext->getRouteParser()->urlFor('register');
+        } catch (UserAlreadyExistsException $ue) {
+            $_SESSION['error'] = $ue->getMessage();
             $urlRegister = $routeContext->getRouteParser()->urlFor('register');
         }
+        $urlRegister = $routeContext->getRouteParser()->urlFor('login');
         return $response->withHeader('Location', $urlRegister)->withStatus(302);
 
     }
