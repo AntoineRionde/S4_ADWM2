@@ -35,12 +35,6 @@ class ArticleService
         }
     }
 
-    
-    function getIdAuteur(){
-        $users = User::all();
-        return $users;
-    }
-
     function getArticlesByIdAuteur(int $id_auteur): array
     {
         try {
