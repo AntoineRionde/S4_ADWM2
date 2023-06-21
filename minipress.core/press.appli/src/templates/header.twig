@@ -1,16 +1,23 @@
-<header>
-    <div class="nom">
+<header class="flex-row">
+    <div id="header-title" class="flex-row">
         <h1>MiniPress</h1>
+        <img src="/img/newspaper.svg" alt="Logo MiniPress">
     </div>
-    <div class="nav">
-        <ul>
-            <li><a href="{{ url_for('home')}}">Home</a></li>
-            <li><a href="{{ url_for('loginVerify', {target: 'categories'}) }}">Categories</a></li>
-            <li><a href="{{ url_for('loginVerify', {target: 'articles'}) }}">Articles</a></li>
-            <li><a href="{{ url_for('loginVerify', {target: 'createCategorie'}) }}">Créer une catégorie</a></li>
-            <li><a href="{{ url_for('loginVerify', {target: 'createArticle'}) }}">Créer un article</a></li>
-            <li><a href="{{ url_for('register') }}">Inscription</a></li>
-            <li><a href="{{ url_for('login') }}">Connexion</a></li>
-        </ul>
-    </div>
+    <nav id="header-nav">
+        <a href="{{ url_for('home') }}">Accueil</a>
+        {% if user %}
+            <a href="{{ url_for('loginVerify', {target: 'categories'}) }}">Categories</a>
+            <a href="{{ url_for('loginVerify', {target: 'articles'}) }}">Articles</a>
+            {% if user['role'] %}
+                <a href="{{ url_for('loginVerify', {target: 'createUser'}) }}">Créer un utilisateur</a>
+                <a href="{{ url_for('loginVerify', {target: 'createCategorie'}) }}">Créer une catégorie</a>
+            {% endif %}
+            <a href="{{ url_for('loginVerify', {target: 'createArticle'}) }}">Créer un article</a>
+            <a href="{{ url_for('logout') }}">Déconnexion</a>
+        {% endif %}
+        {% if not user %}
+            <a href="{{ url_for('register') }}">Inscription</a>
+            <a href="{{ url_for('login') }}">Connexion</a>
+        {% endif %}
+    </nav>
 </header>

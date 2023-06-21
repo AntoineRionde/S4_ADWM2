@@ -51,17 +51,6 @@ header{
     margin:2em;
 }
 
-footer{
-    background-color: #32849C;
-    width:100%;
-    overflow:hidden;
-    color:white;
-}
-
-footer p {
-    text-align: center;
-}
-
 /* Styliser le formulaire */
 form {
     width: 500px;
