@@ -1,0 +1,17 @@
+{% extends "squelette.twig" %}
+
+{% block content %}
+    <div class="container flex-column center">
+        <h1 id="users-title">Utilisateurs</h1>
+        <hr/>
+        <div id="users_list">
+            {% for art in articles %}
+                <div class="users_list_item flex-row">
+                    <h2>{{ art.email }}</h2>
+                    <h2>{{ art.titre }}</h2>
+                
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

@@ -17,6 +17,7 @@ use press\app\actions\LogoutAction;
 use press\app\actions\ProcessLoginAction;
 use press\app\actions\ProcessRegisterAction;
 use press\app\actions\RegisterAction;
+use press\app\actions\GetUsersAction;
 use Slim\App;
 
 return function (App $app): void {
@@ -38,6 +39,9 @@ return function (App $app): void {
 
     $app->get('/create-categorie', GetCreateCategorieFormAction::class)->setName('createCategorie');
     $app->post('/create-categorie', CreateCategorieAction::class)->setName('createCategorieAction');
+
+    //Routes to users
+    $app->get('/users[/]', GetUsersAction::class)->setName("utilisateurs");
 
     //Routes to register
     $app->get('/register[/]', RegisterAction::class)->setName("register");

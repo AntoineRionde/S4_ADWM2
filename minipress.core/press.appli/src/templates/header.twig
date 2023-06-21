@@ -8,6 +8,7 @@
         {% if user %}
             <a href="{{ url_for('loginVerify', {target: 'categories'}) }}">Categories</a>
             <a href="{{ url_for('loginVerify', {target: 'articles'}) }}">Articles</a>
+            <a href="{{ url_for('loginVerify', {target: 'utilisateurs'}) }}">Utilisateurs</a>
             {% if user['role'] %}
                 <a href="{{ url_for('loginVerify', {target: 'createUser'}) }}">Créer un utilisateur</a>
                 <a href="{{ url_for('loginVerify', {target: 'createCategorie'}) }}">Créer une catégorie</a>

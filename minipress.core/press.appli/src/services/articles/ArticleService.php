@@ -76,4 +76,9 @@ class ArticleService
     }
     
 
+    public function getArticlesByAuteur()
+    {
+        return Article::select('email','titre')->distinct()->get()->toArray();
+    }
+
 }
