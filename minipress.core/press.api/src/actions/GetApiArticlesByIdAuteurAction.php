@@ -13,7 +13,9 @@ class GetApiArticlesByIdAuteurAction extends AbstractAction
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $service = new ArticleService();
-        $article = $service->getArticlesByEmailAuteur(getEmailByUserId($args['id']));
+        $userService = new UserService();
+        $email = $userService->getEmailByUserId($args['id']);
+        $article = $service->getArticlesByEmailAuteur($email);
         $article['id_auteur']= $args['id'];
         $data = ['article' => $article];
         $response->getBody()->write(json_encode($data));
