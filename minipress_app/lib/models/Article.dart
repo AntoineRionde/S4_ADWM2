@@ -7,17 +7,18 @@ class Article {
   final String? contenu;
   final String? image;
   final int? idCateg;
+  final String? idAuteur;
 
-  Article({
-    this.id,
-    this.title,
-    this.dateCreation,
-    this.auteur,
-    this.resume,
-    this.contenu,
-    this.image,
-    this.idCateg,
-  });
+  Article(
+      {this.id,
+      this.title,
+      this.dateCreation,
+      this.auteur,
+      this.resume,
+      this.contenu,
+      this.image,
+      this.idCateg,
+      this.idAuteur});
 
   factory Article.fromJson(Map<String, dynamic> json) {
     return Article(
@@ -29,6 +30,7 @@ class Article {
       contenu: json['contenu'],
       image: json['image'],
       idCateg: json['cat_id'],
+      idAuteur: json['id_auteur'],
     );
   }
 }

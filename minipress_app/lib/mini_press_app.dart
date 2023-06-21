@@ -17,12 +17,15 @@ class _MiniPressAppState extends State<MiniPressApp> {
       theme: ThemeData(),
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 52, 54, 51),
           title: const Text('MiniPress app'),
         ),
         body: Column(children: [
-          const Text("Liste des articles"),
+          const Text("Liste des articles",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
           Expanded(child: ArticleMaster()),
-          const Text("Liste des catégories"),
+          const Text("Liste des catégories",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
           Expanded(child: CategorieMaster()),
         ]),
       ),

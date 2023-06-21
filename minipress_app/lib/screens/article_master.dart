@@ -38,6 +38,8 @@ class _ArticleMasterState extends State<ArticleMaster> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(3, 1, 81, 1)),
                 onPressed: () {
                   setState(() {
                     widget.sortAscending = true; // Tri ascendant
@@ -47,6 +49,8 @@ class _ArticleMasterState extends State<ArticleMaster> {
               ),
               const SizedBox(width: 10),
               ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromRGBO(3, 1, 81, 1)),
                 onPressed: () {
                   setState(() {
                     widget.sortAscending = false; // Tri descendant
@@ -72,11 +76,11 @@ class _ArticleMasterState extends State<ArticleMaster> {
                   return Column(
                     children: [
                       Expanded(
-                          child: Scrollbar(
-                              child: ListView(
+                          // child: Scrollbar(
+                          child: ListView(
                         children: articlePreview,
                         // Les éléments de la ListView
-                      ))),
+                      )),
                       //     child: ListView(
                       //   children: articlePreview,
                       // )),

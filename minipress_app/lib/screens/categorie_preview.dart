@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minipress_app/models/categorie.dart';
-import 'package:minipress_app/screens/article_categorie.dart';
-import 'package:minipress_app/screens/categorie_detail.dart';
+import 'package:minipress_app/screens/article_master_categorie.dart';
 
 class CategoriePreview extends StatefulWidget {
   final Categorie categorie;
@@ -21,7 +20,7 @@ class _CategoriePreviewState extends State<CategoriePreview> {
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) =>
-                ArticleCategorie(categorie: widget.categorie)));
+                ArticleMasterCategorie(categorie: widget.categorie)));
       },
     );
   }

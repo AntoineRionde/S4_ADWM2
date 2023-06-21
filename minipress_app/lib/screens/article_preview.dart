@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:minipress_app/models/article.dart';
 import 'package:minipress_app/screens/article_detail.dart';
+import 'package:minipress_app/screens/article_master_auteur.dart';
 
 class ArticlePreview extends StatefulWidget {
   final Article article;
@@ -23,7 +24,10 @@ class _ArticlePreviewState extends State<ArticlePreview> {
               "Date de création : ${widget.article.dateCreation!.toString().substring(0, 10)}"),
           InkWell(
             onTap: () {
-              print('click auteur');
+              // print('click auteur');
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ArticleMasterAuteur(
+                      auteurId: int.parse(widget.article.idAuteur!))));
             },
             child: Text("Auteur : ${widget.article.auteur!}"),
           )

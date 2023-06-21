@@ -59,7 +59,6 @@ class CategorieProvider extends ChangeNotifier {
         articles.add(article);
       }
       _articles = articles;
-      print(articles[1].title);
       return articles;
     } else {
       throw Exception('Failed to fetch articles');

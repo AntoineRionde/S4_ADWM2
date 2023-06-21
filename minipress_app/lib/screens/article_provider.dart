@@ -20,6 +20,44 @@ class ArticleProvider extends ChangeNotifier {
     return await fetchArticlesByTri(sortOrder);
   }
 
+  Future<List<Article>> getArticlesByAuteur(int auteurId) async {
+    if (_articles.isNotEmpty) {
+      return _articles;
+    }
+    return await fetchArticlesByAuteur(auteurId);
+  }
+
+  Future<List<Article>> fetchArticlesByAuteur(int auteurId) async {
+    final response = await http.get(Uri.parse(
+        'http://docketu.iutnc.univ-lorraine.fr:45005/api/auteurs/$auteurId/articles'));
+    final articles = <Article>[];
+
+    if (response.statusCode == 200) {
+      final jsonBody = json.decode(response.body);
+      final jsonArticles = jsonBody['article'];
+      for (int i = 0; i < jsonArticles.length - 1; i++) {
+        final articleId = jsonArticles["$i"]['id'];
+        final article = await ArticleProvider().fetchArticle(articleId);
+        articles.add(article);
+      }
+      // for (var jsonArticle in jsonArticles) {
+      //   print("cc");
+      //   print(jsonArticle['id']);
+
+      //   final articleId = jsonArticle['id'];
+
+      //   print(articleId);
+      //   final article =
+      //       await ArticleProvider().fetchArticle(int.parse(articleId));
+      //   articles.add(article);
+      // }
+      _articles = articles;
+      return articles;
+    } else {
+      throw Exception('Failed to fetch articles');
+    }
+  }
+
   Future<List<Article>> fetchArticlesByTri(bool sortOrder) async {
     String order = sortOrder ? 'date-asc' : 'date-desc';
 
