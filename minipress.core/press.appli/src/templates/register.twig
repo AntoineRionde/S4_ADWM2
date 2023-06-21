@@ -1,9 +1,12 @@
 {% extends "squelette.twig" %}
 
 {% block content %}
+    {% if error %}
+        <p class="styleError">{{ error }}</p>
+    {% endif %}
 <form action="{{ url_for('registerAction') }}" method="POST">
-    <label for="username">Nom d'utilisateur (@email):</label>
-    <input type="email" name="username" required id="username">
+    <label for="email">Nom d'utilisateur (@email):</label>
+    <input type="email" name="email" required id="email">
 
     <label for="password">Mot de passe :</label>
     <input type="password" name="password" required id="password">
