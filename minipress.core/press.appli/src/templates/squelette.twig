@@ -12,7 +12,11 @@
 <body>
 {% include 'header.twig' %}
 <div id="content">
-    {% block content %} {% endblock %}
+    {% if error %}
+        <p class="styleError">{{ error }}</p>
+    {% endif %}
+    {% block content %}
+    {% endblock %}
     {% include 'footer.twig' %}
 </div>
 </body>
