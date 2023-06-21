@@ -21,7 +21,12 @@ class _ArticlePreviewState extends State<ArticlePreview> {
         children: [
           Text(
               "Date de création : ${widget.article.dateCreation!.toString().substring(0, 10)}"),
-          Text("Auteur : ${widget.article.auteur!}"),
+          InkWell(
+            onTap: () {
+              print('click auteur');
+            },
+            child: Text("Auteur : ${widget.article.auteur!}"),
+          )
         ],
       ),
       onTap: () {
