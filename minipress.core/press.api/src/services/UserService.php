@@ -102,4 +102,13 @@ class UserService{
         return $isActivate;
     }
 
+    function getEmailByUserId(int $id): string
+    {
+        try {
+            return User::findOrFail($id)->email;
+        } catch (ModelNotFoundException $e) {
+            throw new Exception("L'id de l'utilisateur n'est pas renseigné");
+        }
+    }
+
 }

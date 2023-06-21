@@ -35,14 +35,23 @@ class ArticleService
         }
     }
 
-    function getArticlesByIdAuteur(int $id): array
+    function getEmailByUserId(int $id): string
     {
         try {
-            return Article::where('id', $id)->get()->toArray();
+            return User::findOrFail($id)->email;
+        } catch (ModelNotFoundException $e) {
+            throw new Exception("L'id de l'utilisateur n'est pas renseigné");
+        }
+    }
+
+    
+    function getArticlesByEmailAuteur(int $email): array
+    {
+        try {
+            return Article::where('email', $email)->get()->toArray();
         } catch (ModelNotFoundException $e) {
             throw new Exception("L'id de l'auteur n'est pas renseigné");
         }
     }
-
 
 }
