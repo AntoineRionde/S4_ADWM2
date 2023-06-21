@@ -2,8 +2,9 @@
 
 namespace press\app\services\articles;
 
-use cebe\markdown\Markdown;
+
 use Exception;
+use Parsedown;
 use press\app\models\Article;
 use press\app\services\categories\IdCategorieException;
 
@@ -18,14 +19,12 @@ class ArticleService
     {
         $articles = Article::all();
 
-        $parser = new Markdown();
-        $parser->html5 = true;
-        $parser->keepListStartNumber = true;
-        foreach ($articles as $art) {
-            // chaque resume et contenu d'un article est converti en html
-            $art['resume'] = $parser->parse($art['resume']);
-            $art['contenu'] = $parser->parse($art['contenu']);
+        $parsedown = new Parsedown();
+        foreach ($articles as &$art) {
+            $art['resume'] = $parsedown->text($art['resume']);
+            $art['contenu'] = $parsedown->text($art['contenu']);
         }
+        unset($art);
 
         return $articles->toArray();
     }
@@ -36,20 +35,20 @@ class ArticleService
      */
     function createArticle(array $data): void
     {
-        //pens
-
         $article = new Article();
         $article->titre = $data['titre'];
         $article->date_creation = date_create()->format('Y-m-d H:i:s');
         $article->auteur = $data['auteur'];
         $article->email = $data['email'];
 
+        $article->resume = $data['resume'];
+        $article->contenu = $data['contenu'];
 
-        $article->resume = htmlspecialchars_decode(str_replace("&#13;&#10;", "", $data['resume']));
-        $article->contenu = htmlspecialchars_decode(str_replace("&#13;&#10;", "", $data['contenu']));
 
         $article->image = $data['image'];
-        $article->cat_id = $data['cat_id'];
+        if (isset($data['cat_id'])) {
+            $article->cat_id = $data['cat_id'];
+        }
 
         $article->save();
     }

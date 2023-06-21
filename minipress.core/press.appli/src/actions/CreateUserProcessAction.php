@@ -27,7 +27,7 @@ class CreateUserProcessAction extends AbstractAction
         }
 
         $email = filter_var($request->getParsedBody()['email'], FILTER_SANITIZE_EMAIL);
-        $password = htmlspecialchars($request->getParsedBody()['password']);
+        $password = filter_var($request->getParsedBody()['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $role = 0;
         if(isset($request->getParsedBody()['admin'])){
             $role = $request->getParsedBody()['admin'] === 'on' ? 1 : 0;

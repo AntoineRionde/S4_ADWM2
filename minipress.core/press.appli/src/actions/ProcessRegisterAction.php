@@ -29,8 +29,8 @@ class ProcessRegisterAction extends AbstractAction
         }
 
         $email = filter_var($request->getParsedBody()['email'], FILTER_SANITIZE_EMAIL);
-        $password = htmlspecialchars($request->getParsedBody()['password']);
-        $confirm_password = htmlspecialchars($request->getParsedBody()['confirm_password']);
+        $password = filter_var($request->getParsedBody()['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $confirm_password = filter_var($request->getParsedBody()['confirm_password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
         try {
             $authService = new AuthService();
