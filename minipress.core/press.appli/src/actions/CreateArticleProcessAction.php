@@ -26,6 +26,10 @@ class CreateArticleProcessAction extends AbstractAction
         $data['image'] = filter_var($data['image'], FILTER_SANITIZE_SPECIAL_CHARS);
 
         $data['auteur'] = $_SESSION['user']['prenom'] . " " . $_SESSION['user']['nom'] ?? $_SESSION['user']['email'];
+        
+        if($data['cat_id'] == ""){
+            $data['cat_id'] = null;
+        }
 
         $articleService = new ArticleService();
         $articleService->createArticle($data);
