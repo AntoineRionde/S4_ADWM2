@@ -4,35 +4,26 @@ import { affichageCategories } from './modules/affichageCategories';
 
 const displayCat = document.getElementById('displayCat');
 const displayArt = document.getElementById('displayArt');
+const displayMot = document.getElementById('displayMot');
 
 
 displayCat.addEventListener('click', () => {
-    window.location.href = window.location.href + '?reloadedCat=true';
+    affichageCategories();
 });
-
-if (window.location.search.includes('reloadedCat=true')) {
-
-    const newUrl = window.location.href.replace('?reloadedCat=true', '');
-    window.history.replaceState("", document.title, newUrl);
-
-    setTimeout(() => {
-        affichageCategories();
-    }, 100);
-}
-
 
 displayArt.addEventListener('click', () => {
-    window.location.href = window.location.href + '?reloadedArt=true';
+    affichageArticles();
 });
 
-if (window.location.search.includes('reloadedArt=true')) {
+displayMot.addEventListener('click', () => {
+    if(document.getElementById('mot').value.length>0){
+        affichageArticlesByMotCle(document.getElementById('mot').value);
+    }
+});
 
-    const newUrl = window.location.href.replace('?reloadedArt=true', '');
-    window.history.replaceState("", document.title, newUrl);
-
-    setTimeout(() => {
-        affichageArticles();
-    }, 100);
-}
-
+export const resetAffichage = function(){
+    document.getElementById('articles').innerHTML="";
+    document.getElementById('categories').innerHTML="";
+    document.getElementById('auteur').innerHTML="";
+  }
 

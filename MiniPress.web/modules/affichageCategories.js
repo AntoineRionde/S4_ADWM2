@@ -1,7 +1,9 @@
 import categorie from "./categorie";
 import { affichageArticlesBycat_id } from './affichageArticles';
+import { resetAffichage } from '../index.js';
 
 export const affichageCategories = function () {
+  resetAffichage();
   const data = categorie.getDataCategories();
 
   const html = document.getElementById('categories');
@@ -22,7 +24,6 @@ export const affichageCategories = function () {
         affichageArticlesBycat_id(categoryId);
         const selectedCategory = document.getElementById('selectedCategory');
         selectedCategory.innerHTML = this.textContent;
-        html.style.display = 'none';
       });
     }
   });
