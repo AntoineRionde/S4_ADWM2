@@ -21,7 +21,6 @@ export const affichageCategories = function () {
 
     const categorieElements = document.getElementsByClassName('categorie');
     for (let i = 0; i < categorieElements.length; i++) {
-      console.log(categorieElements[i]);
       categorieElements[i].addEventListener('click', function () {
         const categoryId = this.getAttribute('data-id');
         affichageArticlesBycat_id(categoryId);

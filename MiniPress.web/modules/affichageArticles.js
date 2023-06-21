@@ -49,7 +49,6 @@ export function affichageArticles(ascendant = true) {
           artTitreElement.addEventListener('click', function() {
             affichageArticleDetail(articleDetail.article.id);
             galleryContainer.innerHTML="";
-            galleryContainer.outerHTML="";
           });
         });
     });
@@ -59,7 +58,6 @@ export function affichageArticles(ascendant = true) {
   button.addEventListener('click',function(){
     affichageArticles(false);
     galleryContainer.innerHTML="";
-    galleryContainer.outerHTML="";
   });
   galleryContainer.appendChild(button);
 
@@ -68,7 +66,6 @@ export function affichageArticles(ascendant = true) {
   buttonAsc.addEventListener('click',function(){
     affichageArticles();
     galleryContainer.innerHTML="";
-    galleryContainer.outerHTML="";
   });
   galleryContainer.appendChild(buttonAsc);
 
