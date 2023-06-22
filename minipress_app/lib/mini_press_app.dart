@@ -24,7 +24,7 @@ class _MiniPressAppState extends State<MiniPressApp> {
         body: Column(children: [
           const Text("Liste des articles",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
-          const Text("\n"),
+          const SizedBox(height: 15),
           Expanded(child: ArticleMaster()),
           const Text("Liste des catégories",
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),

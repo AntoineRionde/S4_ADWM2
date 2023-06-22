@@ -24,17 +24,22 @@ class _ArticleDetailState extends State<ArticleDetail> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text("Résumé : \n"),
+          const Text("Résumé : \n",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
           Text(
             markdown.markdownToHtml(widget.article.resume!),
             textAlign: TextAlign.center,
           ),
-          const Text("Contenu : \n "),
+          const Text("Contenu : \n ",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
           Text(markdown.markdownToHtml(widget.article.contenu!),
               textAlign: TextAlign.center),
-          Text(
-              "\n Date de création : ${widget.article.dateCreation!.toString().substring(0, 10)}"),
-          Text("Auteur : ${widget.article.auteur!}"),
+          const Text("\n \n Date de création : ",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+          Text(widget.article.dateCreation!.toString().substring(0, 10)),
+          const Text("\n Auteur : ",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+          Text(widget.article.auteur!),
         ],
       )),
 
