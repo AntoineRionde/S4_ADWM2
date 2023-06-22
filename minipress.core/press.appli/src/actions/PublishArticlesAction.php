@@ -36,10 +36,10 @@ class PublishArticlesAction extends AbstractAction
 
             if($publish=="true"){
                 $service->publishArticle($id);
-                $_SESSION['error'] = 'L\'article a bien été publié';
+                $_SESSION['sucess'] = 'L\'article a bien été publié';
             }else if($publish=="false"){
                 $service->unpublishArticle($id);
-                $_SESSION['error'] = 'L\'article a bien été dépublié';                
+                $_SESSION['sucess'] = 'L\'article a bien été dépublié';
             }
         } catch (Exception $e) {
             $_SESSION['error'] = 'Une erreur est survenue lors de la récupération des articles';
@@ -50,7 +50,10 @@ class PublishArticlesAction extends AbstractAction
         $error = $_SESSION['error'] ?? "";
         unset($_SESSION['error']);
 
-        $data = ['articles' => $sortedArticles, 'user' => $_SESSION['user'], 'error' => $error];
+        $success = $_SESSION['success'] ?? "";
+        unset($_SESSION['success']);
+
+        $data = ['articles' => $sortedArticles, 'user' => $_SESSION['user'], 'error' => $error, 'success' => $success];
         $view = Twig::fromRequest($request);
         return $view->render($response, 'publishArticles.twig', $data); 
 
