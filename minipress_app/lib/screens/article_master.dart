@@ -58,7 +58,7 @@ class _ArticleMasterState extends State<ArticleMaster> {
               ),
               const SizedBox(width: 50),
               SizedBox(
-                  width: 200,
+                  width: 225,
                   child: TextField(
                     onChanged: (value) {
                       setState(() {
@@ -66,7 +66,7 @@ class _ArticleMasterState extends State<ArticleMaster> {
                       });
                     },
                     decoration: const InputDecoration(
-                      labelText: 'Rechercher par titre',
+                      labelText: 'Rechercher par titre ou résumé',
                     ),
                   )),
             ],
@@ -82,14 +82,29 @@ class _ArticleMasterState extends State<ArticleMaster> {
                   widget.articles = snapshot.data!;
 
                   // Filtrage des articles en fonction du mot-clé
+                  // List<Article> filteredArticles =
+                  //     widget.articles.where((article) {
+                  //   if (widget.keyword == null || widget.keyword!.isEmpty) {
+                  //     return true; // Pas de mot-clé spécifié, afficher tous les articles
+                  //   } else {
+                  //     return article.title!
+                  //         .toLowerCase()
+                  //         .contains(widget.keyword!.toLowerCase());
+                  //   }
+                  // }).toList();
+
+                  // Filtre des articles en fonction du mot-clé dans le titre ou le résumé
                   List<Article> filteredArticles =
                       widget.articles.where((article) {
                     if (widget.keyword == null || widget.keyword!.isEmpty) {
                       return true; // Pas de mot-clé spécifié, afficher tous les articles
                     } else {
-                      return article.title!
-                          .toLowerCase()
-                          .contains(widget.keyword!.toLowerCase());
+                      String articleTitle = article.title!.toLowerCase();
+                      String articleSummary =
+                          article.resume?.toLowerCase() ?? "";
+                      String searchKeyword = widget.keyword!.toLowerCase();
+                      return articleTitle.contains(searchKeyword) ||
+                          articleSummary.contains(searchKeyword);
                     }
                   }).toList();
 
