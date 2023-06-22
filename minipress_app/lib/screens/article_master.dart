@@ -8,6 +8,8 @@ class ArticleMaster extends StatefulWidget {
   ArticleMaster({Key? key}) : super(key: key);
 
   final ScrollController _scrollController = ScrollController();
+  String? keyword; // Variable pour stocker le mot-clé de recherche
+
   @override
   State<ArticleMaster> createState() => _ArticleMasterState();
 
@@ -16,11 +18,6 @@ class ArticleMaster extends StatefulWidget {
 }
 
 class _ArticleMasterState extends State<ArticleMaster> {
-  // final Future<String> _calculation = Future<String>.delayed(
-  //   const Duration(seconds: 2),
-  //   () => 'Data Loaded',
-  // );
-
   Future<List<Article>> _fetchArticles() async {
     if (widget.articles.isNotEmpty) {
       return Future<List<Article>>.value(widget.articles);
@@ -59,6 +56,19 @@ class _ArticleMasterState extends State<ArticleMaster> {
                 },
                 child: const Text('Tri Descendant'),
               ),
+              const SizedBox(width: 50),
+              SizedBox(
+                  width: 200,
+                  child: TextField(
+                    onChanged: (value) {
+                      setState(() {
+                        widget.keyword = value;
+                      });
+                    },
+                    decoration: const InputDecoration(
+                      labelText: 'Rechercher par titre',
+                    ),
+                  )),
             ],
           ),
           Expanded(
@@ -70,10 +80,24 @@ class _ArticleMasterState extends State<ArticleMaster> {
                   AsyncSnapshot<List<Article>> snapshot) {
                 if (snapshot.hasData) {
                   widget.articles = snapshot.data!;
+
+                  // Filtrage des articles en fonction du mot-clé
+                  List<Article> filteredArticles =
+                      widget.articles.where((article) {
+                    if (widget.keyword == null || widget.keyword!.isEmpty) {
+                      return true; // Pas de mot-clé spécifié, afficher tous les articles
+                    } else {
+                      return article.title!
+                          .toLowerCase()
+                          .contains(widget.keyword!.toLowerCase());
+                    }
+                  }).toList();
+
                   final List<ArticlePreview> articlePreview =
-                      snapshot.data!.map((article) {
+                      filteredArticles.map((article) {
                     return ArticlePreview(article: article);
                   }).toList();
+
                   return Column(
                     children: [
                       Expanded(
