@@ -74,24 +74,13 @@ class _ArticleMasterState extends State<ArticleMaster> {
           Expanded(
             child: FutureBuilder<List<Article>>(
               future: widget.sortAscending == null
-                  ? ArticleProvider().getArticles()
+                  ? ArticleProvider().getArticlesByTri(
+                      false) // Tri par défaut : ordre chronologique inverse
                   : ArticleProvider().getArticlesByTri(widget.sortAscending!),
               builder: (BuildContext context,
                   AsyncSnapshot<List<Article>> snapshot) {
                 if (snapshot.hasData) {
                   widget.articles = snapshot.data!;
-
-                  // Filtrage des articles en fonction du mot-clé
-                  // List<Article> filteredArticles =
-                  //     widget.articles.where((article) {
-                  //   if (widget.keyword == null || widget.keyword!.isEmpty) {
-                  //     return true; // Pas de mot-clé spécifié, afficher tous les articles
-                  //   } else {
-                  //     return article.title!
-                  //         .toLowerCase()
-                  //         .contains(widget.keyword!.toLowerCase());
-                  //   }
-                  // }).toList();
 
                   // Filtre des articles en fonction du mot-clé dans le titre ou le résumé
                   List<Article> filteredArticles =

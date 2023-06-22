@@ -24,7 +24,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text("Resume : \n"),
+          const Text("Résumé : \n"),
           Text(
             markdown.markdownToHtml(widget.article.resume!),
             textAlign: TextAlign.center,
