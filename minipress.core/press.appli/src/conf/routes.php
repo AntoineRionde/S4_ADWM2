@@ -22,6 +22,10 @@ use Slim\App;
 
 return function (App $app): void {
 
+    $app->get('/', function ($request, $response, $args) {
+        return $response->withHeader('Location', '/home')->withStatus(302);
+    });
+
     $app->get('/home', GetHomeAction::class)->setName('home');
 
     // Routes de vérification de connection (Redirection)
