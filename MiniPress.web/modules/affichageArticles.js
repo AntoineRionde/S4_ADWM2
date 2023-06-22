@@ -2,14 +2,14 @@ import articles from './articles.js';
 import categories from './categorie.js';
 import { resetAffichage } from '../index.js';
 
-export function affichageArticles(ascendant = true) {
+export function affichageArticles(descendant = true) {
   resetAffichage();
   const galleryContainer = document.createElement('ul');
   galleryContainer.id = 'listArticles';
   galleryContainer.innerHTML = '';
-  let data = articles.getDataArticlesSortDateAsc();
-  if(!ascendant){
-    data = articles.getDataArticlesSortDateDesc();
+  let data = articles.getDataArticlesSortDateDesc();
+  if(!descendant){
+    data = articles.getDataArticlesSortDateAsc();
   }
 
   data.then((dataArticles) => {
@@ -56,7 +56,7 @@ export function affichageArticles(ascendant = true) {
   let button = document.createElement('BUTTON');
   button.appendChild(document.createTextNode('Trier par date descendante'));
   button.addEventListener('click',function(){
-    affichageArticles(false);
+    affichageArticles();
     galleryContainer.innerHTML="";
   });
   galleryContainer.appendChild(button);
@@ -64,7 +64,7 @@ export function affichageArticles(ascendant = true) {
   let buttonAsc = document.createElement('BUTTON');
   buttonAsc.appendChild(document.createTextNode('Trier par date ascendante'));
   buttonAsc.addEventListener('click',function(){
-    affichageArticles();
+    affichageArticles(false);
     galleryContainer.innerHTML="";
   });
   galleryContainer.appendChild(buttonAsc);
