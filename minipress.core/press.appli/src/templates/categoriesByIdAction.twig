@@ -1,9 +1,27 @@
 {% extends "squelette.twig" %}
 
 {% block content %}
-
-    <div>
-        <h1>Categorie {{ id }}</h1>
-        <h3><a href="{{ url_articles }}">Voir les articles</a></h3>
+    <div class="flex-column">
+        <h1>Articles</h1>
+        <div id="articles-list">
+            <ul>
+                {% for art in articles %}
+                    <li class="flex-column center">
+                        <h2 id="article-titre" class="text-center">{{ art['titre'] }}</h2>
+                        <div id="article-resume">
+                            {{ art['resume']|raw }}
+                        </div>
+                        <div id="article-contenu">
+                            {{ art['contenu']|raw }}
+                        </div>
+                        <div id="article-infos" class="flex-row">
+                            <p>date création : {{ art['date_creation'] }}</p>
+                            <p>date publication : {{ art['date_publication'] }}</p>
+                            <p>auteur : {{ art['email'] }}</p>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
     </div>
 {% endblock %}

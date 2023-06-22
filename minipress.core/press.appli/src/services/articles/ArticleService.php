@@ -67,6 +67,7 @@ class ArticleService
             $parsedown = new Parsedown();
             foreach ($articles as &$art) {
                 $art['resume'] = $parsedown->text($art['resume']);
+                $art['contenu'] = $parsedown->text($art['contenu']);
             }
             return $articles;
         } catch (Exception $e) {

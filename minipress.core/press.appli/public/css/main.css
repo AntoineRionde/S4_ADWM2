@@ -45,6 +45,15 @@ hr {
     border-bottom: 1px solid #212121;
 }
 
+.text-center {
+    text-align: center;
+}
+
+.text-justify {
+    width: 85%;
+    text-align: justify;
+}
+
 /* ---------------------------- ERROR ---------------------------- */
 
 .error {
@@ -239,6 +248,10 @@ input[type="submit"]:active {
     list-style: none;
 }
 
+#articles-list > ul {
+    padding: 0;
+}
+
 .articles_list_item:hover {
     background: rgba(2, 2, 255, 0.2);
     transition: ease-in-out .5s;
@@ -259,3 +272,25 @@ input[type="submit"]:active {
     font-weight: bold;
 }
 
+#article-resume {
+    width: 90%;
+    height: 100%;
+    font-weight: normal;
+    font-size: 0.8em;
+    text-align: justify;
+}
+
+#article-contenu {
+    width: 95%;
+    height: 100%;
+    font-weight: normal;
+    font-size: 0.9em;
+    text-align: justify;
+}
+
+#article-infos {
+    margin-bottom: 2em;
+    width: 90%;
+    justify-content: space-around;
+    align-items: center;
+}

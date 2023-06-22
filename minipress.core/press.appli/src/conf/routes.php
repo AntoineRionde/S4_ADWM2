@@ -6,7 +6,6 @@ use press\app\actions\CreateCategorieProcessAction;
 use press\app\actions\CreateUserAction;
 use press\app\actions\CreateUserProcessAction;
 use press\app\actions\GetArticlesAction;
-use press\app\actions\GetArticlesByCategorieAction;
 use press\app\actions\GetCategoriesAction;
 use press\app\actions\GetCategoriesByIdAction;
 use press\app\actions\CreateCategorieAction;
@@ -35,8 +34,7 @@ return function (App $app): void {
 
     // Routes to categories
     $app->get('/categories[/]', GetCategoriesAction::class)->setName("categories");
-    $app->get('/categories/{id:\d+}[/]', GetCategoriesByIdAction::class)->setName('getCategoriesById');
-    $app->get('/categories/{id:\d+}/articles', GetArticlesByCategorieAction::class)->setName('getArticlesByCategorie');
+    $app->get('/categories/{id:\d+}/articles', GetCategoriesByIdAction::class)->setName('getCategoriesById');
 
     $app->get('/create-categorie', CreateCategorieAction::class)->setName('createCategorie');
     $app->post('/create-categorie', CreateCategorieProcessAction::class)->setName('createCategorieAction');
