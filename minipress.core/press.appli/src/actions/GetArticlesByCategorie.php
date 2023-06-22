@@ -21,8 +21,6 @@ class GetArticlesByCategorie extends AbstractAction
             session_start();
     }
 
-    //TODO à vérifier
-
     /**
      * @throws SyntaxError
      * @throws RuntimeError
