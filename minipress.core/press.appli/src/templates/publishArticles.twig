@@ -1,0 +1,28 @@
+{% extends "squelette.twig" %}
+
+{% block title %}Articles{% endblock %}
+
+{% block content %}
+    <h1>Articles</h1>
+    <ul>
+        {% if articles|length > 0 %}
+            {% for art in articles %}
+                <li>
+                    <h2>{{ art.titre }}</h2>
+                    <p>Auteur: {{ art.auteur }}</p>
+
+                    {% if not art.date_publication %}
+                        <p>En attente de publication <a href="{{ url_for('publishArticles',{}, {'id': art.id, 'publish': 'true'}) }}"><button id="button-pub">Publier l'article</button> </a></p>
+                    {% endif %}
+
+                    {% if art.date_publication %}
+                        <p>Publié sur le site <a href="{{ url_for('publishArticles', {}, {'id': art.id, 'publish': 'false'}) }}"><button id="button-depub">Dépublier l'article</button> </a></p>
+                    {% endif %}
+
+                </li>
+            {% endfor %}
+        {% else %}
+            <li>Aucun article trouvé.</li>
+        {% endif %}
+    </ul>
+{% endblock %}

@@ -1,7 +1,7 @@
 {% extends "squelette.twig"%}
 
 {% block content %}
-
+    <div class="container flex-column center">
     <form action="{{ url_for('createArticlePost') }}" method="post">
 
         <label for="titre">Titre : </label>
@@ -30,5 +30,5 @@
         </div>
 
     </form>
-
+    </div>
 {% endblock %}

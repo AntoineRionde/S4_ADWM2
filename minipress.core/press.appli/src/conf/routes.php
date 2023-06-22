@@ -16,6 +16,7 @@ use press\app\actions\ProcessLoginAction;
 use press\app\actions\ProcessRegisterAction;
 use press\app\actions\RegisterAction;
 use press\app\actions\GetUsersAction;
+use press\app\actions\PublishArticlesAction;
 use Slim\App;
 
 return function (App $app): void {
@@ -30,6 +31,7 @@ return function (App $app): void {
     $app->get('/articles[/]', GetArticlesAction::class)->setName("articles");
     $app->get('/articles/{id:\d+}[/]', GetArticlesAction::class)->setName('getArticle');
     $app->get('/create-article[/]', CreateArticleAction::class)->setName('createArticle');
+    $app->get('/publishArticles[/]', PublishArticlesAction::class)->setName('publishArticles');
     $app->post('/create-article[/]', CreateArticleProcessAction::class)->setName('createArticlePost');
 
     // Routes to categories
