@@ -68,6 +68,19 @@ hr {
     background: rgba(222, 60, 75, 0.25);
 }
 
+/* ---------------------------- SUCCESS ---------------------------- */
+
+.success {
+    width: 100%;
+    padding: 1em 0;
+
+    color: lightgreen;
+    font-size: 1.2em;
+    font-weight: 300;
+    text-align: center;
+
+    background: rgba(0, 255, 8, 0.25);
+}
 /* ---------------------------- BOUTON ---------------------------- */
 
 #button-pub {
