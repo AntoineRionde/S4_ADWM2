@@ -49,14 +49,14 @@ class CategorieService{
      * Méthode permettant de récupérer une catégorie par son id
      * @param int $id
      * @return array $categorie
-     * @throws \Exception
+     * @throws Exception
      */
     function getCategorieById(int $id) : array {
         try {
             return Categorie::findOrFail($id)->toArray();
         }catch(Exception $e) {
             //TODO : modifier exception
-            throw new \Exception( "L'id de la catégorie n'est pas renseigné");
+            throw new Exception( "L'id de la catégorie n'est pas renseigné");
         }
     }
 
@@ -76,7 +76,7 @@ class CategorieService{
     /**
      * @param $idCat
      * @return array
-     * @throws \Exception
+     * @throws Exception
      */
     function deleteCategorie($idCat) : array{
         try {
@@ -85,7 +85,7 @@ class CategorieService{
             return $categorie->toArray();
         }catch(Exception $e) {
             //TODO : modifier exception
-            throw new \Exception("L'id de la catégorie n'est pas renseigné");
+            throw new Exception("L'id de la catégorie n'est pas renseigné");
         }
     }
 }

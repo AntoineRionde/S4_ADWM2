@@ -8,9 +8,8 @@
         <div id="users_list">
             {% for art in articles %}
                 <div class="users_list_item flex-row">
-                    <h2>{{ art.email }}</h2>
+                    <div id="user-email"><h2>{{ art.email }}</h2></div>
                     <h2>{{ art.titre }}</h2>
-                
                 </div>
             {% endfor %}
         </div>
