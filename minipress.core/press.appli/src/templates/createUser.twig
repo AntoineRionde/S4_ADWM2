@@ -1,16 +1,17 @@
 {% extends "squelette.twig" %}
 
 {% block content %}
+    <div class="container flex-column center">
+        <form action="{{ url_for('createUser') }}" method="POST">
+            <label for="username">Nom d'utilisateur (@email):</label>
+            <input type="email" name="email" id="email" class="form_input">
 
-<form action="{{ url_for('createUser') }}" method="POST">
-    <label for="username">Nom d'utilisateur (@email):</label>
-    <input type="email" name="email" id="email" class="form_input">
+            <label for="password">Mot de passe :</label>
+            <input type="password" name="password" id="password" class="form_input">
 
-    <label for="password">Mot de passe :</label>
-    <input type="password" name="password" id="password" class="form_input">
+            <label for="admin">Administrateur : <input type="checkbox" name="admin" id="admin"></label>
 
-    <label for="admin">Administrateur : <input type="checkbox" name="admin" id="admin"></label>
-
-    <input type="submit" value="valider">
-</form>
+            <input type="submit" value="valider">
+        </form>
+    </div>
 {% endblock %}
