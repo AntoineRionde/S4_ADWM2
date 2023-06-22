@@ -33,16 +33,16 @@ class GetCategoriesByIdAction extends AbstractAction
         $routeContext = RouteContext::fromRequest($request);
         $routeParser = $routeContext->getRouteParser();
 
-        if (!isset($_SESSION['user'])) {
-            $_SESSION['error'] = 'Vous devez être connecté pour accéder à la catégorie';
-            $urlLogin = $routeParser->urlFor('login', [], ['target' => 'createCategorie']);
-            return $response->withHeader('location', $urlLogin)->withStatus(302);
-        }
-
         if (!isset($args['id'])) {
             $_SESSION['error'] = 'L\'identifiant de la catégorie est manquant';
             $urlHome = $routeParser->urlFor('home');
             return $response->withHeader('location', $urlHome)->withStatus(302);
+        }
+
+        if (!isset($_SESSION['user'])) {
+            $_SESSION['error'] = 'Vous devez être connecté pour accéder à la catégorie';
+            $urlLogin = $routeParser->urlFor('login', [], ['target' => 'categories/' . $args['id']]);
+            return $response->withHeader('location', $urlLogin)->withStatus(302);
         }
 
 

@@ -3,7 +3,6 @@ namespace press\app\actions;
 
 use Exception;
 use press\app\services\categories\IdCategorieException;
-use Slim\Exception\HttpBadRequestException;
 use Slim\Psr7\Response as Response;
 use Slim\Psr7\Request as Request;
 use press\app\services\articles\ArticleService;
@@ -13,7 +12,7 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
-class GetArticlesByCategorie extends AbstractAction
+class GetArticlesByCategorieAction extends AbstractAction
 {
     public function __construct()
     {

@@ -8,7 +8,7 @@
         {% if user %}
             <a href="{{ url_for('categories', {target: 'categories'}) }}">Categories</a>
             <a href="{{ url_for('articles', {target: 'articles'}) }}">Articles</a>
-            <a href="{{ url_for('utilisateurs', {target: 'utilisateurs'}) }}">Utilisateurs</a>
+            <a href="{{ url_for('getUsers', {target: 'utilisateurs'}) }}">Utilisateurs</a>
             {% if user['role'] %}
                 <a href="{{ url_for('createUser', {target: 'createUser'}) }}">Créer un utilisateur</a>
                 <a href="{{ url_for('createCategorie', {target: 'createCategorie'}) }}">Créer une catégorie</a>

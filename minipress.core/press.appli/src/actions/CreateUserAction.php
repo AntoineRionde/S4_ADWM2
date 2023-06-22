@@ -26,7 +26,7 @@ class CreateUserAction extends AbstractAction
 
         if (!isset($_SESSION['user'])) {
             $_SESSION['error'] = 'Vous devez être connecté pour créer une catégorie';
-            $urlLogin = $routeParser->urlFor('login', [], ['target' => 'createCategorie']);
+            $urlLogin = $routeParser->urlFor('login', [], ['target' => 'createUser']);
             return $response->withHeader('location', $urlLogin)->withStatus(302);
         }
         try {

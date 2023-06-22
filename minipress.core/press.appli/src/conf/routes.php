@@ -12,7 +12,6 @@ use press\app\actions\GetCategoriesByIdAction;
 use press\app\actions\CreateCategorieAction;
 use press\app\actions\GetHomeAction;
 use press\app\actions\LoginAction;
-use press\app\actions\LoginVerifyAction;
 use press\app\actions\LogoutAction;
 use press\app\actions\ProcessLoginAction;
 use press\app\actions\ProcessRegisterAction;
@@ -42,8 +41,7 @@ return function (App $app): void {
     $app->get('/create-categorie', CreateCategorieAction::class)->setName('createCategorie');
     $app->post('/create-categorie', CreateCategorieProcessAction::class)->setName('createCategorieAction');
 
-    //Routes to users
-    $app->get('/users[/]', GetUsersAction::class)->setName("utilisateurs");
+
 
     //Routes to register
     $app->get('/register[/]', RegisterAction::class)->setName("register");
@@ -56,7 +54,9 @@ return function (App $app): void {
     //Routes to logout
     $app->get('/logout', LogoutAction::class)->setName("logout");
 
-    //route de création d'utilisateur par admin
+    //Routes to users
+    $app->get('/users[/]', GetUsersAction::class)->setName("getUsers");
+    //Route to create user with admin
     $app->get('/create-user[/]', CreateUserAction::class)->setName("createUser");
     $app->post('/create-user[/]', CreateUserProcessAction::class)->setName("createUserPost");
 

@@ -17,7 +17,7 @@ class GetUsersAction extends AbstractAction
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
         if (!isset($_SESSION['user'])) {
             $_SESSION['error'] = 'Vous devez être connecté pour accéder à la catégorie';
-            $urlLogin = $routeParser->urlFor('login', [], ['target' => 'createCategorie']);
+            $urlLogin = $routeParser->urlFor('login', [], ['target' => 'getUsers']);
             return $response->withHeader('location', $urlLogin)->withStatus(302);
         }
 
