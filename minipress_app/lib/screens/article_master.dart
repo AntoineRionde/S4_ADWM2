@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:minipress_app/models/article.dart';
 import 'package:minipress_app/screens/article_preview.dart';
-import 'package:provider/provider.dart';
 import 'package:minipress_app/screens/article_provider.dart';
 
 class ArticleMaster extends StatefulWidget {
@@ -18,20 +17,27 @@ class ArticleMaster extends StatefulWidget {
 }
 
 class _ArticleMasterState extends State<ArticleMaster> {
-  Future<List<Article>> _fetchArticles() async {
-    if (widget.articles.isNotEmpty) {
-      return Future<List<Article>>.value(widget.articles);
-    }
-    final articlesProvider =
-        Provider.of<ArticleProvider>(context, listen: false);
-    return articlesProvider.getArticles();
-  }
+  final Future<String> _calculation = Future<String>.delayed(
+    const Duration(seconds: 2),
+    () => 'Data Loaded',
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: <Widget>[
+          FutureBuilder<String>(
+              future: _calculation,
+              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Text('${snapshot.error}');
+                } else {
+                  return Container();
+                }
+              }),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

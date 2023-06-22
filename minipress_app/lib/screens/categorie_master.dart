@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:minipress_app/models/categorie.dart';
 import 'package:minipress_app/screens/categorie_preview.dart';
 import 'package:minipress_app/screens/categorie_provider.dart';
-import 'package:provider/provider.dart';
 
 class CategorieMaster extends StatefulWidget {
   CategorieMaster({Key? key}) : super(key: key);
@@ -18,15 +17,6 @@ class _CategorieMasterState extends State<CategorieMaster> {
     const Duration(seconds: 2),
     () => 'Data Loaded',
   );
-
-  Future<List<Categorie>> _fetchCategories() {
-    if (widget.categories.isNotEmpty) {
-      return Future<List<Categorie>>.value(widget.categories);
-    }
-    final categoriesProvider =
-        Provider.of<CategorieProvider>(context, listen: false);
-    return categoriesProvider.getCategories();
-  }
 
   @override
   Widget build(BuildContext context) {
