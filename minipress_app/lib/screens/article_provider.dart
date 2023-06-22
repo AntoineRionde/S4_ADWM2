@@ -40,17 +40,6 @@ class ArticleProvider extends ChangeNotifier {
         final article = await ArticleProvider().fetchArticle(articleId);
         articles.add(article);
       }
-      // for (var jsonArticle in jsonArticles) {
-      //   print("cc");
-      //   print(jsonArticle['id']);
-
-      //   final articleId = jsonArticle['id'];
-
-      //   print(articleId);
-      //   final article =
-      //       await ArticleProvider().fetchArticle(int.parse(articleId));
-      //   articles.add(article);
-      // }
       _articles = articles;
       return articles;
     } else {

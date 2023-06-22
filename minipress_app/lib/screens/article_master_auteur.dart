@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:minipress_app/models/article.dart';
-import 'package:minipress_app/screens/article_master.dart';
 import 'package:minipress_app/screens/article_preview.dart';
 import 'package:minipress_app/screens/article_provider.dart';
 
 class ArticleMasterAuteur extends StatefulWidget {
   final int? auteurId;
   List<Article> articles = [];
+
+  final ScrollController _scrollController = ScrollController();
 
   ArticleMasterAuteur({Key? key, required this.auteurId}) : super(key: key);
   @override
@@ -36,14 +37,13 @@ class _ArticleMasterAuteurState extends State<ArticleMasterAuteur> {
                   return Column(
                     children: [
                       Expanded(
-                          // child: Scrollbar(
-                          child: ListView(
-                        children: articlePreview,
-                        // Les éléments de la ListView
-                      )),
-                      //     child: ListView(
-                      //   children: articlePreview,
-                      // )),
+                          child: Scrollbar(
+                              thumbVisibility: true,
+                              controller: widget._scrollController,
+                              child: ListView(
+                                controller: widget._scrollController,
+                                children: articlePreview,
+                              ))),
                     ],
                   );
                 } else {
@@ -52,13 +52,6 @@ class _ArticleMasterAuteurState extends State<ArticleMasterAuteur> {
               },
             ),
           ),
-          // FloatingActionButton(
-          //     onPressed: () async {
-          //       await Navigator.of(context).push(
-          //           MaterialPageRoute(builder: (context) => CategorieMaster()));
-          //       setState(() {});
-          //     },
-          //     child: const Icon(Icons.category)),
         ],
       ),
     );

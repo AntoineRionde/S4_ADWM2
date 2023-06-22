@@ -24,7 +24,6 @@ class _ArticlePreviewState extends State<ArticlePreview> {
               "Date de création : ${widget.article.dateCreation!.toString().substring(0, 10)}"),
           InkWell(
             onTap: () {
-              // print('click auteur');
               Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ArticleMasterAuteur(
                       auteurId: int.parse(widget.article.idAuteur!))));

@@ -31,9 +31,6 @@ class _CategorieMasterState extends State<CategorieMaster> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Catégories'),
-      // ),
       body: Column(
         children: <Widget>[
           FutureBuilder<String>(

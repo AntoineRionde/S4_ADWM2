@@ -9,6 +9,8 @@ class ArticleMasterCategorie extends StatefulWidget {
 
   List<Article> articles = [];
 
+  ScrollController _scrollController = ScrollController();
+
   ArticleMasterCategorie({Key? key, required this.categorie}) : super(key: key);
 
   @override
@@ -39,9 +41,13 @@ class _ArticleMasterCategorieState extends State<ArticleMasterCategorie> {
                   return Column(
                     children: [
                       Expanded(
-                          child: ListView(
-                        children: articlePreview,
-                      )),
+                          child: Scrollbar(
+                              thumbVisibility: true,
+                              controller: widget._scrollController,
+                              child: ListView(
+                                controller: widget._scrollController,
+                                children: articlePreview,
+                              ))),
                     ],
                   );
                 } else {
@@ -50,13 +56,6 @@ class _ArticleMasterCategorieState extends State<ArticleMasterCategorie> {
               },
             ),
           ),
-          // FloatingActionButton(
-          //     onPressed: () async {
-          //       await Navigator.of(context).push(
-          //           MaterialPageRoute(builder: (context) => CategorieMaster()));
-          //       setState(() {});
-          //     },
-          //     child: const Icon(Icons.category)),
         ],
       ),
     );

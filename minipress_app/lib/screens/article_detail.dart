@@ -32,23 +32,9 @@ class _ArticleDetailState extends State<ArticleDetail> {
         ],
       )),
 
-      // body: SingleChildScrollView(
+      // body: Container(
       //     child: Html(
       //   data: markdown.markdownToHtml(widget.article.contenu!),
-      //   style: {
-      //     "body": Style(
-      //       fontSize: const FontSize(18.0),
-      //     ),
-      //     "h1": Style(
-      //       fontSize: const FontSize(24.0),
-      //     ),
-      //     "h2": Style(
-      //       fontSize: const FontSize(22.0),
-      //     ),
-      //     "h3": Style(
-      //       fontSize: const FontSize(20.0),
-      //     ),
-      //   },
       // )),
     );
   }

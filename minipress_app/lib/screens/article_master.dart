@@ -7,6 +7,7 @@ import 'package:minipress_app/screens/article_provider.dart';
 class ArticleMaster extends StatefulWidget {
   ArticleMaster({Key? key}) : super(key: key);
 
+  final ScrollController _scrollController = ScrollController();
   @override
   State<ArticleMaster> createState() => _ArticleMasterState();
 
@@ -42,7 +43,7 @@ class _ArticleMasterState extends State<ArticleMaster> {
                     backgroundColor: const Color.fromRGBO(3, 1, 81, 1)),
                 onPressed: () {
                   setState(() {
-                    widget.sortAscending = true; // Tri ascendant
+                    widget.sortAscending = true;
                   });
                 },
                 child: const Text('Tri Ascendant'),
@@ -53,7 +54,7 @@ class _ArticleMasterState extends State<ArticleMaster> {
                     backgroundColor: const Color.fromRGBO(3, 1, 81, 1)),
                 onPressed: () {
                   setState(() {
-                    widget.sortAscending = false; // Tri descendant
+                    widget.sortAscending = false;
                   });
                 },
                 child: const Text('Tri Descendant'),
@@ -76,14 +77,13 @@ class _ArticleMasterState extends State<ArticleMaster> {
                   return Column(
                     children: [
                       Expanded(
-                          // child: Scrollbar(
-                          child: ListView(
-                        children: articlePreview,
-                        // Les éléments de la ListView
-                      )),
-                      //     child: ListView(
-                      //   children: articlePreview,
-                      // )),
+                          child: Scrollbar(
+                              controller: widget._scrollController,
+                              thumbVisibility: true,
+                              child: ListView(
+                                controller: widget._scrollController,
+                                children: articlePreview,
+                              ))),
                     ],
                   );
                 } else {
@@ -92,13 +92,6 @@ class _ArticleMasterState extends State<ArticleMaster> {
               },
             ),
           ),
-          // FloatingActionButton(
-          //     onPressed: () async {
-          //       await Navigator.of(context).push(
-          //           MaterialPageRoute(builder: (context) => CategorieMaster()));
-          //       setState(() {});
-          //     },
-          //     child: const Icon(Icons.category)),
         ],
       ),
     );
