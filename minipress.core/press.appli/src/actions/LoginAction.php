@@ -4,7 +4,6 @@ namespace press\app\actions;
 
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
-use Slim\Routing\RouteContext;
 use Slim\Views\Twig;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -27,13 +26,15 @@ class LoginAction extends AbstractAction
     {
         $error = $_SESSION['error'] ?? "";
         unset($_SESSION['error']);
-        $target = $_GET['target'] ?? "home";
-        $basePath = RouteContext::fromRequest($request)->getBasePath();
-        $css_dir = $basePath . "/styles";
-        $img_dir = $basePath . "/img";
-        $resources = ['css' => $css_dir, 'img' => $img_dir, 'isConnected' => isset($_SESSION['user']), 'target' => $target];
+
+        $target = 'none';
+        if (isset($_GET['target'])) {
+            $target = $_GET['target'];
+            unset($_GET['target']);
+        }
+
         $view = Twig::fromRequest($request);
-        $view->render($response, 'login.twig', ['resources' => $resources, 'error' => $error]);
+        $view->render($response, 'login.twig', ['error' => $error, 'target' => $target]);
         return $response;
     }
 }

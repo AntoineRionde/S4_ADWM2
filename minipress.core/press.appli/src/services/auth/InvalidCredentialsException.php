@@ -7,7 +7,7 @@ use Throwable;
 
 class InvalidCredentialsException extends Exception
 {
-    public function __construct(string $message = "identifiants incorrect", int $code = 0, Throwable $previous = null)
+    public function __construct(string $message = "Identifiants incorrect", int $code = 0, Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }

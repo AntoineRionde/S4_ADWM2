@@ -7,7 +7,7 @@ use Throwable;
 
 class CategoryAlreadyExistsException extends \Exception
 {
-    public function __construct(string $message = "cette catégorie existe déjà", int $code = 0, Throwable $previous = null)
+    public function __construct(string $message = "Cette catégorie existe déjà", int $code = 0, Throwable $previous = null)
     {
         parent::__construct($message, $code, $previous);
     }

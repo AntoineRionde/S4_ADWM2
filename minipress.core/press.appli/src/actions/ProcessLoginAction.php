@@ -19,10 +19,11 @@ class ProcessLoginAction extends AbstractAction
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $routeContext = RouteContext::fromRequest($request);
-        $urlLogin = $routeContext->getRouteParser()->urlFor('login');
+        $urlTarget = $routeContext->getRouteParser()->urlFor('home');
 
         if ($request->getMethod() !== 'POST') {
-            return $response->withHeader('Location', $urlLogin)->withStatus(302);
+            $urlTarget = $routeContext->getRouteParser()->urlFor('login');
+            return $response->withHeader('Location', $urlTarget)->withStatus(302);
         }
 
         $data = $request->getParsedBody();
@@ -30,18 +31,20 @@ class ProcessLoginAction extends AbstractAction
         $email = filter_var($data['email'], FILTER_SANITIZE_EMAIL);
         $password = filter_var($data['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        $url = $routeContext->getRouteParser()->urlFor($data['target']);
-
-        $authService = new AuthService();
-
         try {
+            $authService = new AuthService();
             $user = $authService->authenticate($email, $password);
             $_SESSION['user'] = $user;
         } catch (InvalidCredentialsException $e) {
             $_SESSION['error'] = $e->getMessage();
-            $url = $routeContext->getRouteParser()->urlFor('login');
+            $urlTarget = $routeContext->getRouteParser()->urlFor('login');
+            return $response->withHeader('location', $urlTarget)->withStatus(302);
         }
 
-        return $response->withHeader('Location', $url)->withStatus(302);
+        if ($data['target'] !== 'none') {
+            $urlTarget = $routeContext->getRouteParser()->urlFor($data['target']);
+        }
+
+        return $response->withHeader('Location', $urlTarget)->withStatus(302);
     }
 }

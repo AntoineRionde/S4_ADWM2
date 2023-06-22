@@ -22,23 +22,22 @@ class CreateArticleAction extends AbstractAction
             session_start();
     }
 
-    /**
-     * @throws RuntimeError
-     * @throws SyntaxError
-     * @throws LoaderError
-     */
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
 
         if (!isset($_SESSION['user'])){
+            $_SESSION['error'] = "Vous devez être connecté pour créer un article";
             $urlLogin = $routeParser->urlFor('login', [], ['target' => 'createArticle']);
             return $response->withHeader('location', $urlLogin)->withStatus(302);
         }
 
+        $error = $_SESSION['error'] ?? "";
+        unset($_SESSION['error']);
+
         $view = Twig::fromRequest($request);
         $categService = new CategorieService();
         $categories = $categService->getCategories();
-        return $view->render($response, 'createArticle.twig', ['categories' => $categories, 'user' => $_SESSION['user']]);
+        return $view->render($response, 'createArticle.twig', ['categories' => $categories, 'user' => $_SESSION['user'], 'error' => $error]);
     }
 }

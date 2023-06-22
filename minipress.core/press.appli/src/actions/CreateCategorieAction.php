@@ -2,10 +2,11 @@
 
 namespace press\app\actions;
 
-use press\app\services\categories\CategoryAlreadyExistsException;
-use Slim\Psr7\Request;
-use Slim\Psr7\Response;
-use press\app\services\categories\CategorieService;
+use press\app\services\user\AccessControlException;
+use press\app\services\user\UserService;
+use Slim\Psr7\Response as Response;
+use Slim\Psr7\Request as Request;
+use press\app\services\articles\ArticleService;
 use Slim\Routing\RouteContext;
 use Slim\Views\twig;
 use Twig\Error\LoaderError;
@@ -20,35 +21,27 @@ class CreateCategorieAction extends AbstractAction
             session_start();
     }
 
-    /**
-     * @throws \Exception
-     */
     public function __invoke(Request $request, Response $response, array $args): Response
     {
-        $routeContext = RouteContext::fromRequest($request);
-        $urlCreateCateg = $routeContext->getRouteParser()->urlFor('register');
+        $routeParser = RouteContext::fromRequest($request)->getRouteParser();
 
-        $titre = $request->getParsedBody()['titre'];
-        $desc = $request->getParsedBody()['description'];
-
-        $service = new CategorieService();
-        $categories = $service->getCategories();
-        $id = count($categories)+1;
-
-        $data=[
-            'id' => $id,
-            'titre' => $titre,
-            'description' =>$desc
-        ];
-
-        try {
-            $categorie = $service->create($data);
-        } catch (CategoryAlreadyExistsException $ce){
-            $_SESSION['error'] = $ce->getMessage();
-            $urlCreateCateg = $routeContext->getRouteParser()->urlFor('createCategorie');
+        if (!isset($_SESSION['user'])) {
+            $_SESSION['error'] = 'Vous devez être connecté pour créer une catégorie';
+            $urlLogin = $routeParser->urlFor('login', [], ['target' => 'createCategorie']);
+            return $response->withHeader('location', $urlLogin)->withStatus(302);
         }
-        $urlCreateCateg = $routeContext->getRouteParser()->urlFor('categories');
+        try {
+            UserService::checkAcessRole($_SESSION['user']['id']);
+        } catch (AccessControlException $e){
+            $_SESSION['error'] = $e->getMessage();
+            $urlHome = $routeParser->urlFor('home');
+            return $response->withHeader('location', $urlHome)->withStatus(302);
+        }
+
+        $error = $_SESSION['error'] ?? "";
+        unset($_SESSION['error']);
+
         $view = Twig::fromRequest($request);
-        return $response->withHeader('Location', $urlCreateCateg)->withStatus(302);
+        return $view->render($response, 'createCategorie.twig', ['user' => $_SESSION['user'], 'error' => $error]);
     }
 }

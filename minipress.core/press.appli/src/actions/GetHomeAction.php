@@ -25,8 +25,11 @@ class GetHomeAction extends AbstractAction
      */
     public function __invoke(Request $request, Response $response, array $args): Response
     {
+        $error = $_SESSION['error'] ?? "";
+        unset($_SESSION['error']);
+
         $view = Twig::fromRequest($request);
-        $view->render($response, 'home.twig', ['user' => $_SESSION['user'] ?? null]);
+        $view->render($response, 'home.twig', ['user' => $_SESSION['user'] ?? null, 'error' => $error]);
         return $response;
     }
 }

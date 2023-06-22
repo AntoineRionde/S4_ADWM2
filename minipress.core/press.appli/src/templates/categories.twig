@@ -7,7 +7,7 @@
         <hr/>
         <div id="categories_list">
             {% for cat in categories %}
-                <a href="{{ url_for('getCategoriesByIdAction', { 'id': cat.id }) }}">
+                <a href="{{ url_for('getCategoriesById', { 'id': cat.id }) }}">
                     <div class="categories_list_item flex-row">
 
                         <h2>{{ cat.titre }}</h2>

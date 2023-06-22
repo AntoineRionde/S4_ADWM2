@@ -9,15 +9,15 @@ class CategorieService{
 
     /**
      * Méthode permettant de créer une nouvelle categorie via un tableau de données donné
-     * @param array $donnee
+     * @param array $data
      * @return Categorie categorie
-     * @throws Exception
+     * @throws CategoryAlreadyExistsException
      */
-    function create(array $donnee): string{
+    function createCategory(array $data): string{
         $categorie = new Categorie;
-        $categorie->id = $donnee['id'];
-        $categorie->titre = $donnee['titre'];
-        $categorie->description = $donnee['description'];
+        $categorie->id = $data['id'];
+        $categorie->titre = $data['titre'];
+        $categorie->description = $data['description'];
         if ($this->IsCategorieExist($categorie->titre))
             throw new CategoryAlreadyExistsException();
         $categorie->save();
@@ -39,6 +39,7 @@ class CategorieService{
     /**
      * Méthode permettant de récupérer toutes les catégories
      * @return array
+     * @throws Exception
      */
     function getCategories() : array {
         $categories = Categorie::all();
@@ -55,21 +56,9 @@ class CategorieService{
         try {
             return Categorie::findOrFail($id)->toArray();
         }catch(Exception $e) {
+            //TODO : modifier exception
             throw new Exception( "L'id de la catégorie n'est pas renseigné");
         }
-    }
-
-    /**
-     * Méthode permettant de créer une catégorie
-     * @param array $data
-     * @return array $categorie
-     */
-    function createCategorie(array $data) : array {
-        $categorie = new Categorie();
-        $categorie->libelle = $data['titre'];
-        $categorie->description = $data['description'];
-        $categorie->save();
-        return $categorie->toArray();
     }
 
     /**
@@ -83,6 +72,7 @@ class CategorieService{
             $categorie->delete();
             return $categorie->toArray();
         }catch(Exception $e) {
+            //TODO : modifier exception
             throw new Exception("L'id de la catégorie n'est pas renseigné");
         }
     }

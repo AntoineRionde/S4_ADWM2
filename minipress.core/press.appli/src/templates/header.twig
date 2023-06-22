@@ -6,14 +6,14 @@
     <nav id="header-nav">
         <a href="{{ url_for('home') }}">Accueil</a>
         {% if user %}
-            <a href="{{ url_for('loginVerify', {target: 'categories'}) }}">Categories</a>
-            <a href="{{ url_for('loginVerify', {target: 'articles'}) }}">Articles</a>
-            <a href="{{ url_for('loginVerify', {target: 'utilisateurs'}) }}">Utilisateurs</a>
+            <a href="{{ url_for('categories', {target: 'categories'}) }}">Categories</a>
+            <a href="{{ url_for('articles', {target: 'articles'}) }}">Articles</a>
+            <a href="{{ url_for('utilisateurs', {target: 'utilisateurs'}) }}">Utilisateurs</a>
             {% if user['role'] %}
-                <a href="{{ url_for('loginVerify', {target: 'createUser'}) }}">Créer un utilisateur</a>
-                <a href="{{ url_for('loginVerify', {target: 'createCategorie'}) }}">Créer une catégorie</a>
+                <a href="{{ url_for('createUser', {target: 'createUser'}) }}">Créer un utilisateur</a>
+                <a href="{{ url_for('createCategorie', {target: 'createCategorie'}) }}">Créer une catégorie</a>
             {% endif %}
-            <a href="{{ url_for('loginVerify', {target: 'createArticle'}) }}">Créer un article</a>
+            <a href="{{ url_for('createArticle', {target: 'createArticle'}) }}">Créer un article</a>
             <a href="{{ url_for('logout') }}">Déconnexion</a>
         {% endif %}
         {% if not user %}

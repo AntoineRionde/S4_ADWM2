@@ -17,6 +17,11 @@ class CreateArticleProcessAction extends AbstractAction
 
     public function __invoke(Request $request, Response $response, array $args): Response
     {
+        if ($request->getMethod() !== 'POST') {
+            $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+            return $response->withHeader('location', $routeParser->urlFor('articles'))->withStatus(302);
+        }
+
         $data = $request->getParsedBody();
         $data['titre'] = htmlspecialchars($data['titre'], ENT_QUOTES, 'UTF-8');
 

@@ -58,12 +58,17 @@ class ArticleService
      * Méthode permettant de récupérer les articles d'une catégorie
      * @param int $id id de la catégorie
      * @return array $articles
-     * @throws Exception $e
+     * @throws IdCategorieException
      */
     public function getArticlesByCategorieId(int $id): array
     {
         try {
-            return Article::where('cat_id', $id)->get()->toArray();
+            $articles = Article::where('cat_id', $id)->get()->toArray();
+            $parsedown = new Parsedown();
+            foreach ($articles as &$art) {
+                $art['resume'] = $parsedown->text($art['resume']);
+            }
+            return $articles;
         } catch (Exception $e) {
             throw new IdCategorieException();
         }
@@ -73,11 +78,19 @@ class ArticleService
     {
         return Article::where('date_publication', '<=', date_create()->format('Y-m-d H:i:s'))->get()->toArray();
     }
-    
+
 
     public function getArticlesByAuteur()
     {
-        return Article::select('email','titre')->distinct()->get()->toArray();
+        return Article::select('email', 'titre')->distinct()->get()->toArray();
+    }
+
+    public function sortArticlesByDate(array $articles) : array
+    {
+        usort($articles, function ($a, $b) {
+            return $a['date_publication'] <=> $b['date_publication'];
+        });
+        return $articles;
     }
 
 }

@@ -32,6 +32,7 @@ class ProcessRegisterAction extends AbstractAction
         $password = filter_var($request->getParsedBody()['password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $confirm_password = filter_var($request->getParsedBody()['confirm_password'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
+        $urlRegister = $routeContext->getRouteParser()->urlFor('login');
         try {
             $authService = new AuthService();
             $authService->register($email, $password, $confirm_password);
@@ -45,7 +46,6 @@ class ProcessRegisterAction extends AbstractAction
             $_SESSION['error'] = $ue->getMessage();
             $urlRegister = $routeContext->getRouteParser()->urlFor('register');
         }
-        $urlRegister = $routeContext->getRouteParser()->urlFor('login');
         return $response->withHeader('Location', $urlRegister)->withStatus(302);
 
     }
