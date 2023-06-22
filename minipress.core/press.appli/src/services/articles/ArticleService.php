@@ -93,4 +93,18 @@ class ArticleService
         return $articles;
     }
 
+    public function publishArticle(int $id)
+    {
+        $article = Article::find($id);
+        $article->date_publication = date_create()->format('Y-m-d H:i:s');
+        $article->save();
+    }
+
+    public function unpublishArticle(int $id)
+    {
+        $article = Article::find($id);
+        $article->date_publication = null;
+        $article->save();
+    }
+
 }
