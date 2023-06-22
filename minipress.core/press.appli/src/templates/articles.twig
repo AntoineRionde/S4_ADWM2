@@ -4,16 +4,24 @@
 
 {% block content %}
 
-    <h1>Articles</h1>
-    <ul>
-        {% if articles|length > 0 %}
-            {% for art in articles %}
-                    <h2>    {{art.titre}}</h2><p>paru le : {{art.date_creation}}</p>
+    <div class="container flex-column center">
+        <h1 id="articles-title">Articles</h1>
+        <hr/>
+        <div id="articles-list">
+            <ul>
+                {% if articles|length > 0 %}
+                    {% for art in articles %}
+                        <div class="articles_list_item flex-row">
+                            <h2 id="article-titre">{{art.titre}}</h2>
+                            <p>paru le : {{art.date_creation}}</p>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <li>Aucun article trouvé.</li>
+                {% endif %}
+            </ul>
+        </div>
 
-                    <hr/>
-            {% endfor %}
-        {% else %}
-            <li>Aucun article trouvé.</li>
-        {% endif %}
-    </ul>
+    </div>
+
 {% endblock %}
