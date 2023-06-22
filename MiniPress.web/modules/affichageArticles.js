@@ -197,21 +197,6 @@ export const affichageArticlesByMotCle = function(mot, ascendant=false){
       });
     });
   });
-  let button = document.createElement('BUTTON');
-  button.appendChild(document.createTextNode('Trier par date descendante'));
-  button.addEventListener('click',function(){
-    affichageArticlesByMotCle(mot);
-    galleryContainer.innerHTML="";
-  });
-  galleryContainer.appendChild(button);
-
-  let buttonAsc = document.createElement('BUTTON');
-  buttonAsc.appendChild(document.createTextNode('Trier par date ascendante'));
-  buttonAsc.addEventListener('click',function(){
-    affichageArticlesByMotCle(mot, true);
-    galleryContainer.innerHTML="";
-  });
-  galleryContainer.appendChild(buttonAsc);
   
   document.getElementById('articles').appendChild(galleryContainer);
   return i;
