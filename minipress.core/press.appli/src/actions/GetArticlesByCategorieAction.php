@@ -31,7 +31,7 @@ class GetArticlesByCategorieAction extends AbstractAction
         $routeContext = RouteContext::fromRequest($request);
         $urlGet = $routeContext->getRouteParser()->urlFor('getArticlesByCategorie');
 
-        if (isset($args['id']) && !is_numeric($args['id'])) {
+        if (!isset($args['id']) && !is_numeric($args['id'])) {
             throw new Exception("La catégorie n'existe pas");
         }
 
