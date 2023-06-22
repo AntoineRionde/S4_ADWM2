@@ -2,6 +2,7 @@
 
 namespace press\app\actions;
 
+use Exception;
 use press\app\services\articles\ArticleService;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -38,8 +39,14 @@ class CreateArticleProcessAction extends AbstractAction
             unset($data['cat_id']);
         }
 
-        $articleService = new ArticleService();
-        $articleService->createArticle($data);
+        try {
+            $articleService = new ArticleService();
+            $articleService->createArticle($data);
+        } catch (Exception $e) {
+            $_SESSION['error'] = $e->getMessage();
+            $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+            return $response->withHeader('location', $routeParser->urlFor('createArticle'))->withStatus(302);
+        }
 
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
 
