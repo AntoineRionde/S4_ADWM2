@@ -11,6 +11,11 @@ use Slim\Views\Twig;
 
 class GetUsersAction extends AbstractAction
 {
+    public function __construct()
+    {
+        if (session_status() === PHP_SESSION_NONE)
+            session_start();
+    }
 
     public function __invoke(Request $request, Response $response, array $args): Response
     {
@@ -25,7 +30,9 @@ class GetUsersAction extends AbstractAction
             $articlesService = new ArticleService();
             $articles = $articlesService->getArticlesByAuteur();
         } catch (Exception $e) {
-            $articles = [];
+            $_SESSION['error'] = 'Une erreur est survenue lors de la récupération des articles';
+           $url = $routeParser->urlFor('getHome');
+           return $response->withHeader('location', $url)->withStatus(302);
         }
 
         $error = $_SESSION['error'] ?? "";
