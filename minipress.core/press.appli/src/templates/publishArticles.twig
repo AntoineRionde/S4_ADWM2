@@ -12,11 +12,11 @@
                     <p>Auteur: {{ art.auteur }}</p>
 
                     {% if not art.date_publication %}
-                        <p>En attente de publication <a href="{{ url_for('publishArticles',{}, {'id': art.id, 'publish': 'true'}) }}">Publier l'article</a></p>
+                        <p>En attente de publication <a href="{{ url_for('publishArticles',{}, {'id': art.id, 'publish': 'true'}) }}"><button id="button-pub">Publier l'article</button> </a></p>
                     {% endif %}
 
                     {% if art.date_publication %}
-                        <p>Publié sur le site <a href="{{ url_for('publishArticles', {}, {'id': art.id, 'publish': 'false'}) }}">Dépublier l'article</a></p>
+                        <p>Publié sur le site <a href="{{ url_for('publishArticles', {}, {'id': art.id, 'publish': 'false'}) }}"><button id="button-depub">Dépublier l'article</button> </a></p>
                     {% endif %}
 
                 </li>

@@ -59,6 +59,48 @@ hr {
     background: rgba(222, 60, 75, 0.25);
 }
 
+/* ---------------------------- BOUTON ---------------------------- */
+
+#button-pub {
+    width: 15%;
+    padding: 0.5em;
+
+    border: none;
+    border-radius: 4px;
+
+    background-color: #030151;
+
+    color: white;
+    font-size: 1em;
+
+    cursor: pointer;
+}
+
+#button-pub:hover {
+    background-color: #6279B8;
+    transition: background-color 0.5s ;
+}
+
+#button-depub {
+    width: 15%;
+    padding: 0.5em;
+
+    border: none;
+    border-radius: 4px;
+
+    background-color: #030151;
+
+    color: white;
+    font-size: 1em;
+
+    cursor: pointer;
+}
+
+#button-depub:hover {
+    background-color: #6279B8;
+    transition: background-color 0.5s ;
+}
+
 /* ---------------------------- FORMULAIRE ---------------------------- */
 
 /* Styliser le formulaire */
