@@ -35,6 +35,7 @@ displayMot.addEventListener('click', () => {
 });
 
 export const resetAffichage = function(){
+    document.getElementById('selectedCategory').innerHTML="";
     document.getElementById('articles').innerHTML="";
     document.getElementById('categories').innerHTML="";
     document.getElementById('auteur').innerHTML="";
