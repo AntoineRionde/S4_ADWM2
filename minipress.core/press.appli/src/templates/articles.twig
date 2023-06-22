@@ -8,13 +8,9 @@
     <ul>
         {% if articles|length > 0 %}
             {% for art in articles %}
-                <li>
                     <h2>    {{art.titre}}</h2><p>paru le : {{art.date_creation}}</p>
-                    {{ art.resume|raw }}
-                    {{ art.contenu|raw }}
-                    <p>    Auteur  :   {{art.auteur}}</p>
-                </li>
 
+                    <hr/>
             {% endfor %}
         {% else %}
             <li>Aucun article trouvé.</li>
