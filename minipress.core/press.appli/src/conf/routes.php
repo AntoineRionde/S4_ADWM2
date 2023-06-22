@@ -59,5 +59,4 @@ return function (App $app): void {
     //Route to create user with admin
     $app->get('/create-user[/]', CreateUserAction::class)->setName("createUser");
     $app->post('/create-user[/]', CreateUserProcessAction::class)->setName("createUserPost");
-
 };
