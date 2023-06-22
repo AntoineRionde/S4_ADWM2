@@ -36,10 +36,10 @@ class PublishArticlesAction extends AbstractAction
 
             if($publish=="true"){
                 $service->publishArticle($id);
-                $_SESSION['sucess'] = 'L\'article a bien été publié';
+                $_SESSION['success'] = 'L\'article a bien été publié';
             }else if($publish=="false"){
                 $service->unpublishArticle($id);
-                $_SESSION['sucess'] = 'L\'article a bien été dépublié';
+                $_SESSION['success'] = 'L\'article a bien été dépublié';
             }
         } catch (Exception $e) {
             $_SESSION['error'] = 'Une erreur est survenue lors de la récupération des articles';
