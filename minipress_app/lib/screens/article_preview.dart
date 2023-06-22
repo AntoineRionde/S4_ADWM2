@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:minipress_app/models/article.dart';
 import 'package:minipress_app/screens/article_detail.dart';
+import 'package:minipress_app/screens/article_master_auteur.dart';
 
 class ArticlePreview extends StatefulWidget {
   final Article article;
@@ -16,7 +17,21 @@ class _ArticlePreviewState extends State<ArticlePreview> {
   Widget build(BuildContext context) {
     return ListTile(
       title: Text(widget.article.title!),
-      subtitle: Text(widget.article.resume!),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+              "Date de création : ${widget.article.dateCreation!.toString().substring(0, 10)}"),
+          InkWell(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => ArticleMasterAuteur(
+                      auteurId: int.parse(widget.article.idAuteur!))));
+            },
+            child: Text("Auteur : ${widget.article.auteur!}"),
+          )
+        ],
+      ),
       onTap: () {
         Navigator.of(context).push(MaterialPageRoute(
             builder: (context) => ArticleDetail(article: widget.article)));
