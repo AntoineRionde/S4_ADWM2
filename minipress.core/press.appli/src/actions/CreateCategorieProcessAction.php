@@ -22,9 +22,6 @@ class CreateCategorieProcessAction extends AbstractAction
             session_start();
     }
 
-    /**
-     * @throws \Exception
-     */
     public function __invoke(Request $request, Response $response, array $args): Response
     {
         $routeContext = RouteContext::fromRequest($request);
@@ -46,7 +43,8 @@ class CreateCategorieProcessAction extends AbstractAction
         try {
             $categorieService->createCategory($data);
         } catch (CategoryAlreadyExistsException $ce){
-            $urlCreateCateg = $routeParser->urlFor('createCategorie', [], ['error' => $ce->getMessage()]);
+            $_SESSION['error'] = $ce->getMessage();
+            $urlCreateCateg = $routeParser->urlFor('createCategorie');
             return $response->withHeader('Location', $urlCreateCateg)->withStatus(302);
         }
         $urlCateg = $routeParser->urlFor('categories');
