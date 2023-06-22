@@ -2,6 +2,7 @@
 
 namespace press\app\actions;
 
+use Exception;
 use press\app\services\articles\ArticleService;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
