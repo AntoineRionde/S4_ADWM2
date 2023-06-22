@@ -20,6 +20,8 @@ class _ArticleMasterAuteurState extends State<ArticleMasterAuteur> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Articles de l'auteur sélectionné"),
+        backgroundColor: const Color.fromARGB(255, 52, 54, 51),
+        centerTitle: true,
       ),
       body: Column(
         children: <Widget>[

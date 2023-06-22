@@ -23,6 +23,8 @@ class _ArticleMasterCategorieState extends State<ArticleMasterCategorie> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.categorie.titre!),
+        backgroundColor: const Color.fromARGB(255, 52, 54, 51),
+        centerTitle: true,
       ),
       body: Column(
         children: <Widget>[

@@ -16,6 +16,7 @@ class _ArticleDetailState extends State<ArticleDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 52, 54, 51),
         title: Text(widget.article.title!),
         centerTitle: true,
       ),
@@ -23,11 +24,16 @@ class _ArticleDetailState extends State<ArticleDetail> {
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Resume : ${markdown.markdownToHtml(widget.article.resume!)}"),
-          Text("Contenu : ${markdown.markdownToHtml(widget.article.contenu!)}"),
-          const Text("\n"),
+          const Text("Resume : \n"),
           Text(
-              "Date de création : ${widget.article.dateCreation!.toString().substring(0, 10)}"),
+            markdown.markdownToHtml(widget.article.resume!),
+            textAlign: TextAlign.center,
+          ),
+          const Text("Contenu : \n "),
+          Text(markdown.markdownToHtml(widget.article.contenu!),
+              textAlign: TextAlign.center),
+          Text(
+              "\n Date de création : ${widget.article.dateCreation!.toString().substring(0, 10)}"),
           Text("Auteur : ${widget.article.auteur!}"),
         ],
       )),
